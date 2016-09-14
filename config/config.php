@@ -5,10 +5,10 @@
  */
 
 const DEVELOPMENT_ENVIRONMENT = true; // Do not forget to change it to false on prod.
-const DEFAULT_URI = '/minimis/public';
+const DEFAULT_URI = '/clickerman/public';
 const CACHE_PATH = 'cache/';
 const SECRET_KEY = 'd0a7e7997b6d5fcd55f4b5c32611b87cd923e88837b63bf2941ef819dc8ca282';
-const COOKIE_SUFFIX = 'minimis_';
+const COOKIE_SUFFIX = 'cm_';
 
 /*
  * ROUTES CONFIG
