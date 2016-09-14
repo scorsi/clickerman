@@ -1,6 +1,6 @@
 # Clickerman
 
-Le github private du projet clickerman.
+Private GitHub of Clickerman project.
 
 ## Commit norme:
 - English.
