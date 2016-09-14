@@ -1,0 +1,31 @@
+{
+  "name": "scorsi/minimis-framework",
+  "description": "The PHP tiny framework by Sylvain Corsini",
+  "keyworks": [
+    "Framework",
+    "Minimis"
+  ],
+  "type": "project",
+  "license": "X11-license",
+  "authors": [
+    {
+      "name": "Sylvain Corsini",
+      "email": "sylvain.corsini@gmail.com",
+      "role": "Creator / Main Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "filp/whoops": ">=2.1.0",
+    "symfony/yaml": "^3.1"
+  },
+  "require-dev": {
+    "raveren/kint": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Src\\": "src/"
+    }
+  }
+}
