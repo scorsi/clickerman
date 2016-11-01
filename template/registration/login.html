@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load i18n %}
-    <meta charset="UTF-8">
-    <title></title>
+	{% load i18n %}
+	{% load static %}
+	<meta charset="UTF-8">
+	<title>Connexion</title>
+	<link type="text/css" rel="stylesheet" href="{% static "web/css/app.css" %}" />
+	<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700'>
 </head>
 <body>
-
-<form method="post" action="{% url 'login' %}">
-    {{ auth_form.non_field_errors }}
-    <p>
-        {{ auth_form.username.errors }}
-        <label for="id_username">{% trans "Username" %}:</label> <input type="text" name="username" id="id_username">
-    </p>
-    <p>
-        {{ auth_form.password.errors }}
-        <label for="id_password">{% trans "Password" %}:</label> <input type="password" name="password" id="id_password">
-    </p>
-    <p>
-        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-        <input type="submit" value="{% trans "Log in" %}">
-        <input type="hidden" name="next" value="{{ next }}">
-    </p>
-</form>
-
+	<div class="flex flex-center" style="position: absolute; height: 100%; width: 100%; left: 0; top: 0; text-align: center; background: red">
+		<div id="window" class="flex-child" style=" background: white; max-width: 320px; width: 100%; position: relative">
+			<h1 id="window_title"><span style="padding-left: 15px;">Connexion</span></h1>
+			<form method="post" action="{% url 'login' %}" style="padding: 25px">
+				{{ auth_form.non_field_errors }}
+				<div style="margin-bottom: 10px;">
+					{{ auth_form.username.errors }}
+					<input type="text" name="username" id="id_username" placeholder="{% trans "Username" %}" class="login_input">
+				</div>
+				<div>
+					{{ auth_form.password.errors }}
+					<input type="password" name="password" id="id_password" placeholder="{% trans "Password" %}" class="login_input">
+				</div>
+				<p>
+					<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+					<input type="submit" value="{% trans "Log in" %}">
+					<input type="hidden" name="next" value="{{ next }}">
+				</p>
+			</form>
+			<img src="{% static "web/img/cross.png" %}">
+		</div>
+	</div>
+</div>
 </body>
 </html>
