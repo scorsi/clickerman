@@ -101,7 +101,12 @@ class Bundle(models.Model):
     total_value = models.IntegerField()
     date_started = models.DateField()
     date_ended = models.DateField()
-    status = models.SmallIntegerField(default=0)
+    STATUS_CHOICES = (
+        ('0', 'Draft'),
+        ('1', 'Waiting'),
+        ('2', 'Validated'),
+    )
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, blank=True)
     medias = models.ManyToManyField(Media, blank=True)
     categories = models.ManyToManyField(Category, blank=True)
 
