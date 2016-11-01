@@ -20,6 +20,12 @@ class SocialNetworkAdmin(admin.ModelAdmin):
     ordering = ['name']
 
 
+@admin.register(SocialNetworkLink)
+class SocialNetworkLinkAdmin(admin.ModelAdmin):
+    list_display = ['social_network', 'url']
+    ordering = ['social_network']
+
+
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False
@@ -28,3 +34,27 @@ class ProfileInline(admin.StackedInline):
 @admin.register(User)
 class UserAdmin(OriginalUserAdmin):
     inlines = [ProfileInline]
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    ordering = ['name']
+
+
+class PrizeInline(admin.StackedInline):
+    model = Prize
+    can_delete = True
+
+
+@admin.register(Bundle)
+class BundleAdmin(admin.ModelAdmin):
+    list_display = ['name', 'enterprise', 'description']
+    ordering = ['name']
+    inlines = [PrizeInline]
+
+
+@admin.register(Enterprise)
+class EnterpriseAdmin(admin.ModelAdmin):
+    list_display = ['name', 'siren', 'is_active']
+    ordering = ['name']
