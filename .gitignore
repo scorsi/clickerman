@@ -1,5 +1,4 @@
 /cache
 /log/
 /.idea/
-/static/
 *.pyc
