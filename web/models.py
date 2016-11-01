@@ -25,14 +25,6 @@ class Address(models.Model):
         return self.name()
 
 
-class Media(models.Model):
-    file = models.FileField(upload_to="medias/%Y/%m/%d/")
-    date_uploaded = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.file
-
-
 class SocialNetwork(models.Model):
     name = models.CharField(max_length=50)
     class_name = models.CharField(max_length=100, blank=True)
@@ -42,6 +34,14 @@ class SocialNetwork(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class SocialNetworkLink(models.Model):
+    social_network = models.ForeignKey(SocialNetwork)
+    url = models.URLField()
+
+    def __str__(self):
+        return self.socialnetwork.name
 
 
 class Profile(models.Model):
@@ -54,8 +54,8 @@ class Profile(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
     date_birthday = models.DateField(null=True, blank=True)
     addresses = models.ManyToManyField(Address, blank=True)
-    medias = models.ManyToManyField(Media, blank=True)
-    social_networks = models.ManyToManyField(SocialNetwork, blank=True)
+    medias = models.ImageField(blank=True, null=True)
+    social_networks = models.ManyToManyField(SocialNetworkLink, blank=True)
 
 
 @receiver(post_save, sender=User)
@@ -75,11 +75,11 @@ class Enterprise(models.Model):
     url = models.URLField()
     is_active = models.BooleanField()
     date_joined = models.DateField(auto_now_add=True)
-    date_deleted = models.DateField()
+    date_deleted = models.DateField(null=True, blank=True)
     addresses = models.ManyToManyField(Address, blank=True)
-    medias = models.ManyToManyField(Media, blank=True)
+    medias = models.ImageField(blank=True, null=True)
     users = models.ManyToManyField(User, blank=True)
-    social_networks = models.ManyToManyField(SocialNetwork, blank=True)
+    social_networks = models.ManyToManyField(SocialNetworkLink, blank=True)
 
     def __str__(self):
         return self.name
@@ -88,7 +88,7 @@ class Enterprise(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50)
     parent_category = models.ForeignKey('Category', blank=True, null=True)
-    medias = models.ManyToManyField(Media, blank=True)
+    medias = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -107,7 +107,7 @@ class Bundle(models.Model):
         ('2', 'Validated'),
     )
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, blank=True)
-    medias = models.ManyToManyField(Media, blank=True)
+    medias = models.ImageField(blank=True, null=True)
     categories = models.ManyToManyField(Category, blank=True)
 
     def __str__(self):
@@ -118,12 +118,9 @@ class Prize(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField()
     bundle = models.ForeignKey(Bundle, on_delete=models.CASCADE, null=False)
-    medias = models.ManyToManyField(Media, blank=True)
+    medias = models.ImageField(blank=True, null=True)
+    quantity = models.IntegerField(default=1)
+    value = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
-
-
-class PrizePosition(models.Model):
-    prize = models.ForeignKey(Prize, null=False)
-    position = models.PositiveSmallIntegerField(default=1)
