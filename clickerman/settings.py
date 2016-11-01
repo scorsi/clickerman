@@ -128,5 +128,5 @@ STATIC_ROOT = 'static/'
 
 # Media
 
-MEDIA_ROOT = '../'
+MEDIA_ROOT = '/medias/'
 MEDIA_URL = 'medias/'
