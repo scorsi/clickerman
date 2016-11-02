@@ -1,43 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	{% load i18n %}
 	{% load static %}
 	<meta charset="UTF-8">
 	<title>Connexion</title>
 	<link type="text/css" rel="stylesheet" href="{% static "web/css/app.css" %}" />
+	<link type="text/css" rel="stylesheet" href="{% static "web/css/login.css" %}" />
+	<link type="text/css" rel="stylesheet" href="{% static "web/css/font-awesome/css/font-awesome.min.css" %}" />
 	<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700'>
 	<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,700'>
 </head>
 <body>
-	<div class="flex flex-center" style="position: absolute; height: 100%; width: 100%; left: 0; top: 0; text-align: center; background: red">
-		<div id="window" class="flex-child" style=" background: white; max-width: 320px; width: 100%; position: relative">
-			<h1 id="window_title"><span style="padding-left: 25px;">Connexion</span></h1>
-			<div style="padding: 25px">
+	<div id="window_container" class="flex flex-center">
+		<div id="window" class="flex-child text-center">
+			<h1 id="window_title"><span>Mode de Connexion</span></h1>
+			<div id="start_panel" class="window_panel" >
+				<a href="#" class="connect facebook scaler">
+					<div class="connect__icon">
+						<i class="fa fa-facebook"></i>
+					</div>
+					<div class="connect__context">
+						<span>Continuer avec <span class="bold">Facebook</strong></span>
+					</div>
+				</a>
+				<a href="#" class="connect googleplus scaler">
+					<div class="connect__icon">
+						<i class="fa fa-google-plus"></i>
+					</div>
+					<div class="connect__context">
+						<span>Continuer avec <span class="bold">Google+</span></span>
+					</div>
+				</a>
+				<p class="text_seperator">Ou</p>
+				<form id="form_email">
+					<input type="email" name="mail_initial" id="email_user" placeholder="Votre adresse mail" class="login_input" required>
+					<input type="submit" value="Continuer" class="login_button">
+				</form>
+				<p class="text-info text-left text-smaller">En vous connectant, vous acceptez nos <a href="#">Conditions d'utilisations</a>.</p>
+			</div>
+			<div id="login_panel" class="window_panel" style="display: none">
 				<form id="form_login" method="post" action="{% url 'login' %}">
 					{{ auth_form.non_field_errors }}
-					<div style="margin-bottom: 15px;">
+					<div>
 						{{ auth_form.username.errors }}
-						<input type="text" name="username" id="id_username" placeholder="{% trans "Username" %}" class="login_input">
+						<input type="text" name="username" id="id_useremail" placeholder="Adresse mail" class="login_input">
 					</div>
-					<div style="margin-bottom: 20px">
+					<div>
 						{{ auth_form.password.errors }}
 						<input type="password" name="password" id="id_password" placeholder="{% trans "Password" %}" class="login_input">
+					</div>
+					<div>
+						<a href="#" id="password_lost" class="text-info text-smaller">Mot de passe oublié ?</a>
 					</div>
 					<div>
 						<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 						<input type="submit" value="{% trans "Log in" %}" class="login_button">
 						<input type="hidden" name="next" value="{{ next }}">
 					</div>
+					<p class="text-info text-left text-smaller">En vous connectant, vous acceptez nos <a href="#">Conditions d'utilisations</a>.</p>
 				</form>
-				<hr style="width: 50%; border: 1px solid #f50; margin-top: 20px; margin-bottom: 20px; ">
+				<hr class="line_seperator">
 				<div>
-					<button class="login_button">Créer un compte</button>
+					<button class="back_to_login login_button">Revenir en arrière</button>
 				</div>
 			</div>
-			<img src="{% static "web/img/cross.png" %}">
+			<div id="email_panel" class="window_panel" style="display: none;">
+				<p class="text-info text-center">Sur l'email que vous avez reçu,<br><span class="bold">cliquez sur le lien</span> fournis pour réinitialiser votre mot de passe.</p>
+				<hr class="line_seperator">
+				<div>
+					<button class="back_to_login login_button">Revenir à la connexion</button>
+				</div>
+			</div>
+			<div id="signin_panel" class="window_panel" style="display: none;">
+				<form id="form_login" method="post" action="{% url 'login' %}">
+					{{ auth_form.non_field_errors }}
+					<div>
+						{{ auth_form.username.errors }}
+						<input type="text" name="username" id="id_username" placeholder="{% trans "Username" %}" class="login_input">
+					</div>
+					<div>
+						{{ auth_form.password.errors }}
+						<input type="password" name="password" id="id_password" placeholder="{% trans "Password" %}" class="login_input">
+					</div>
+					<a href="#" id="password_lost" class="text-info text-smaller">Mot de passe oublié ?</a>
+					<div>
+						<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+						<input type="submit" value="{% trans "Log in" %}" class="login_button">
+						<input type="hidden" name="next" value="{{ next }}">
+					</div>
+				</form>
+				<hr class="line_seperator">
+				<div>
+					<button class="back_to_login login_button">Revenir à la connexion</button>
+				</div>
+			</div>
+			<!--<img src="{% static "web/img/cross.png" %}">-->
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="{% static "web/js/jquery-3.1.1.min.js" %}"></script>
+<script type="text/javascript" src="{% static "web/js/login.js" %}"></script>
 </body>
 </html>

@@ -27,75 +27,27 @@ body {
 	align-items: center;
 }
 
-#window_title
+.text-left
 {
-	width: 100%;
-	background: #f50;
-	margin:0px;
-	text-align: left;
-	font-size: 25px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	color: white;
-	font-family: 'Roboto';
+	text-align : left;
 }
 
-#window
+.text-right
 {
-	background: #F5F5F6 !important;
-	box-shadow: 1px 1px 20px rgba(0,0,0,0.4);
+	text-align : right;
 }
 
-.login_input
-{	
-	border: none;
-	outline: none;
-	box-shadow: none;
-	transition: none;
-	color: #f50;
-	background: #F5F5F6;
-	border-bottom: 1px solid #f60;
-	height: 32px;
-	width: 100%;
-	font-size: 18px;
-	font-weight: 500;
-	font-family: 'Roboto';
-	padding-left: 5px;
+.text-center
+{
+	text-align : center;
 }
 
-.login_input:focus{
-	font-weight: bold;
-	outline: none;
-	border: none;
-	outline: none;
-	box-shadow: none;
-	background: #F5F5F6 !important;
-	border-bottom: 2px solid #f60;
+.bold
+{
+	font-weight:bold;
 }
 
-.login_button
-{	
-	border: none;
-	outline: none;
-	box-shadow: none;
-	transition: none;
-	color: white;
-	background: #f50;
-	width: 100%;
-	font-size: 18px;
-	font-family: 'Roboto';
-	font-weight: bold;
-	padding-bottom: 6px;
-	padding-top: 10px;
-	border-bottom: 4px solid #f50;
+.text-smaller
+{
+	font-size: 15px !important;
 }
-
-.login_button:focus{
-	font-weight: bold;
-	outline: none;
-	border: none;
-	outline: none;
-	box-shadow: none;
-	border-bottom: 4px solid #f10;
-}
-
