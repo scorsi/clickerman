@@ -134,5 +134,8 @@ $(document).ready()
 		}
 	});
 
-
+	$("#close_login").click(function()
+	{
+		$("#window").fadeOut(400);
+	});
 };

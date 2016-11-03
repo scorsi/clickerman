@@ -18,6 +18,21 @@
 	position: relative;
 }
 
+#close_login
+{
+	position: absolute;
+	top: 30px;
+	right: 25px;
+	cursor: pointer;
+	transition: all .2s;
+}
+
+#close_login:hover
+{
+	opacity: 0.8;
+}
+
+
 #window_title
 {
 	width: 100%;

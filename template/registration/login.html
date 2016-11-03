@@ -169,7 +169,7 @@
 							<input type="text" name="address_city " id="create_enterprise_address_city" placeholder="Ville" class="login_input columns half_field" required>
 						</div>
 						<div class="row">
-							<button type="button" class="login_button columns" style="width: 47%">Précédent</button>
+							<button type="button" onclick="switch_window(userenterprise_titles[1], userenterprise[1], '#create_user_address', 1);" class="login_button columns" style="width: 47%">Précédent</button>
 							<input type="submit" value="Suivant" class="login_button half_field columns">
 						</div>
 					</form>
@@ -198,8 +198,8 @@
 						<button class="back_to_login login_button">Revenir à la connexion</button>
 					</div>
 				</div>
+				<img id="close_login" style="position: absolute; top: 30px; right: 25px; cursor: pointer" src="{% static "web/img/close_login.png" %}"/>
 			</div>
-			
 		</div>
 	</div>
 	<script type="text/javascript" src="{% static "web/js/jquery-3.1.1.min.js" %}"></script>
