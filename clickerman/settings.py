@@ -80,9 +80,9 @@ DATABASES = {
 'default': {
 'ENGINE': 'django.db.backends.postgresql_psycopg2',
 'USER': 'clickerman',
-'PASSWORD': 'sylvain123',
+'PASSWORD': 'clickerman123',
 'NAME': 'clickermandb',
-'HOST': 'localhost'
+'HOST': '163.172.84.218'
 }
 }
 
