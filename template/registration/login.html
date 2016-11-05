@@ -3,6 +3,7 @@
 <head>
 	{% load i18n %}
 	{% load static %}
+	{% load url %}
 	<meta charset="UTF-8">
 	<title>Connexion</title>
 	<link type="text/css" rel="stylesheet" href="{% static "web/css/foundation.css" %}" />
@@ -58,7 +59,7 @@
 				</div>
 			</div>
 			<div id="login_panel" class="window_panel" style="display: none">
-				<form id="form_login" method="post" action="{% url 'login' %}">
+				<form method="post" acton="{{ url login }}" id="form_login" method="post" action="{% url 'login' %}">
 					<div>
 						{{ auth_form.username.errors }}
 						<input type="email" name="username" id="id_useremail" placeholder="Adresse mail" class="login_input" required>
@@ -88,7 +89,7 @@
 					<button class="back_to_login login_button">Revenir à la connexion</button>
 				</div>
 			</div>
-			<form id="signin_user_panel" class="window_panel" style="display: none">
+			<form id="signin_user_panel" method="post" acton="{{ url register }}" class="window_panel" style="display: none">
 				<div id="form_create_user_1">
 					<input type="email" name="mail" id="create_user_mail" placeholder="Adresse mail" class="login_input" required>
 					<div class="row">
@@ -160,7 +161,7 @@
 					<button type="button" class="back_to_login login_button">Revenir à la connexion</button>
 				</div>
 			</form>
-			<form id="signin_enterprise_panel" class="window_panel" style="display: none">
+			<form id="signin_enterprise_panel" method="post" acton="{{ url register }}" class="window_panel" style="display: none">
 				<div id="form_create_enterprise_1">
 					<input type="text" name="name" id="create_enterprise_name" placeholder="Nom de l'entreprise" class="login_input columns" required>
 					<input type="text" name="siret" id="create_enterprise_siret" placeholder="Numéro de SIRET" class="login_input columns" required>
