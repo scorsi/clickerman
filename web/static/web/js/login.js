@@ -18,16 +18,19 @@ $(document).ready()
 	num_userform = 0;
 	userforms = ["#form_create_user_1", "#form_create_user_2", "#form_create_user_3"];
 	userform_titles = ["Informations générales", "Adresse (2/3)", "Mot de passe"];
+	userform_fields = [["#create_user_mail", "#create_user_lastname", "#create_user_firstname", "#create_user_pseudo", "#create_user_sexe", "#create_user_bd_day", "#create_user_bd_month", "#create_user_bd_year"],
+	["#create_user_address", "#create_user_address_c1", "#create_user_address_c2", "#create_user_address_c1", "#create_user_address_pc", "#create_user_address_city"]];
 	cur_userform = userforms[0];
 	num_enterpriseform = 0;
-	enterpriseforms = ["#form_create_enterprise_1", "#form_create_enterprise_2", "#form_create_enterprise_3", "#form_create_enterprise_4"];
-	enterpriseform_titles = ["Informations générales", "Responsable du compte", "Mot de passe", "Mot de passe"];
+	enterpriseforms = ["#form_create_enterprise_1", "#form_create_enterprise_2", "#form_create_enterprise_3"];
+	enterpriseform_titles = ["Informations générales", "Responsable du compte", "Mot de passe"];
+	enterpriseform_fields = [["#create_enterprise_name", "#create_enterprise_siret", "#create_enterprise_address", "#create_enterprise_address_c1", "#create_enterprise_address_c2", "#create_enterprise_address_pc", "#create_enterprise_address_city"],
+	["#create_enterprise_profile_lastname", "#create_enterprise_profile_firstname", "#create_enterprise_profile_email", "create_enterprise_profile_tel"]];
 	cur_enterpriseform = enterpriseforms[0];
 	num_window = 0;
 	windows = ["#start_panel", "#choose_signin", "#login_panel", "#email_panel", "#signin_user_panel", "#signin_enterprise_panel"];
 	window_titles = ["Mode de Connexion", "Type de compte", "Connexion", "Email envoyé", userform_titles[0], enterpriseform_titles[0]];
 	cur_window = windows[0];
-
 
 	function	switch_window_type(next_window, focus_element, cur_element, type)
 	{
@@ -88,7 +91,7 @@ $(document).ready()
 
 	function	check_email()
 	{
-		return (true);
+		return (false);
 	}
 
 	$("form").submit(function(e)
@@ -126,11 +129,11 @@ $(document).ready()
 		$("input[type='email']").each(function(){ $(this).val($("#email_user").val()); });
 		if (check_email() == true)
 		{
-			switch_window(window_titles[1], windows[1], "#id_password", 1);
+			switch_window(window_titles[2], windows[2], "#id_password", 1);
 		}
 		else
 		{
-			switch_window(window_titles[4], windows[4], 1);
+			switch_window(window_titles[1], windows[1], null, 1);
 		}
 	});
 
