@@ -91,37 +91,9 @@ $(document).ready()
 
 	function	check_email()
 	{
+		//FUNCTION TO CHECK IF ACCOUNT IS ASSIGNED TO ADDRESS
 		return (false);
 	}
-
-	$("form").submit(function(e)
-	{
-		e.preventDefault();
-	});
-
-	$("#form_create_user_1").submit(function(e)
-	{
-		e.preventDefault();
-		switch_window(userform_titles[1], userforms[1], "#create_user_address", 2);
-	});
-
-	$("#form_create_user_2").submit(function(e)
-	{
-		e.preventDefault();
-		switch_window(userform_titles[2], userforms[2], "#create_user_password1", 2);
-	});
-
-	$("#form_create_enterprise_1").submit(function(e)
-	{
-		e.preventDefault();
-		switch_window(enterpriseform_titles[1], enterpriseforms[1], "#create_enterprise_profile_lastname", 3);
-	});
-
-	$("#form_create_enterprise_2").submit(function(e)
-	{
-		e.preventDefault();
-		switch_window(enterpriseform_titles[2], enterpriseforms[2], "#create_user_password1", 3);
-	});
 
 	$("#form_email").submit(function(e)
 	{
