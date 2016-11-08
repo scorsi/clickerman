@@ -3,7 +3,6 @@
 <head>
 	{% load i18n %}
 	{% load static %}
-	{% load url %}
 	<meta charset="UTF-8">
 	<title>Connexion</title>
 	<link type="text/css" rel="stylesheet" href="{% static "web/css/foundation.css" %}" />
@@ -36,7 +35,7 @@
 				</a>
 				<p class="text_seperator">Ou</p>
 				<form id="form_email">
-					<input type="email" name="mail" id="email_user" placeholder="Votre adresse mail" class="login_input" required>
+					<input type="email" name="email" id="email_user" placeholder="Votre adresse mail" class="login_input" required>
 					<input type="submit" value="Continuer" class="login_button">
 				</form>
 				<p class="text-info text-left text-smaller">En vous connectant, vous acceptez nos <a href="#">Conditions d'utilisations</a>.</p>
@@ -59,7 +58,7 @@
 				</div>
 			</div>
 			<div id="login_panel" class="window_panel" style="display: none">
-				<form method="post" acton="{{ url login }}" id="form_login" method="post" action="{% url 'login' %}">
+				<form method="post" acton="{% url 'login' %}" id="form_login" method="post" action="{% url 'login' %}">
 					<div>
 						{{ auth_form.username.errors }}
 						<input type="email" name="username" id="id_useremail" placeholder="Adresse mail" class="login_input" required>
@@ -89,7 +88,7 @@
 					<button class="back_to_login login_button">Revenir à la connexion</button>
 				</div>
 			</div>
-			<form id="signin_user_panel" method="post" acton="{{ url register }}" class="window_panel" style="display: none">
+			<form id="signin_user_panel" method="post" class="window_panel" style="display: none">
 				<div id="form_create_user_1">
 					<input type="email" name="mail" id="create_user_mail" placeholder="Adresse mail" class="login_input" required>
 					<div class="row">
@@ -98,18 +97,18 @@
 					</div>
 					<div class="row">
 						<input type="text" name="pseudo" id="create_user_pseudo" placeholder="Pseudo" class="login_input columns" required>
-						<select id="create_user_sexe" class="login_select columns" onchange="select_update_color(this)" required>
+						<select id="create_user_sexe" class="login_select columns" name="sexe" onchange="select_update_color(this)" required>
 							<option value="" disabled selected>Sexe</option>
-							<option value="volvo">Femme</option>
-							<option value="saab">Homme</option>
+							<option value="0">Femme</option>
+							<option value="1">Homme</option>
 						</select>
 					</div>
 					<h3 class="text-left text-subtitle">Date de naissance :</h3>
 					<div class="row">
-						<select id="create_user_bd_day" class="login_select" onchange="select_update_color(this)" required>
+						<select id="create_user_bd_day" name="birth_day"class="login_select" onchange="select_update_color(this)" required>
 							<option value="" disabled selected>Jour</option>
 						</select>
-						<div id="create_user_bd_month" class="login_select_spacer"></div>
+						<div id="create_user_bd_month" name="birth_month" class="login_select_spacer"></div>
 						<select class="login_select" onchange="select_update_color(this)" required>
 							<option value="" disabled selected>Moi</option>
 							<option value="1">Janvier</option>
@@ -126,7 +125,7 @@
 							<option value="12">Décembre</option>
 						</select>
 						<div class="login_select_spacer"></div>
-						<select id="create_user_bd_year" class="login_select" onchange="select_update_color(this)" required>
+						<select id="create_user_bd_year" name="birth_month" class="login_select" onchange="select_update_color(this)" required>
 							<option value="" disabled selected>Année</option>
 						</select>
 					</div>
@@ -136,7 +135,7 @@
 					</div>
 				</div>
 				<div id="form_create_user_2" style="display: none">
-					<input type="text" name="address" id="create_user_address" placeholder="Adresse" class="login_input columns" required>
+					<input type="text" name="address_street" id="create_user_address" placeholder="Adresse" class="login_input columns" required>
 					<input type="text" name="address_c1" id="create_user_address_c1" placeholder="Complément d'adresse n°1" class="login_input columns">
 					<input type="text" name="address_c2" id="create_user_address_c2" placeholder="Complément d'adresse n°2" class="login_input columns">
 					<div class="row">
@@ -161,11 +160,11 @@
 					<button type="button" class="back_to_login login_button">Revenir à la connexion</button>
 				</div>
 			</form>
-			<form id="signin_enterprise_panel" method="post" acton="{{ url register }}" class="window_panel" style="display: none">
+			<form id="signin_enterprise_panel" method="post" class="window_panel" style="display: none">
 				<div id="form_create_enterprise_1">
 					<input type="text" name="name" id="create_enterprise_name" placeholder="Nom de l'entreprise" class="login_input columns" required>
 					<input type="text" name="siret" id="create_enterprise_siret" placeholder="Numéro de SIRET" class="login_input columns" required>
-					<input type="text" name="address" id="create_enterprise_address" placeholder="Adresse" class="login_input columns" required>
+					<input type="text" name="address_street" id="create_enterprise_address" placeholder="Adresse" class="login_input columns" required>
 					<input type="text" name="address_c1" id="create_enterprise_address_c1" placeholder="Complément d'adresse n°1" class="login_input columns">  
 					<input type="text" name="address_c2" id="create_enterprise_address_c2" placeholder="Complément d'adresse n°2" class="login_input columns">
 					<div class="row">
@@ -182,7 +181,7 @@
 						<input type="text" name="lastname" id="create_enterprise_profile_lastname" placeholder="Nom" class="login_input columns" required>
 						<input type="text" name="firstname" id="create_enterprise_profile_firstname" placeholder="Prénom" class="login_input columns" required>
 					</div>
-					<input type="email" name="mail" id="create_enterprise_profile_email" placeholder="Adresse Mail" class="login_input" required>
+					<input type="email" name="email" id="create_enterprise_profile_email" placeholder="Adresse Mail" class="login_input" required>
 					<input type="tel" name="mail" id="create_enterprise_profile_tel" placeholder="Téléphone" class="login_input" required>
 					<div class="row">
 						<button type="button" onclick="console.log('hekj'); switch_window(enterpriseform_titles[0], enterpriseforms[0], '#create_user_mail', 3);" class="login_button columns" style="width: 47%">Précédent</button>
