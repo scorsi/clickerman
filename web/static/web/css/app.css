@@ -4,6 +4,17 @@ body {
 	-o-font-smoothing: antialiased;
 }
 
+ul
+{
+	margin-bottom: 0px;
+	list-style-type: none;
+}
+
+p 
+{
+	margin-bottom: 0;
+}
+
 .flex
 {
 	display: -webkit-box;
@@ -47,6 +58,11 @@ body {
 	font-weight:bold;
 }
 
+.underline
+{
+	text-decoration: underline;
+}
+
 .text-smaller
 {
 	font-size: 15px !important;
@@ -55,4 +71,18 @@ body {
 .invisible
 {
 	display: none
+}
+
+.scaler
+{
+	transition: 0.2s ease all;
+}
+
+.scaler:hover
+{
+	transform: scale(1.05);
+}
+.scaler:active
+{
+	transform: scale(0.95);
 }
