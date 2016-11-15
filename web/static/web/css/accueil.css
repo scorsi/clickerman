@@ -102,7 +102,7 @@
 	max-width: 300px;
 	min-width: 220px;
 	margin: auto;
-	text-align: center;
+	text-align: center !important;
 }
 .box-statistic
 {
@@ -207,7 +207,7 @@
 @media screen and (min-width: 640px) {
 	.l-padding-left{padding-left: 0.5em !important;}
 	.l-padding-right{padding-right: 0.5em !important;}
-	
+
 }
 @media screen and (max-width: 640px) {
 	.box-left{width:94%;}
