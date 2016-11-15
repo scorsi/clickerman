@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 
-
+{% block title %}
+Connexion
+{% endblock %}
+{% block css %}
+<link type="text/css" rel="stylesheet" href="{% static "web/css/login.css" %}" />
+<link type="text/css" rel="stylesheet" href="{% static "web/css/foundation.css" %}" />
+<link type="text/css" rel="stylesheet" href="{% static "web/css/font-awesome/css/font-awesome.min.css" %}" />
+<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700'>
+<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,700'>
+{% endblock %}
 {% block content %}
 
     {% if form.errors %}
@@ -15,7 +25,6 @@
             <p>Please login to see this page.</p>
         {% endif %}
     {% endif %}
-
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -46,5 +55,201 @@
             </div>
         </div>
     </div>
+    <div id="window_container" class="flex flex-center">
+      <div id="window" class="flex-child text-center">
+        <h1 id="window_title"><span>Mode de Connexion</span></h1>
+        <div id="start_panel" class="window_panel">
+          <a href="#" class="connect facebook scaler">
+            <div class="connect__icon">
+              <i class="fa fa-facebook"></i>
+            </div>
+            <div class="connect__context">
+              <span>Continuer avec <span class="bold">Facebook</strong></span>
+            </div>
+          </a>
+          <a href="#" class="connect googleplus scaler">
+            <div class="connect__icon">
+              <i class="fa fa-google-plus"></i>
+            </div>
+            <div class="connect__context">
+              <span>Continuer avec <span class="bold">Google+</span></span>
+            </div>
+          </a>
+          <p class="text_seperator">Ou</p>
+          <form id="form_email">
+            <input type="email" name="email" id="email_user" placeholder="Votre adresse mail" class="login_input" required>
+            <input type="submit" value="Continuer" class="login_button">
+          </form>
+          <p class="text-info text-left text-smaller">En vous connectant, vous acceptez nos <a href="#">Conditions d'utilisations</a>.</p>
+        </div>
+        <div id="choose_signin" class="window_panel" style="display: none">
+          <h3 class="row" style="line-height: 1; font-family: 'Roboto Condensed'; font-size: 26px">Choisissez le type de compte que vous voulez créer.</h3>
+          <button id="choose_user" class="text-left row" style="border: 2px solid #f60">
+            <h4 style="background: #f60; color: white; font-family: 'Roboto Condensed'; padding: 7px; padding-left: 10px">Compte Utilisateur</h4>
+            <h5 style="padding-left: 10px; color: #f60; font-family: 'Roboto Condensed'; line-height: 1.2; font-size: 15px">Si vous êtes <span class="bold">un joueur</span> là pour gagner des lots, cliquez ici!</h5>
+          </button>
+          <button id="choose_entreprise" class="text-left row" style="border: 2px solid #f60">
+            <h4 style="background: #f60; color: white; font-family: 'Roboto Condensed'; padding: 7px; padding-left: 10px">Compte Entreprise</h4>
+            <h5 style="padding-left: 10px; color: #f60; font-family: 'Roboto Condensed'; line-height: 1.2; font-size: 15px">Si vous êtes <span class="bold">une entreprise établie ou un particulier teneur d'un commerce</span>, et que vous voulez étendre votre réseau de fans en faisant gagner des lots, cliquez ici!<br>
+              Attention ceci est <span class="bold">réservé à des commerces reconus par l'état, teneurs d'un numéro SIRET</span>
+            </h5>
+          </button>
+          <hr class="line_seperator">
+          <div>
+            <button onclick="switch_window(window_titles[2], windows[2], '#id_password', 1);" class="login_button">Accéder au login</button>
+          </div>
+        </div>
+        <div id="login_panel" class="window_panel" style="display: none">
+          <form method="post" acton="{% url 'login' %}" id="form_login" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div>
+              {{ auth_form.username.errors }}
+              {{ form.username }}
+            </div>
+            <div>
+              {{ auth_form.password.errors }}
+              {{ form.password }}
+            </div>
+            <div>
+              <a href="#" id="password_lost" class="text-info text-smaller">Mot de passe oublié ?</a>
+            </div>
+            <div>
+              <input type="submit" value="login" class="login_button">
+              <input type="hidden" name="next" value="{{ next }}">
+            </div>
+          </form>
+          <hr class="line_seperator">
+          <div>
+            <button class="back_to_login login_button">Revenir en arrière</button>
+          </div>
+        </div>
+        <div id="email_panel" class="window_panel" style="display: none">
+          <p class="text-info text-center">Sur l'email que vous avez reçu,<br><span class="bold">cliquez sur le lien</span> fournis pour réinitialiser votre mot de passe.</p>
+          <hr class="line_seperator">
+          <div>
+            <button class="back_to_login login_button">Revenir à la connexion</button>
+          </div>
+        </div>
+        <form id="signin_user_panel" method="post" class="window_panel" style="display: none">
+          <div id="form_create_user_1">
+            <input type="email" name="mail" id="create_user_mail" placeholder="Adresse mail" class="login_input" required>
+            <div class="row">
+              <input type="text" name="lastname" id="create_user_lastname" placeholder="Nom" class="login_input columns" required>
+              <input type="text" name="firstname" id="create_user_firstname" placeholder="Prénom" class="login_input columns" required>
+            </div>
+            <div class="row">
+              <input type="text" name="pseudo" id="create_user_pseudo" placeholder="Pseudo" class="login_input columns" required>
+              <select id="create_user_sexe" class="login_select columns" name="sexe" onchange="select_update_color(this)" required>
+                <option value="" disabled selected>Sexe</option>
+                <option value="0">Femme</option>
+                <option value="1">Homme</option>
+              </select>
+            </div>
+            <h3 class="text-left text-subtitle">Date de naissance :</h3>
+            <div class="row">
+              <select id="create_user_bd_day" name="birth_day"class="login_select" onchange="select_update_color(this)" required>
+                <option value="" disabled selected>Jour</option>
+              </select>
+              <div id="create_user_bd_month" name="birth_month" class="login_select_spacer"></div>
+              <select class="login_select" onchange="select_update_color(this)" required>
+                <option value="" disabled selected>Moi</option>
+                <option value="1">Janvier</option>
+                <option value="2">Février</option>
+                <option value="3">Mars</option>
+                <option value="4">Avril</option>
+                <option value="5">Mai</option>
+                <option value="6">Juin</option>
+                <option value="7">Juillet</option>
+                <option value="8">Août</option>
+                <option value="9">Septembre</option>
+                <option value="10">Octobre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Décembre</option>
+              </select>
+              <div class="login_select_spacer"></div>
+              <select id="create_user_bd_year" name="birth_month" class="login_select" onchange="select_update_color(this)" required>
+                <option value="" disabled selected>Année</option>
+              </select>
+            </div>
+            <div class="row">
+              <button type="button" class="login_button half_field columns" onclick="switch_window(window_titles[1], windows[1], null, 1);">Précédent</button>
+              <button type="button" class="login_button columns half_field" onclick="switch_window(userform_titles[1], userforms[1], '#create_user_address', 2);">Suivant</button>
+            </div>
+          </div>
+          <div id="form_create_user_2" style="display: none">
+            <input type="text" name="address_street" id="create_user_address" placeholder="Adresse" class="login_input columns" required>
+            <input type="text" name="address_c1" id="create_user_address_c1" placeholder="Complément d'adresse n°1" class="login_input columns">
+            <input type="text" name="address_c2" id="create_user_address_c2" placeholder="Complément d'adresse n°2" class="login_input columns">
+            <div class="row">
+              <input type="text" name="address_pc" id="create_user_address_pc" placeholder="Code postal" class="login_input columns" required>
+              <input type="text" name="address_city " id="create_user_address_city" placeholder="Ville" class="login_input columns" required>
+            </div>
+            <div class="row">
+              <button type="button" onclick="switch_window(userform_titles[0], userforms[0], '#create_user_mail', 2);" class="login_button columns" style="width: 47%">Précédent</button>
+              <button type="button" class="login_button columns half_field" onclick="switch_window(userform_titles[2], userforms[2], '#create_user_address', 2);">Suivant</button>
+            </div>
+          </div>
+          <div id="form_create_user_3" method="post" style="display: none">
+            <input type="password" name="password" id="create_user_password1" placeholder="Mot de passe" class="login_input columns" required>
+            <input type="password" name="password" id="create_user_password2" placeholder="Confirmer mot de passe" class="login_input columns" required>
+            <div class="row">
+              <button type="button" onclick="switch_window(userform_titles[1], userforms[1], '#create_user_address', 2);" class="login_button columns" style="width: 47%">Précédent</button>
+              <input type="submit" value="Confirmer" class="login_button columns" style="width: 47%; margin-bottom: 20px;">
+            </div>
+          </div>
+          <hr class="line_seperator">
+          <div>
+            <button type="button" class="back_to_login login_button">Revenir à la connexion</button>
+          </div>
+        </form>
+        <form id="signin_enterprise_panel" method="post" class="window_panel" style="display: none">
+          <div id="form_create_enterprise_1">
+            <input type="text" name="name" id="create_enterprise_name" placeholder="Nom de l'entreprise" class="login_input columns" required>
+            <input type="text" name="siret" id="create_enterprise_siret" placeholder="Numéro de SIRET" class="login_input columns" required>
+            <input type="text" name="address_street" id="create_enterprise_address" placeholder="Adresse" class="login_input columns" required>
+            <input type="text" name="address_c1" id="create_enterprise_address_c1" placeholder="Complément d'adresse n°1" class="login_input columns">
+            <input type="text" name="address_c2" id="create_enterprise_address_c2" placeholder="Complément d'adresse n°2" class="login_input columns">
+            <div class="row">
+              <input type="text" name="address_pc" id="create_enterprise_address_pc" placeholder="Code postal" class="login_input columns half_field" required>
+              <input type="text" name="address_city " id="create_enterprise_address_city" placeholder="Ville" class="login_input columns half_field" required>
+            </div>
+            <div class="row">
+              <button type="button" class="login_button half_field columns" onclick="switch_window(window_titles[1], windows[1], null, 1);">Précédent</button>
+              <button type="button" onclick="switch_window(enterpriseform_titles[1], enterpriseforms[1], '#create_user_address', 3);" class="login_button columns half_field" style="width: 47%">Précédent</button>
+            </div>
+          </div>
+          <div id="form_create_enterprise_2" style="display: none">
+            <div class="row">
+              <input type="text" name="lastname" id="create_enterprise_profile_lastname" placeholder="Nom" class="login_input columns" required>
+              <input type="text" name="firstname" id="create_enterprise_profile_firstname" placeholder="Prénom" class="login_input columns" required>
+            </div>
+            <input type="email" name="email" id="create_enterprise_profile_email" placeholder="Adresse Mail" class="login_input" required>
+            <input type="tel" name="mail" id="create_enterprise_profile_tel" placeholder="Téléphone" class="login_input" required>
+            <div class="row">
+              <button type="button" onclick="console.log('hekj'); switch_window(enterpriseform_titles[0], enterpriseforms[0], '#create_user_mail', 3);" class="login_button columns" style="width: 47%">Précédent</button>
+              <button type="button" onclick="switch_window(enterpriseform_titles[2], enterpriseforms[2], '#create_user_address', 3);" class="login_button columns half_field" style="width: 47%">Précédent</button>
+            </div>
+          </div>
+          <div id="form_create_enterprise_3" method="post" style="display: none">
+            <input type="password" name="password" id="create_user_password1" placeholder="Mot de passe" class="login_input columns" required>
+            <input type="password" name="password" id="create_user_password2" placeholder="Confirmer mot de passe" class="login_input columns" required>
+            <div class="row">
+              <button type="button" onclick="switch_window(enterpriseform_titles[1], enterpriseforms[1], '#create_user_address', 3);" class="login_button columns" style="width: 47%">Précédent</button>
+              <input type="submit" value="Confirmer" class="login_button columns" style="width: 47%; margin-bottom: 20px;">
+            </div>
+          </div>
+          <hr class="line_seperator">
+          <div>
+            <button class="back_to_login login_button">Revenir à la connexion</button>
+          </div>
+        </form>
+        <img id="close_login" style="position: absolute; top: 30px; right: 25px; cursor: pointer" src="{% static "web/img/close_login.png" %}"/>
+      </div>
+    </div>
+    </div>
 
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="{% static "web/js/login.js" %}"></script>
 {% endblock %}

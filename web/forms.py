@@ -1,11 +1,26 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
+from django.forms import ValidationError
 
 from .models import *
-from django.contrib.auth.forms import AuthenticationForm
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(label="Username", max_length=30,
-                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
-    password = forms.CharField(label="Password", max_length=30,
-                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'password'}))
+	username = forms.CharField(label="Username", max_length=30,
+		widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username', 'placeholder': 'Addresse email ou Username'}))
+	password = forms.CharField(label="Password", max_length=30,
+		widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password', 'placeholder': 'Mot de passe'}))
+	def clean_username(self):
+		username = self.data['username']
+		if '@' in username:
+			try:
+				username = User.objects.get(email=username).username
+			except ObjectDoesNotExist:
+				raise ValidationError(
+					self.error_messages['invalid_login'],
+					code='invalid_login',
+					params={'username':self.username_field.verbose_name},
+				)
+		return username
