@@ -92,7 +92,7 @@ $(document).ready()
 	function	check_email()
 	{
 		//FUNCTION TO CHECK IF ACCOUNT IS ASSIGNED TO ADDRESS
-		return (true);
+		return (false);
 	}
 
 	$("#form_email").submit(function(e)
