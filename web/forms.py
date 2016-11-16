@@ -9,7 +9,7 @@ from .models import *
 
 class LoginForm(AuthenticationForm):
 	username = forms.CharField(label="Username", max_length=30,
-		widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username', 'placeholder': 'Addresse email ou Username'}))
+		widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username', 'placeholder': 'Addresse email ou Username', 'type': 'email'}))
 	password = forms.CharField(label="Password", max_length=30,
 		widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password', 'placeholder': 'Mot de passe'}))
 	def clean_username(self):
