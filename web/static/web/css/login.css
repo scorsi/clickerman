@@ -84,6 +84,7 @@
 	font-weight: 500;
 	font-family: 'Roboto';
 	margin-bottom: 20px;
+	padding-left: 10px;
 }
 
 .login_input:focus{

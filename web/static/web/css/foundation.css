@@ -1577,7 +1577,7 @@ kbd {
     float: none;
     top: -0.1em; }
 
-[type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'],
+/*[type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'],
 textarea {
   display: block;
   box-sizing: border-box;
@@ -1602,7 +1602,7 @@ textarea {
     outline: none;
     box-shadow: 0 0 5px #cacaca;
     transition: box-shadow 0.5s, border-color 0.25s ease-in-out; }
-
+*/
 textarea {
   max-width: 100%; }
   textarea[rows] {

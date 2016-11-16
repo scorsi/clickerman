@@ -9,9 +9,9 @@ from .models import *
 
 class LoginForm(AuthenticationForm):
 	username = forms.CharField(label="Username", max_length=30,
-		widget=forms.EmailInput(attrs={'class': 'form-control', 'name': 'username', 'placeholder': 'Addresse email ou Username'}))
+		widget=forms.EmailInput(attrs={'class': 'login_input', 'name': 'username', 'placeholder': 'Addresse email ou Username'}))
 	password = forms.CharField(label="Password", max_length=30,
-		widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password', 'placeholder': 'Mot de passe'}))
+		widget=forms.PasswordInput(attrs={'class': 'login_input', 'name': 'password', 'placeholder': 'Mot de passe'}))
 	def clean_username(self):
 		username = self.data['username']
 		if '@' in username:
