@@ -16,11 +16,7 @@ $(document).ready()
 
 	switch_speed = 400;
 	num_userform = 0;
-	userforms = ["#form_create_user_1", "#form_create_user_2", "#form_create_user_3"];
-	userform_titles = ["Informations générales", "Adresse (2/3)", "Mot de passe"];
-	userform_fields = [["#create_user_mail", "#create_user_lastname", "#create_user_firstname", "#create_user_pseudo", "#create_user_sexe", "#create_user_bd_day", "#create_user_bd_month", "#create_user_bd_year"],
-	["#create_user_address", "#create_user_address_c1", "#create_user_address_c2", "#create_user_address_c1", "#create_user_address_pc", "#create_user_address_city"]];
-	cur_userform = userforms[0];
+	cur_userform = "#form_create_user_1"
 	num_enterpriseform = 0;
 	enterpriseforms = ["#form_create_enterprise_1", "#form_create_enterprise_2", "#form_create_enterprise_3"];
 	enterpriseform_titles = ["Informations générales", "Responsable du compte", "Mot de passe"];
@@ -29,8 +25,36 @@ $(document).ready()
 	cur_enterpriseform = enterpriseforms[0];
 	num_window = 0;
 	windows = ["#start_panel", "#choose_signin", "#login_panel", "#email_panel", "#signin_user_panel", "#signin_enterprise_panel"];
-	window_titles = ["Mode de Connexion", "Type de compte", "Connexion", "Email envoyé", userform_titles[0], enterpriseform_titles[0]];
+	window_titles = ["Mode de Connexion", "Type de compte", "Connexion", "Email envoyé", "Créer son compte", enterpriseform_titles[0]];
 	cur_window = windows[0];
+
+	which_window();
+	function	show_window_type(next_window, focus_element, cur_element, type)
+	{
+		console.log(cur_element);
+		$(cur_element).hide()
+		$(next_window).show();
+		if (focus_element != null)
+			$(focus_element).focus();
+		if (type == 1)
+			cur_window = next_window;
+		else if (type == 2)
+			cur_userform = next_window;
+		else
+			cur_enterpriseform = next_window;
+	}
+
+	function	show_window(window_title, next_window, focus_element, type)
+	{
+		$("#window_title > span").html(window_title);
+		$("#window_title > span").show(switch_speed);
+		if (type == 1)
+			show_window_type(next_window, focus_element, cur_window, type);
+		else if (type == 2)
+			show_window_type(next_window, focus_element, cur_userform, type);
+		else if (type == 3)
+			show_window_type(next_window, focus_element, cur_enterpriseform, type);
+	}
 
 	function	switch_window_type(next_window, focus_element, cur_element, type)
 	{
@@ -61,6 +85,27 @@ $(document).ready()
 			switch_window_type(next_window, focus_element, cur_userform, type);
 		else if (type == 3)
 			switch_window_type(next_window, focus_element, cur_enterpriseform, type);
+	}
+
+	function 	which_window()
+	{
+		var 	action = getQStringsByName("action");
+		var 	action_type = ["login", "register_user", "register_enterprise"];
+		var 	a_num = [2, 4, 5];
+		var 	a = 0;
+
+		console.log(action);
+		while (a < action_type.length)
+		{
+			if (action_type[a] == action)
+			{
+				console.log(window_titles[a_num[a]])
+				show_window(window_titles[a_num[a]], windows[a_num[a]], null, 1);
+				return (true);
+			}
+			a++;
+		}
+		return (false);
 	}
 
 	$("#signin_button").click(function()
