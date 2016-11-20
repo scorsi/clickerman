@@ -1,22 +1,35 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.template.response import TemplateResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
+from .forms import RegisterForm, LoginForm
 
-from .forms import RegisterForm
-from .models import User
 
-@login_required(login_url="login/")
+@login_required(login_url='login/')
 def home(request):
-    return render(request, "home.html")
+    return TemplateResponse(request, 'home.html')
 
 
-def register(request):
+def auth(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('OK!')
+        register_form = RegisterForm(request.POST)
+        login_form = LoginForm(request, data=request.POST)
+
+        action = request.POST.get('action', '')
+        if action == 'register' and register_form.is_valid():
+            register_form.save()
+            return HttpResponse('Register OK!')
+        elif action == 'login' and login_form.is_valid():
+            login(request, login_form.get_user())
+            return HttpResponse('Login: OK!')
+
+        context = {
+            'register_form': register_form,
+            'login_form': login_form,
+        }
     else:
-        form = RegisterForm()
-    return render(request, 'register.html', {'register_form': form})
+        context = {
+            'register_form': RegisterForm(),
+            'login_form': LoginForm(),
+        }
+    return TemplateResponse(request, 'register.html', context)
