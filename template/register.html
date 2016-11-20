@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form action="{% url 'register' %}" method="post">
+<h1>Register</h1>
+<form action="{% url 'auth' %}" method="post">
     {% csrf_token %}
-    {% include "part/form_snippet.html" with form=register_form %}
-    <input type="submit" value="register"/>
+    {{ register_form.as_p }}
+    <input type="hidden" name="action" value="register" />
+    <input type="submit" value="register" />
 </form>
-</body>
-</html>
+<h1>Login</h1>
+<form action="{% url 'auth' %}" method="post">
+    {% csrf_token %}
+    {{ login_form.as_p }}
+    <input type="hidden" name="action" value="login" />
+    <input type="submit" value="login" />
+</form>
