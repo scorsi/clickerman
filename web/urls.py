@@ -9,4 +9,5 @@ urlpatterns = [
         {'template_name': 'login.html', 'authentication_form': forms.LoginForm}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/login/'}, name='logout'),
     url(r'^auth/$', views.auth, name='auth'),
+    url(r'^account/edit$', views.account_edit, name='account_edit'),
 ]
