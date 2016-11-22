@@ -38,14 +38,13 @@ def auth(request):
 
 @login_required(login_url='login/')
 def account_edit(request):
-    profile_instance = Profile.objects.get_or_create(user=request.user.id)
+    profile_instance = Profile.objects.get_or_create(user=request.user.id)[0]
     context = {
         'user_form': UserEditForm(request.POST or None, request.FILES or None, instance=request.user),
-        'profile_form': ProfileEditForm(request.POST or None, request.FILES or None, instance=profile_instance[0]),
+        'profile_form': ProfileEditForm(request.POST or None, request.FILES or None, instance=profile_instance),
     }
     if request.method == 'POST':
         if context['user_form'].is_valid() and context['profile_form'].is_valid():
             context['user_form'].save()
             context['profile_form'].save()
-            return HttpResponseRedirect('/account/edit')
     return TemplateResponse(request, 'account_edit.html', context)
