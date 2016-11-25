@@ -4,15 +4,19 @@ body {
 	-o-font-smoothing: antialiased;
 }
 
+.navbar {
+	margin-bottom: 0px;
+}
+
 ul
 {
 	margin-bottom: 0px;
 	list-style-type: none;
 }
 
-p 
+p
 {
-	margin-bottom: 0;
+	margin-bottom: 0 !important;
 }
 
 .flex
@@ -36,6 +40,11 @@ p
 {
 	justify-content: center;
 	align-items: center;
+}
+
+.flex-grow
+{
+	flex-grow: 2;
 }
 
 .text-left
@@ -71,6 +80,23 @@ p
 .invisible
 {
 	display: none
+}
+
+.main_container
+{
+	max-width: 100%;
+	width: 100%;
+	text-align: center;
+}
+
+.main_container > *
+{
+	width: 100%;
+}
+
+.inline_block
+{
+	display: inline-block;
 }
 
 .scaler

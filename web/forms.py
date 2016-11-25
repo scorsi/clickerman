@@ -35,6 +35,12 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form_field', 'name': 'username', 'placeholder':'usfzefername'}),
+            'first_name': forms.TextInput(attrs={'class': 'form_field', 'name': 'first_name'}),
+            'last_name': forms.TextInput(attrs={'class': 'form_field', 'name': 'last_name'}),
+            'email': forms.EmailInput(attrs={'class': 'form_field', 'name': 'email'})
+        }
 
 
 class ProfileEditForm(forms.ModelForm):

@@ -1,10 +1,9 @@
-{% for field in form %}
-    <div class="fieldWrapper">
-        {{ field.errors }}
-        {{ field.label_tag }}
-        {{ field }}
-        {% if field.help_text %}
-            <p>{{ field.help_text|safe }}</p>
-        {% endif %}
-    </div>
-{% endfor %}
+
+<div class="form_field_container">
+	<label class="field_label" for="{{ field.auto_id }}">{{ field.label }}</label>
+  {{ field }}
+</div>
+<p class="error_text">{{ field.errors }}</p>
+  <!--{% if field.help_text %}
+      <p>{{ field.help_text|safe }}</p>
+      {% endif %}-->
