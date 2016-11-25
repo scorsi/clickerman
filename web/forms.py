@@ -36,7 +36,7 @@ class UserEditForm(forms.ModelForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form_field', 'name': 'username', 'placeholder':'usfzefername'}),
+            'username': forms.TextInput(attrs={'class': 'form_field', 'name': 'username'}),
             'first_name': forms.TextInput(attrs={'class': 'form_field', 'name': 'first_name'}),
             'last_name': forms.TextInput(attrs={'class': 'form_field', 'name': 'last_name'}),
             'email': forms.EmailInput(attrs={'class': 'form_field', 'name': 'email'})
@@ -47,3 +47,6 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('gender', 'medias', 'social_networks', 'bio', 'date_birthday')
+        widgets = {
+            'gender': forms.Select(attrs={'class': 'form_field', 'name': 'gender'})
+        }
