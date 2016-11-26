@@ -2,7 +2,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from .forms import RegisterForm, LoginForm, UserEditForm, ProfileEditForm
+from django.core.exceptions import ObjectDoesNotExist
+from .forms import RegisterForm, LoginForm, UserForm, ProfileForm, AddressForm
 from .models import Profile
 
 
@@ -39,12 +40,27 @@ def auth(request):
 @login_required(login_url='login/')
 def account_edit(request):
     profile_instance = Profile.objects.get_or_create(user=request.user.id)[0]
+    address_list = request.user.profile.addresses.all()
     context = {
-        'user_form': UserEditForm(request.POST or None, request.FILES or None, instance=request.user),
-        'profile_form': ProfileEditForm(request.POST or None, request.FILES or None, instance=profile_instance),
+        'user_form': UserForm(request.POST or None, request.FILES or None, instance=request.user),
+        'profile_form': ProfileForm(request.POST or None, request.FILES or None, instance=profile_instance),
+        'address_list': address_list[0].alias,
     }
     if request.method == 'POST':
         if context['user_form'].is_valid() and context['profile_form'].is_valid():
             context['user_form'].save()
             context['profile_form'].save()
     return TemplateResponse(request, 'account_edit.html', context)
+
+
+@login_required(login_url='login/')
+def account_address_edit(request, address_alias):
+    try:
+        address = request.user.profile.addresses.get(alias=address_alias)
+    except ObjectDoesNotExist:
+        return HttpResponse('404')
+    context = {
+        'address': address,
+        'address_form': AddressForm(request.POST or None, instance=address),
+    }
+    return TemplateResponse(request, 'account_address_edit.html', context)
