@@ -2,82 +2,87 @@
 {% load static %}
 
 {% block title %}
-Informations personnelles
+    Informations personnelles
 {% endblock %}
 {% block css %}
-<link type="text/css" rel="stylesheet" href="{% static "web/css/form.css" %}" />
-<link type="text/css" rel="stylesheet" href="{% static "web/css/foundation.css" %}" />
-<link type="text/css" rel="stylesheet" href="{% static "web/css/box-style.css" %}" />
-<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700'>
-<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,700'>
+    <link type="text/css" rel="stylesheet" href="{% static "web/css/form.css" %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static "web/css/foundation.css" %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static "web/css/box-style.css" %}"/>
+    <link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700'>
+    <link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,700'>
 {% endblock %}
 {% block content %}
-<body>
-  <div class="main_container">
-    <form action="{% url 'account_edit' %}", method="post">
-      {% csrf_token %}
-      <div class="row box-wrapper">
-        <div class="box-container-style">
-          <div class="box-style" >
-            <h2 class="box-item-style box-titre">Informations&nbsp<span class="bold">Générales</span></h2>
-            <hr class="box-titre-hr">
-            <div class="flex form_profile_container">
-              <div class="flex-child text-left">
-                <img src="http://i1.wp.com/www.lovelaurenblog.com/wp-content/uploads/2016/10/Love-Lauren-profile-pic-.png?fit=403%2C403" class="form_img">
-              </div>
-              <div class="flex-child flex-grow form_img_upload">
-                <input type="file" size="10" />
-                <button class="button alert">Éffacer</button>
-              </div>
+    <body>
+    <div class="main_container">
+        <form action="{% url 'account_edit' %}" , method="post">
+            {% csrf_token %}
+            <div class="row box-wrapper">
+                <div class="box-container-style">
+                    <div class="box-style">
+                        <h2 class="box-item-style box-titre">Informations&nbsp<span class="bold">Générales</span></h2>
+                        <hr class="box-titre-hr">
+                        <div class="flex form_profile_container">
+                            <div class="flex-child text-left">
+                                <img src="http://i1.wp.com/www.lovelaurenblog.com/wp-content/uploads/2016/10/Love-Lauren-profile-pic-.png?fit=403%2C403"
+                                     class="form_img">
+                            </div>
+                            <div class="flex-child flex-grow form_img_upload">
+                                <input type="file" size="10"/>
+                                <button class="button alert">Éffacer</button>
+                            </div>
+                        </div>
+                        <div class="field_container text-left">
+                            {% include "part/form_snippet.html" with field=user_form.username %}
+                        </div>
+                        <div class="field_container text-left">
+                            {% include "part/form_snippet.html" with field=user_form.email %}
+                        </div>
+                        <div class="field_container text-left">
+                            {% include "part/form_snippet.html" with field=user_form.first_name %}
+                        </div>
+                        <div class="field_container text-left">
+                            {% include "part/form_snippet.html" with field=user_form.last_name %}
+                        </div>
+                        <div class="field_container text-left">
+                            {% include "part/form_snippet.html" with field=profile_form.gender %}
+                        </div>
+                        <div class="columns text-left">
+                            <p class="label_text">{{ profile_form.medias.label_text }}</p>
+                            <div div class="form_field_container">
+                                <p class="form_field">{{ field }}</p>
+                            </div>
+                            <p class="error_text">{{ field.errors }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-container-style">
+                    <div class="box-style">
+                        <p class="box-item-style box-titre">Mes&nbsp<span class="bold"> Coordonnées</span></p>
+                        <hr class="box-titre-hr">
+                        <div class="field_container text-left">
+                            {% for address in addresses_list %}
+                                <p><a href="{% url 'account_address_edit' address_alias=address.alias %}">{{ address.alias }}</a></p>
+                            {% empty %}
+                                PAS D'ADDRESS? MON DIEU! GO!
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="field_container text-left">
-              {% include "part/form_snippet.html" with field=user_form.username %}
-            </div>
-            <div class="field_container text-left">
-              {% include "part/form_snippet.html" with field=user_form.email %}
-            </div>
-            <div class="field_container text-left">
-              {% include "part/form_snippet.html" with field=user_form.first_name %}
-            </div>
-            <div class="field_container text-left">
-              {% include "part/form_snippet.html" with field=user_form.last_name %}
-            </div>
-            <div class="field_container text-left">
-              {% include "part/form_snippet.html" with field=profile_form.gender %}
-            </div>
-            <div class="columns text-left">
-             <p class="label_text">{{ profile_form.medias.label_text }}</p>
-             <div div class="form_field_container">
-              <p class="form_field">{{ field }}</p>
-            </div>
-            <p class="error_text">{{ field.errors }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="box-container-style">
-        <div class="box-style">
-          <p class="box-item-style box-titre">Mes&nbsp<span class="bold"> Coordonnées</span></p>
-          <hr class="box-titre-hr">
-          <div class="field_container text-left">
-            {% include "part/form_snippet.html" with field=user_form.street %}
-          </div>
-        </div>
-      </div>
+        </form>
     </div>
-  </form>
-</div>
-<div class="submit_bar" style="display: none">
-  <button class="button alert">Annuler</button>
-  <input type="submit" class="button success" value="Valider" />
-</div>
-<script type="text/javascript" src="{% static "web/js/jquery-3.1.1.min.js" %}"></script>
-<script type="text/javascript" src="{% static "web/js/app.js" %}"></script>
-</form>
-</div>
-</body>
-</html>
+    <div class="submit_bar" style="display: none">
+        <button class="button alert">Annuler</button>
+        <input type="submit" class="button success" value="Valider"/>
+    </div>
+    <script type="text/javascript" src="{% static "web/js/jquery-3.1.1.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "web/js/app.js" %}"></script>
+    </form>
+    </div>
+    </body>
+    </html>
 {% endblock content %}
 
 {% block javascript %}
-<script type="text/javascript" src="{% static "web/js/edit_account.js" %}"></script>
+    <script type="text/javascript" src="{% static "web/js/edit_account.js" %}"></script>
 {% endblock %}
