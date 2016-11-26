@@ -40,11 +40,11 @@ def auth(request):
 @login_required(login_url='login/')
 def account_edit(request):
     profile_instance = Profile.objects.get_or_create(user=request.user.id)[0]
-    address_list = request.user.profile.addresses.all()
+    addresses_list = request.user.profile.addresses.all()
     context = {
         'user_form': UserForm(request.POST or None, request.FILES or None, instance=request.user),
         'profile_form': ProfileForm(request.POST or None, request.FILES or None, instance=profile_instance),
-        'address_list': address_list[0].alias,
+        'addresses_list': addresses_list,
     }
     if request.method == 'POST':
         if context['user_form'].is_valid() and context['profile_form'].is_valid():
