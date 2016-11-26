@@ -31,7 +31,7 @@ class RegisterForm(UserCreationForm):
         """
 
 
-class UserEditForm(forms.ModelForm):
+class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
@@ -43,10 +43,16 @@ class UserEditForm(forms.ModelForm):
         }
 
 
-class ProfileEditForm(forms.ModelForm):
+class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('gender', 'medias', 'social_networks', 'bio', 'date_birthday')
         widgets = {
             'gender': forms.Select(attrs={'class': 'form_field', 'name': 'gender'})
         }
+
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = '__all__'
