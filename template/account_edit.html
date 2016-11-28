@@ -14,7 +14,7 @@ Informations personnelles
 {% block content %}
 <body>
   <div class="main_container">
-    <form action="{% url 'account_edit' %}", method="post">
+    <form action="{% url 'account_edit' %}", method="post" id="form_profile">
       {% csrf_token %}
       <div class="row box-wrapper">
         <div class="box-container-style">
@@ -64,11 +64,11 @@ Informations personnelles
         </div>
       </div>
     </div>
+    <div class="submit_bar" style="display: none">
+      <button class="button alert">Annuler</button>
+      <input type="submit" class="button success" value="Valider" />
+    </div>
   </form>
-</div>
-<div class="submit_bar" style="display: none">
-  <button class="button alert">Annuler</button>
-  <input type="submit" class="button success" value="Valider" />
 </div>
 <script type="text/javascript" src="{% static "web/js/jquery-3.1.1.min.js" %}"></script>
 <script type="text/javascript" src="{% static "web/js/app.js" %}"></script>

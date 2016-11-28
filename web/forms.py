@@ -16,6 +16,12 @@ class LoginForm(AuthenticationForm):
                 return username
         return username
 
+class AuthenticationForm(forms.Form):
+    username = forms.CharField(
+        max_length=254,
+        widget=forms.TextInput(attrs={'class': "login_input"})
+    )
+    password = forms.CharField(widget=forms.PasswordInput)
 
 class RegisterForm(UserCreationForm):
     class Meta:
