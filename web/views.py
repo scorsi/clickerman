@@ -40,11 +40,19 @@ def auth(request):
 @login_required(login_url='login/')
 def account_edit(request):
     profile_instance = Profile.objects.get_or_create(user=request.user.id)[0]
-    addresses_list = request.user.profile.addresses.all()
+    address_object_list = request.user.profile.addresses.all()
+    i = 0
+    addresses = [[0 for x in range(2)] for y in range(len(address_object_list))]
+    for address in address_object_list:
+        addresses[i] = {
+            'object': address,
+            'form': AddressForm(request.POST or None, instance=address)
+        }
+        i += 1
     context = {
         'user_form': UserForm(request.POST or None, request.FILES or None, instance=request.user),
         'profile_form': ProfileForm(request.POST or None, request.FILES or None, instance=profile_instance),
-        'addresses_list': addresses_list,
+        'addresses': addresses,
     }
     if request.method == 'POST':
         if context['user_form'].is_valid() and context['profile_form'].is_valid():
@@ -63,4 +71,6 @@ def account_address_edit(request, address_alias):
         'address': address,
         'address_form': AddressForm(request.POST or None, instance=address),
     }
+    if context['address_form'].is_valid():
+        context['address_form'].save()
     return TemplateResponse(request, 'account_address_edit.html', context)
