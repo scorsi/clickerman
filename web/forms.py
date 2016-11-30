@@ -62,3 +62,15 @@ class AddressForm(forms.ModelForm):
     class Meta:
         model = Address
         fields = '__all__'
+        widgets = {
+            'alias': forms.TextInput(attrs={'class': 'form_title_field'}),
+            'first_name': forms.TextInput(attrs={'class': 'form_field'}),
+            'last_name': forms.TextInput(attrs={'class': 'form_field'}),
+            'line1': forms.TextInput(attrs={'class': 'form_field'}),
+            'line2': forms.TextInput(attrs={'class': 'form_field'}),
+            'postcode': forms.TextInput(attrs={'class': 'form_field'}),
+            'city': forms.TextInput(attrs={'class': 'form_field'}),
+            'state': forms.TextInput(attrs={'class': 'form_field'}),
+            'country': forms.TextInput(attrs={'class': 'form_field'}),
+            'phone': forms.TextInput(attrs={'class': 'form_field'})
+        }

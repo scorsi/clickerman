@@ -55,30 +55,63 @@ Informations personnelles
                         <p class="error_text">{{ field.errors }}</p>
                     </div>
                 </div>
+
             </div>
+
             <div class="box-container-style">
                 <div class="box-style">
                     <p class="box-item-style box-titre">Mes&nbsp<span class="bold"> Coordonnées</span></p>
                     <hr class="box-titre-hr">
                     <div class="field_container text-left">
-                        {% for address in addresses_list %}
-                        {% include "part/form_snippet.html" with field=address.postcode %}
-                        <p><a href="{% url 'account_address_edit' address_alias=address.alias %}">{{ address.alias }}</a></p>
-                        {% empty %}
-                        <h3>Aucune Adresse entrée</h3>
-                        <button class="button">Ajouter une adresse</button>
-                        PAS D'ADDRESS? MON DIEU! GO!
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
+                        {% for address in addresses %}
+                        <div class="adresses_container">
+                          <form method="post" action="{% url 'account_address_edit' address_alias=address.object.alias %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="small-8 columns">
+                                    <p>{{ address.form.alias }}</p>
+                                </div>
+                                <div class="small-4 columns end">
+                                    <button class="button address_edit" type="button">Modifier</button>
+                                </div>
+                            </div>
+                            <div class="address_container" style="display: none">
+                                <div class="row">
+                                    <div class="small-6 columns">{% include "part/form_snippet.html" with field=address.form.first_name %}</div>
+                                    <div class="small-6 columns end">{% include "part/form_snippet.html" with field=address.form.last_name %}</div>
+                                </div>
+                                <div class="row"><div class="small-12 columns">{% include "part/form_snippet.html" with field=address.form.line1 %}</div></div>
+                                <div class="row"><div class="small-12 columns">{% include "part/form_snippet.html" with field=address.form.line2 %}</div></div>
+                                <div class="row">
+                                   <div class="small-6 columns">{% include "part/form_snippet.html" with field=address.form.postcode %}</div>
+                                   <div class="small-6 columns">{% include "part/form_snippet.html" with field=address.form.city %}</div>
+                               </div>
+                               <div class="row">
+                                   <div class="small-6 columns">{% include "part/form_snippet.html" with field=address.form.state %}</div>
+                                   <div class="small-6 columns">{% include "part/form_snippet.html" with field=address.form.country %}</div>
+                               </div>
+                               <div class="row"><div class="small-12 columns">{% include "part/form_snippet.html" with field=address.form.phone %}</div></div>
+                               <div class="row">
+                                   <div class="small-12 columns"><input class="button success" type="submit" /></div>
+                               </div>
+                           </div>
+                       </form>
+                   </div>
+                   {% empty %}
+                   <h3>Aucune Adresse entrée</h3>
+                   <button class="button">Ajouter une adresse</button>
+                   {% endfor %}
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
 
-        <div class="submit_bar" style="display: none">
-            <button class="button alert">Annuler</button>
-            <input type="submit" class="button success" value="Valider"/>
-        </div>
-    </form>
+<div class="submit_bar" style="display: none">
+    <button class="button alert" type="button">Annuler</button>
+    <input type="submit" class="button success" value="Valider"/>
+</div>
+</form>
 </div>
 {% endblock content %}
 

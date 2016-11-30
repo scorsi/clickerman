@@ -1,3 +1,6 @@
+.columns{
+	max-width: 100% !important;
+}
 .main_container
 {
 	background-color: #edecec;
@@ -15,8 +18,28 @@
 	padding-right: 20px;
 }
 
+.adresses_container
+{
+	background: #f7f7f7;
+	padding: 15px;
+	padding-bottom: 0px;
+}
+
+.form_title_field
+{
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	margin-bottom: 10px;
+	background: none;
+	font-family: "Roboto";
+}
+
 .form_field
 {
+	box-shadow: none;
+	outline: none;
 	width: 100%;
 	padding-top: 10px;
 	padding-bottom: 10px;

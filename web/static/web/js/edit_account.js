@@ -7,8 +7,16 @@ function 	show_submitbar()
 
 $(document).ready(function()
 {
-	$(".form_field").bind("change", function() {
+	$(".form_field, .form_title_field").bind("change", function() {
 		show_submitbar();
+	});
+
+	$(".address_edit").click(function()
+	{
+		$(".address_edit").not(this).each(function(){
+			$(this).parent().parent().parent().find(".address_container").slideUp();
+		});
+		$(this).parent().parent().parent().find(".address_container").slideDown();
 	});
 
 	$("#form_profile").submit(function()
