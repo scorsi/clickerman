@@ -60,8 +60,13 @@
                         <p class="box-item-style box-titre">Mes&nbsp<span class="bold"> Coordonnées</span></p>
                         <hr class="box-titre-hr">
                         <div class="field_container text-left">
-                            {% for address in addresses_list %}
-                                <p><a href="{% url 'account_address_edit' address_alias=address.alias %}">{{ address.alias }}</a></p>
+                            {% for address in addresses %}
+                                <p><a href="{% url 'account_address_edit' address_alias=address.object.alias %}">{{ address.object.alias }}</a></p>
+                                <form method="post" action="{% url 'account_address_edit' address_alias=address.object.alias %}">
+                                    {% csrf_token %}
+                                    {{ address.form.as_p }}
+                                    <input type="submit" />
+                                </form>
                             {% empty %}
                                 PAS D'ADDRESS? MON DIEU! GO!
                             {% endfor %}
