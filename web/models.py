@@ -19,7 +19,7 @@ class Address(models.Model):
     phone = models.CharField(max_length=20)
 
     def name(self):
-        return self.first_name + ' ' + self.last_name
+        return self.alias + ': ' + self.first_name + ' ' + self.last_name
 
     def __str__(self):
         return self.name()

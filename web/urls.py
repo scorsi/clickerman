@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/login/'}, name='logout'),
     url(r'^auth/$', views.auth, name='auth'),
     url(r'^account/edit$', views.account_edit, name='account_edit'),
+    url(r'^account/address/(?P<address_alias>.+)$', views.account_address_edit, name='account_address_edit'),
 ]
