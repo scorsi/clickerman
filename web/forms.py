@@ -28,13 +28,10 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ('username', 'email',)
         field_classes = {'username': UsernameField}
-        """
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'input_underline', 'name': 'username'}),
-            'email': forms.EmailInput(attrs={'class': 'input_underline', 'name': 'email'}),
-            'password': forms.PasswordInput(attrs={'class': 'login_input', 'name': 'password'})
+            'username': forms.TextInput(attrs={'class': 'login_input', 'placeholder': "Nom d'utilisateur"}),
+            'email': forms.EmailInput(attrs={'class': 'login_input', 'placeholder': "Adresse mail"})
         }
-        """
 
 
 class UserForm(forms.ModelForm):
@@ -42,10 +39,10 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form_field', 'name': 'username'}),
-            'first_name': forms.TextInput(attrs={'class': 'form_field', 'name': 'first_name'}),
-            'last_name': forms.TextInput(attrs={'class': 'form_field', 'name': 'last_name'}),
-            'email': forms.EmailInput(attrs={'class': 'form_field', 'name': 'email'})
+            'username': forms.TextInput(attrs={'class': 'form_field'}),
+            'first_name': forms.TextInput(attrs={'class': 'form_field'}),
+            'last_name': forms.TextInput(attrs={'class': 'form_field'}),
+            'email': forms.EmailInput(attrs={'class': 'form_field'})
         }
 
 
@@ -54,7 +51,7 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ('gender', 'medias', 'social_networks', 'bio', 'date_birthday')
         widgets = {
-            'gender': forms.Select(attrs={'class': 'form_field', 'name': 'gender'})
+            'gender': forms.Select(attrs={'class': 'form_field'})
         }
 
 

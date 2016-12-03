@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
+from django.contrib.auth import authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import RegisterForm, LoginForm, UserForm, ProfileForm, AddressForm
 from .models import Profile
@@ -20,7 +21,10 @@ def auth(request):
         action = request.POST.get('action', '')
         if action == 'register' and register_form.is_valid():
             register_form.save()
-            return HttpResponse('Register OK!')
+            new_user = authenticate(username=register_form.cleaned_data['username'],
+                                    password=register_form.cleaned_data['password1'])
+            login(request, new_user)
+            return TemplateResponse(request, 'home.html')
         elif action == 'login' and login_form.is_valid():
             login(request, login_form.get_user())
             return HttpResponse('Login: OK!')
@@ -34,7 +38,7 @@ def auth(request):
             'register_form': RegisterForm(),
             'login_form': LoginForm(),
         }
-    return TemplateResponse(request, 'register.html', context)
+    return TemplateResponse(request, 'auth.html', context)
 
 
 @login_required(login_url='login/')

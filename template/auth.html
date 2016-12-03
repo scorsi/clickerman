@@ -102,14 +102,7 @@ Connexion
       <div id="login_panel" class="window_panel" style="display: none">
         <form method="post" acton="{% url 'login' %}" id="form_login" method="post" action="{% url 'login' %}">
           {% csrf_token %}
-          <div>
-            {{ form.username.errors }}
-            {{ form.username }}
-          </div>
-          <div>
-            {{ form.password.errors }}
-            {{ form.password }}
-          </div>
+          {{ login_form.as_p }}
           <div>
             <a href="#" id="password_lost" class="text-info text-smaller">Mot de passe oublié ?</a>
           </div>
@@ -130,7 +123,22 @@ Connexion
           <button class="back_to_login login_button">Revenir à la connexion</button>
         </div>
       </div>
-      <form id="signin_user_panel" method="post" class="window_panel" style="display: none">
+      <form action="{% url 'auth' %}" id="signin_user_panel" method="post" class="window_panel" style="display: none">
+          {% csrf_token %}
+          <div class="row">{{ register_form.email }}</div>
+          <div class="row">{{ register_form.username }}</div>
+          <div class="row">{{ register_form.password1 }}</div>
+          <div class="row">{{ register_form.password2 }}</div>
+          <div class="row">
+            <input type="hidden" name="action" value="register" />
+            <input type="submit" value="Créer mon Compte" class="login_button columns"/>
+          </div>
+          <hr class="line_seperator">
+          <div>
+            <button type="button" class="back_to_login login_button">Revenir en arrière</button>
+          </div>
+      </form>
+      <form method="post" class="window_panel" style="display: none">
         <div id="form_create_user_1">
           <input type="email" name="mail" id="create_user_mail" placeholder="Adresse mail" class="login_input" required>
           <div class="row">
