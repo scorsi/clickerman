@@ -99,8 +99,8 @@ class Bundle(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     total_value = models.IntegerField()
-    date_started = models.DateField()
-    date_ended = models.DateField()
+    date_started = models.DateTimeField()
+    date_ended = models.DateTimeField()
     STATUS_CHOICES = (
         ('0', 'Draft'),
         ('1', 'Waiting'),
