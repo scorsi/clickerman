@@ -1,6 +1,15 @@
 <form method="post" acton="{% url 'login' %}" id="form_login" method="post" action="{% url 'login' %}">
   {% csrf_token %}
-  {{ form.as_p }}
+  <div class="row">
+    <div class="columns">
+      {{ form.username }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns">
+      {{ form.password }}
+    </div>
+  </div>
   <div>
     <a href="#" id="password_lost" class="text-info text-smaller">Mot de passe oublié ?</a>
   </div>
