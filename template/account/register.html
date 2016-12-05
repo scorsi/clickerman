@@ -1,4 +1,4 @@
-<form action="{% url 'register' %}" id="signin_user_panel" method="post" class="window_panel">
+<form action="{% url 'account:register' %}" id="signin_user_panel" method="post" class="window_panel">
   {% csrf_token %}
   <div class="row">{{ form.email }}</div>
   <div class="row">{{ form.username }}</div>
