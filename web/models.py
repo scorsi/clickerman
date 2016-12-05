@@ -44,6 +44,21 @@ class SocialNetworkLink(models.Model):
         return self.socialnetwork.name
 
 
+class Enterprise(models.Model):
+    name = models.CharField(max_length=100)
+    siren = models.CharField(max_length=50)
+    url = models.URLField()
+    is_active = models.BooleanField()
+    date_joined = models.DateField(auto_now_add=True)
+    date_deleted = models.DateField(null=True, blank=True)
+    addresses = models.ManyToManyField(Address, blank=True)
+    medias = models.ImageField(blank=True, null=True)
+    social_networks = models.ManyToManyField(SocialNetworkLink, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
@@ -56,6 +71,7 @@ class Profile(models.Model):
     addresses = models.ManyToManyField(Address, blank=True)
     medias = models.ImageField(blank=True, null=True)
     social_networks = models.ManyToManyField(SocialNetworkLink, blank=True)
+    enterprise = models.ForeignKey(Enterprise, blank=True, null=True, default=None)
 
 
 @receiver(post_save, sender=User)
@@ -67,22 +83,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-
-
-class Enterprise(models.Model):
-    name = models.CharField(max_length=100)
-    siren = models.CharField(max_length=50)
-    url = models.URLField()
-    is_active = models.BooleanField()
-    date_joined = models.DateField(auto_now_add=True)
-    date_deleted = models.DateField(null=True, blank=True)
-    addresses = models.ManyToManyField(Address, blank=True)
-    medias = models.ImageField(blank=True, null=True)
-    users = models.ManyToManyField(User, blank=True)
-    social_networks = models.ManyToManyField(SocialNetworkLink, blank=True)
-
-    def __str__(self):
-        return self.name
 
 
 class Category(models.Model):
