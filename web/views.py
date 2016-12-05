@@ -8,7 +8,6 @@ from account.forms import RegisterForm, LoginForm, UserForm, ProfileForm, Addres
 from .models import Profile
 
 
-@login_required(login_url='login/')
 def home(request):
     return TemplateResponse(request, 'home.html')
 
