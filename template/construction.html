@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Site in construction
+{% endblock %}
+
+{% block css %}
+<link type="text/css" rel="stylesheet" href="{% static "web/css/foundation.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/construction.css" %}"/>
+<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700'>
+<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,700'>
+{% endblock %}
+
+{% block content %}
+<div id="main_container">
+	<div>
+		<h1>Uclics</h1>
+		<p>Notre site est actuellement en cours de développement.</p>
+		<p>Entraînez-vous :</p>
+		
+	</div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script type="text/javascript" src="{% static "web/js/construction.js" %}"></script>
+{% endblock %}

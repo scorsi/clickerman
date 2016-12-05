@@ -1,0 +1,11 @@
+<form action="{% url 'register' %}" id="signin_user_panel" method="post" class="window_panel">
+  {% csrf_token %}
+  <div class="row">{{ form.email }}</div>
+  <div class="row">{{ form.username }}</div>
+  <div class="row">{{ form.password1 }}</div>
+  <div class="row">{{ form.password2 }}</div>
+  <div class="row">
+    <input type="hidden" name="action" value="register" />
+    <input type="submit" value="Créer mon Compte" class="login_button columns"/>
+  </div>
+</form>

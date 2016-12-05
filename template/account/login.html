@@ -1,0 +1,11 @@
+<form method="post" acton="{% url 'login' %}" id="form_login" method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div>
+    <a href="#" id="password_lost" class="text-info text-smaller">Mot de passe oublié ?</a>
+  </div>
+  <div>
+    <input type="submit" value="login" class="login_button">
+    <input type="hidden" name="next" value="{{ next }}">
+  </div>
+</form>

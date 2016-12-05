@@ -1,0 +1,10 @@
+#main_container
+{
+	text-align : center;
+}
+
+#main_container > div
+{
+	display: inline-block;
+	text-align: center;
+}
