@@ -15,6 +15,8 @@ def login(request):
             return HttpResponseRedirect(next_page)
     else:
         form = LoginForm()
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/')
     return TemplateResponse(request, 'account/login.html', {'form': form})
 
 

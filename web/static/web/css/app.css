@@ -117,3 +117,11 @@ p
 {
 	transform: scale(0.95);
 }
+
+footer
+{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: grey;
+	width: 100%;
+}

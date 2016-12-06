@@ -31,6 +31,8 @@ def bundle(request, bundle_id):
         return HttpResponse('404')
     return HttpResponse(bundle_obj)
 
+def construction(request):
+    return TemplateResponse(request, 'construction.html')
 
 @login_required(login_url='/account/login/')
 def account_address_edit(request, address_alias):
