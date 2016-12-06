@@ -1,20 +1,43 @@
-<form method="post" id="form_login" action="{% url 'account:login' %}">
-  {% csrf_token %}
-  <div class="row">
-    <div class="columns">
-      {{ form.username }}
-    </div>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Informations personnelles
+{% endblock %}
+
+{% block css %}
+<link type="text/css" rel="stylesheet" href="{% static "web/css/form.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/login.css" %}"/>
+{% endblock %}
+
+{% block content %}
+<div id="main_container"  class="fill_page">
+  <div id="login_container">
+    <h1>Login</h1>
+    <form method="post" id="form_login" action="{% url 'account:login' %}">
+      {% csrf_token %}
+      <div class="row">
+        <div class="columns">
+          {{ form.username }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="columns">
+          {{ form.password }}
+        </div>
+      </div>
+      <div class="row">
+        <a href="#" id="password_lost" class="columns">Mot de passe oublié ?</a>
+      </div>
+      <div>
+        <input type="submit" class="button success" value="login" class="login_button">
+        <input type="hidden" name="next" value="{{ next }}">
+      </div>
+    </form>
   </div>
-  <div class="row">
-    <div class="columns">
-      {{ form.password }}
-    </div>
-  </div>
-  <div>
-    <a href="#" id="password_lost" class="text-info text-smaller">Mot de passe oublié ?</a>
-  </div>
-  <div>
-    <input type="submit" value="login" class="login_button">
-    <input type="hidden" name="next" value="{{ next }}">
-  </div>
-</form>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script type="text/javascript" src="{% static "web/js/edit_account.js" %}"></script>
+{% endblock %}

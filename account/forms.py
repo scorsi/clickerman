@@ -6,6 +6,16 @@ from web.models import *
 
 
 class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label="Username",
+        strip=False,
+        widget=forms.TextInput(attrs={'placeholder': "Email ou Nom d'utilisateur", 'class': 'form_field'}),
+    )
+    password = forms.CharField(
+        label="Password",
+        strip=False,
+        widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe', 'class': 'form_field'}),
+    )
     def clean_username(self):
         username = self.data['username']
         if '@' in username:
@@ -21,11 +31,11 @@ class RegisterForm(UserCreationForm):
     password1 = forms.CharField(
         label="Password",
         strip=False,
-        widget=forms.PasswordInput(attrs={'placeholder': 'bite'}),
+        widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe', 'class': 'form_field'}),
     )
     password2 = forms.CharField(
         label="Password confirmation",
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirmer Mot de passe', 'class': 'form_field'}),
         strip=False,
     )
 

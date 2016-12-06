@@ -48,9 +48,30 @@ function getQStringsByName(name, url) {
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-$(document).ready()
+function 	fill_page() {
+	var 	offset;
+
+	$(".fill_page").each(function() {
+		$(this).css("height", "auto");
+		offset = $(this).offset();
+		new_height = $(window).height() - (offset.top + $("footer").height());
+		if (new_height > $(this).height())
+		{
+			$(this).css("height", new_height);
+		}
+		if ($(this).height() > $(window).height() || $(this).width() < 343)
+			$(this).css("height", "auto");
+	});
+}
+
+$(window).resize(function() {
+	fill_page();
+});
+
+$(document).ready(function()
 {
+	fill_page();
 	$('a').click(function(){
 		scrollTo($(this).attr('href'));
 	});
-}
+});
