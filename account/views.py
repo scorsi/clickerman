@@ -28,10 +28,13 @@ def register(request):
             new_user = authenticate(username=form.cleaned_data['username'],
                                     password=form.cleaned_data['password1'])
             auth_login(request, new_user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('validated')
     else:
         form = RegisterForm()
     return TemplateResponse(request, 'account/register.html', {'form': form})
+
+def validated(request):
+    return TemplateResponse(request, 'account/validated.html')
 
 
 @login_required(login_url='/account/login/')

@@ -1,6 +1,5 @@
 #main_container {
 	text-align : center;
-	min-height: 100vh;
 	background-position: center;
 	background-size: cover;
 	position: relative;
@@ -24,11 +23,10 @@
 }
 
 #center_container > h1 {
-	font-size: 100px;
 	padding-right: 40px;
 	padding-left: 40px;
 	font-weight: 100;
-	font-size: 100px;
+	font-size: 55px;
 }	
 
 #center_container > h3 {
@@ -52,7 +50,14 @@
 	font-size: 40px;
 }
 
-#contact_us
+.form
+{
+	width: 100%;
+	max-width: 300px;
+	display: inline-block;
+}
+
+#enterprise_account
 {
 	position: absolute;
 	width: 100%;
@@ -63,10 +68,10 @@
 	padding-right: 10px;
 }
 
-#contact_us > p
+#enterprise_account > p
 {
+	font-size: 22px;
 	font-weight: 100;
-	font-size: 18px;
 	color: white;
 	line-height: 1.2;
 }

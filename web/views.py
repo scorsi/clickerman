@@ -14,7 +14,6 @@ def home_clicker(request):
     bundles = Bundle.objects.filter(status='2')
     return TemplateResponse(request, 'home/clicker.html', {'bundles': bundles})
 
-
 def home(request):
     if request.user.is_authenticated:
         if request.user.profile.enterprise is not None:
@@ -22,7 +21,6 @@ def home(request):
         else:
             return home_clicker(request)
     return HttpResponse('home deco')
-
 
 def bundle(request, bundle_id):
     try:

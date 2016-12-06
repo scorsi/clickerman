@@ -52,9 +52,10 @@ function 	fill_page() {
 	var 	offset;
 
 	$(".fill_page").each(function() {
+		console.log("fill page");
 		$(this).css("height", "auto");
 		offset = $(this).offset();
-		new_height = $(window).height() - (offset.top + $("footer").height());
+		new_height = $(window).height() - (offset.top);
 		if (new_height > $(this).height())
 		{
 			$(this).css("height", new_height);
