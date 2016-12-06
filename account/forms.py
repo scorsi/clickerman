@@ -9,12 +9,12 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(
         label="Username",
         strip=False,
-        widget=forms.TextInput(attrs={'placeholder': "Email ou Nom d'utilisateur", 'class': 'form_field'}),
+        widget=forms.TextInput(attrs={'placeholder': "Email ou Nom d'utilisateur", 'class': 'form_field', 'required': 'true'}),
     )
     password = forms.CharField(
         label="Password",
         strip=False,
-        widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe', 'class': 'form_field'}),
+        widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe', 'class': 'form_field', 'required': 'true'}),
     )
     def clean_username(self):
         username = self.data['username']
@@ -31,21 +31,21 @@ class RegisterForm(UserCreationForm):
     password1 = forms.CharField(
         label="Password",
         strip=False,
-        widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe', 'class': 'form_field'}),
+        widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe', 'class': 'form_field', 'required': 'true'}),
     )
     password2 = forms.CharField(
         label="Password confirmation",
-        widget=forms.PasswordInput(attrs={'placeholder': 'Confirmer Mot de passe', 'class': 'form_field'}),
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirmer Mot de passe', 'class': 'form_field', 'required': 'true'}),
         strip=False,
     )
 
     class Meta:
         model = User
-        fields = ('username', 'email',)
+        fields = ('username', 'email')
         field_classes = {'username': UsernameField}
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'login_input', 'placeholder': "Nom d'utilisateur"}),
-            'email': forms.EmailInput(attrs={'class': 'login_input', 'placeholder': "Adresse mail"})
+            'username': forms.TextInput(attrs={'class': 'login_input', 'placeholder': "Nom d'utilisateur", 'required': 'true'}),
+            'email': forms.EmailInput(attrs={'class': 'login_input', 'placeholder': "Adresse mail", 'required': 'true'})
         }
 
 
