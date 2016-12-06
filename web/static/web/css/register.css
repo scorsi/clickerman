@@ -119,6 +119,13 @@
 	transform: scale(0.9);	
 }
 
+#password_lost
+{
+	display: block;
+	margin-bottom: 10px;
+}
+
+
 .text_dissapear
 {
 	position: absolute;

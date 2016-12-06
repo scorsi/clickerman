@@ -2,19 +2,19 @@
 {% load static %}
 
 {% block title %}
-Informations personnelles
+Se connecter
 {% endblock %}
 
 {% block css %}
-<link type="text/css" rel="stylesheet" href="{% static "web/css/form.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "web/css/login.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/register.css" %}"/>
 {% endblock %}
 
 {% block content %}
-<div id="main_container"  class="fill_page">
-  <div id="login_container">
-    <h1>Login</h1>
-    <form method="post" id="form_login" action="{% url 'account:login' %}">
+
+<div id="main_container" class="fill_page flex flex-center" style="background-image: url({% static "web/img/register/background.jpg" %});">
+  <div id="center_container" class="flex-child">
+    <h1>Connection</h1>
+    <form method="post" action="{% url 'account:login' %}" class="form">
       {% csrf_token %}
       <div class="row">
         <div class="columns">
@@ -23,7 +23,6 @@ Informations personnelles
             {{ form.username.errors }}
           </div>
         </div>
-
       </div>
       <div class="row">
         <div class="columns">
@@ -35,7 +34,7 @@ Informations personnelles
       </div>
       <div class="row">
         <div class="columns">
-          <a href="#" id="password_lost" >Mot de passe oublié ?</a>
+          <a href="#" id="password_lost">Mot de passe oublié ?</a>
         </div>
       </div>
       <div class="row">
@@ -44,11 +43,15 @@ Informations personnelles
           <input type="hidden" name="next" value="{{ next }}">
         </div>
       </div>
+      <div class="row">
+        <div class="columns">
+          <a href="/account/register"><button type="button" class="button" class="login_button">Créer un compte</button></a>
+        </div>
+      </div>
     </form>
   </div>
 </div>
-{% endblock content %}
+{% endblock %}
 
-{% block javascript %}
-<script type="text/javascript" src="{% static "web/js/edit_account.js" %}"></script>
+{% block js %}
 {% endblock %}
