@@ -1,29 +1,42 @@
-{% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-Site in construction
-{% endblock %}
-
-{% block css %}
-<link type="text/css" rel="stylesheet" href="{% static "web/css/construction.css" %}"/>
-<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700'>
-<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,700'>
-{% endblock %}
-
-{% block content %}
-<div id="main_container" class="fill_page">
-	<div id="login_container">
-		<h1>Uclics</h1>
-		<p>Notre site est actuellement en cours de développement.</p>
-		<p>Entraînez-vous :</p>
-		<div id="circle_container">
-			
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Site en construction</title>
+	<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700'>
+	<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,700'>
+	<link type="text/css" rel="stylesheet" href="{% static "web/css/foundation.min.css" %}"/>
+	<link type="text/css" rel="stylesheet" href="{% static "web/css/app.css" %}" />
+	<link type="text/css" rel="stylesheet" href="{% static "web/css/construction.css" %}"/>
+	<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700'>
+	<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,700'>
+</head>
+<body>
+	<div id="main_container" class="fill_page flex flex-center" style="background-image: url({% static "web/img/construction/background.jpg" %});">
+		<div id="center_container" class="flex-child">
+			<h1>Uclics</h1>
+			<h3>Notre site est actuellement en cours de <span class="bold">développement.</span></h3>
+			<div id="circle-border">
+				<div id="circle-btn">
+					Entraînez<br />vous <span class="light">en<br /> attendant</span>
+				</div>
+			</div>
+			<label>Highscore</label>
+			<p id="player_score">0</p>
 		</div>
-	</div>
-</div>
-{% endblock content %}
-
-{% block javascript %}
-<script type="text/javascript" src="{% static "web/js/construction.js" %}"></script>
-{% endblock %}
+		<div id="contact_us">
+			<p>Envie de <span class="bold">promouvoir votre entreprise ?</span><br>
+				<span class="bold">Précommandez</span> ou demandez nous plus d’information à cette adresse :<br />
+				<a href="mailto:CharlesColin@uclics.com" class="underline">contact@uclics.com</a></p>
+			</div>
+		</div>
+		<div id="text-container"></div>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="{% static "web/js/app.js" %}"></script>
+		<script type="text/javascript" src="{% static "web/js/construction.js" %}"></script>
+	</body>
+	</html>
