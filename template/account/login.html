@@ -19,19 +19,30 @@ Informations personnelles
       <div class="row">
         <div class="columns">
           {{ form.username }}
+          <div class="error_text">
+            {{ form.username.errors }}
+          </div>
         </div>
+
       </div>
       <div class="row">
         <div class="columns">
           {{ form.password }}
+          <div class="error_text">
+            {{ form.password.errors }}
+          </div>
         </div>
       </div>
       <div class="row">
-        <a href="#" id="password_lost" class="columns">Mot de passe oublié ?</a>
+        <div class="columns">
+          <a href="#" id="password_lost" >Mot de passe oublié ?</a>
+        </div>
       </div>
-      <div>
-        <input type="submit" class="button success" value="login" class="login_button">
-        <input type="hidden" name="next" value="{{ next }}">
+      <div class="row">
+        <div class="columns">
+          <input type="submit" class="button success" value="login" class="login_button">
+          <input type="hidden" name="next" value="{{ next }}">
+        </div>
       </div>
     </form>
   </div>

@@ -57,7 +57,10 @@
 
 .error_text
 {
-
+	width: 100%;
+	color: white;
+	background: red;
+	margin-bottom: 10px;
 }
 
 .submit_bar

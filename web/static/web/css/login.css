@@ -29,6 +29,7 @@
 
 #password_lost
 {
+	display: block;
 	margin-bottom: 10px;
 }
 
@@ -39,8 +40,13 @@
 	height: 100%;
 }
 
-#form_login > div > input[type="submit"]
+#form_login > div > div > input[type="submit"]
 {
 	width: 100%;
 	max-width: 150px;
+}
+
+.form_field
+{
+	margin-bottom: 0px !important;
 }
