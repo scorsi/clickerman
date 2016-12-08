@@ -113,6 +113,9 @@ class Bundle(models.Model):
     def __str__(self):
         return self.name
 
+    def url(self):
+        return '/bundle/' + str(self.id)
+
 
 class Prize(models.Model):
     name = models.CharField(max_length=30)
