@@ -32,6 +32,12 @@ def bundle(request, bundle_id):
 def construction(request):
     return TemplateResponse(request, 'construction.html')
 
+def accueil(request):
+    if request.user.is_authenticated():
+        """Check if user is an enterprise or a normal user"""
+        return HttpResponse('User login page not finished')
+    return TemplateResponse(request, 'accueil.html')
+
 @login_required(login_url='/account/login/')
 def account_address_edit(request, address_alias):
     try:
