@@ -14,6 +14,7 @@ def home_clicker(request):
     bundles = Bundle.objects.filter(status='2')
     return TemplateResponse(request, 'home/clicker.html', {'bundles': bundles})
 
+
 def home(request):
     if request.user.is_authenticated:
         if request.user.profile.enterprise is not None:
@@ -22,6 +23,7 @@ def home(request):
             return home_clicker(request)
     return HttpResponse('home deco')
 
+
 def bundle(request, bundle_id):
     try:
         bundle_obj = Bundle.objects.filter(status='2').get(id=bundle_id)
@@ -29,14 +31,17 @@ def bundle(request, bundle_id):
         return HttpResponse('404')
     return HttpResponse(bundle_obj)
 
+
 def construction(request):
     return TemplateResponse(request, 'construction.html')
+
 
 def accueil(request):
     if request.user.is_authenticated():
         """Check if user is an enterprise or a normal user"""
         return HttpResponse('User login page not finished')
     return TemplateResponse(request, 'accueil.html')
+
 
 @login_required(login_url='/account/login/')
 def account_address_edit(request, address_alias):
