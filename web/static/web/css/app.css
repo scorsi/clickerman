@@ -42,8 +42,8 @@ p {
 }
 
 .flex-center {
-	justify-content: center;
 	align-items: center;
+	jusify-content: center;
 }
 
 .flex-grow {
