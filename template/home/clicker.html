@@ -1,8 +1,14 @@
 {% for bundle in bundles %}
-    <h1><a href="">{{ bundle.name }}</a></h1>
+    <h1><a href="{{ bundle.url }}">{{ bundle.name }}</a></h1>
     <div>
-        <p>
-            {{ bundle.description }}
-        </p>
+        <ul>
+            <li>Description: {{ bundle.description }}</li>
+            <li>Date de fin: {{ bundle.date_ended }}</li>
+            <li>Valeur totale: {{ bundle.total_value }}</li>
+            <li>Entreprise: {{ bundle.enterprise.name }}</li>
+            <li>Logo entreprise</li>
+            <li>Nb cliqueurs participants / Nb de cliqueur max</li>
+            <li>Highscore</li>
+        </ul>
     </div>
 {% endfor %}
