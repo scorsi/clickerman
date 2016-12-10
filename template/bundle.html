@@ -2,55 +2,182 @@
 {% load static %}
 
 {% block title %}
-Bienvenue sur Uclics
+{{ bundle.titre }}
 {% endblock %}
 
 {% block css %}
-<link type="text/css" rel="stylesheet" href="{% static "web/css/font-awesome/css/font-awesome.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "web/css/accueil_user.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/plugin/remodal.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/plugin/remodal-default-theme.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/plugin/font-awesome/css/font-awesome.min.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/bundle.css" %}"/>
 {% endblock %}
 
 {% block content %}
-<div id="main_container" class="fill_page">
-    <div class="product-grid">
-        {% for bundle in bundles %}
-        <div class="product-container">
-            <div class="product">
-                <a href="{{ bundle.url }}">
-                    <div class="product-img" style="background: url('/img/bike_test.JPG');">
-                        <div class="initial-info">
-                            <div>
-                                <h4 class="product-text-enterprise"><i class="fa fa-clock-o" aria-hidden="true"></i>5j : 12 : 46</h4>
-                            </div>
-                            <div>
-                                <h4 class="product-text-name">{{ bundle.total_value }} €</h4>
-                            </div>
+<div id="screen_bg" class="background-light" style="overflow-x: hidden; height: 100vh;">
+    <div class="text-center row fullWidth" style="max-width: 100%;">
+        <div class="columns background-medium color-rest" style="padding-top: 20px; padding-bottom: 20px;"></div>
+    </div>
+    <div class="row fullWidth" style="max-width: 100%;">
+        <div class="small-offset-12 medium-offset-0 medium-6 large-4 columns remodal-bg background-rest">
+            <div class="row text-center" style="padding-left: 20px; padding-right: 20px;">
+                <div class="small-12 columns" ">
+                    <a href="#product">
+                        <img id="f_image" src="img/product.jpg" style="margin-top: 40px; margin-bottom: 5px; border-radius: 30px/30px;" class="scale-on-hover"><!-- IMAGE OF PRODUCT-->
+                    </a>
+                    <div  style="margin-bottom: 20px; color: lightgrey">
+                        <button><i class="fa fa-2x fa-arrow-circle-left" aria-hidden="true"></i></button>
+                        <button><i class="fa fa-2x fa-arrow-circle-right" aria-hidden="true"></i></button>
+                    </div>
+
+
+                    <p id="f_name" class="text-left text-condensed-b color-medium" style="line-height: 27px;">Tente Arpenaz 4.2<!-- NAME OF PRODUCT NAME--></p>
+                    <p id="f_seller" class="text-left text-condensed-b color-medium" style="line-height: 27px;"><span style="font-weight:300">Vendeur</span> Décathlon<!-- NAME OF SELLER --></p>
+                    <div class="row" style="padding-bottom: 15px;">
+                        <i class="text-left fa fa-angle-right fa color-medium small-1 columns"></i>
+                        <a id="f_social_fb" class="btn text-center small-1 columns color-rest" href="#" target="_blank" ><!-- HREF OF FACEBOOK -->
+                            <i class="fa fa-facebook fa-2x btn-social background-medium"></i>
+                        </a>
+                        <a id="f_social_insta" class="btn text-center small-offset-1 small-1 columns color-rest" href="#" target="_blank"><!-- HREF OF INSTAGRAM-->
+                            <i class="fa fa-instagram fa-2x btn-social background-medium"></i>
+                        </a>
+                        <a id="f_social_twitter" class="btn text-center small-offset-1 small-1 columns color-rest" href="#" target="_blank"><!-- HREF OF TWITTER-->
+                            <i class="fa fa-twitter fa-2x btn-social background-medium"></i>
+                        </a>
+                        <a id="f_social_youtube" class="btn text-center small-offset-1 small-1 columns end color-rest" href="#" target="_blank"><!-- HREF OF YOUTUBE -->
+                            <i class="fa fa-youtube fa-2x btn-social background-medium"></i>
+                        </a>
+                    </div>
+                    <p id="f_value" class="text-left text-condensed-b color-medium" style="line-height: 27px;">129.99€</p><!-- VALEUR -->
+                    <p id="f_description" class="text-left text-condensed color-medium" style="font-size: 16px; line-height: 20px;">4 places dans 2 chambres. Séjour haut avec tapis de sol cuvette. Toit du séjour doublé pour limiter la condensation.</p><!-- DESCRIPTION OF FACEBOOK -->
+                    <a id="f_link" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Decathlon_Logo.png/640px-Decathlon_Logo.png" target="_blank"><!-- LINK TO PRODUCT -->
+                        <p id="f_link_site" class="text-center text-condensed-l color-rest background-medium" style="font-size: 25px;">Plus d'information</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="small-offset-1 small-10 medium-offset-0 medium-6 large-offset-1 large-4 columns end remodal-bg color-rest" style="vertical-align: center; margin-top: 50px;">
+            <p class="text-condensed-l text-center" style="font-size: 30px; line-height: 0px;">Temps restant</p>
+            <p id="count_down" class="text-condensed-b text-center" style="font-size: 40px;"></p>
+            <div class="row">
+                <div class="small-offset-1 small-10 text-center large-offset-0 large-12 columns">
+                    <div id="circle-border" style="margin-bottom: 25px;">
+                        <img id="circle-btn" src="img/Decathlon_Logo.png" class="background-medium" style="width: 100%;"> <!-- SRC OF SELLER LOGO -->
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-condensed-l color-rest" style="line-height: 0px; font-size: 30px;">Votre Highscore</p>
+            <p class="text-center right small-text-left text-condensed-b color-rest" id="player_score" style="font-size: 40px;">0</p> <!-- HIGHSCORE -->
+            <div id="text-container"></div>
+        </div>
+        <div class="small-1 medium-0 large-0 columns remodal-bg"></div>
+        <div id="info-container" class="small-offset-1 small-10 medium-offset-3 medium-6 large-offset-0 large-3 columns end remodal-bg color-rest" style="vertical-align: center; margin-top: 50px;">
+            <p id="show-others" class="btn btn-normal text-center text-condensed-l color-rest unselectable background-medium" style="line-height: 30px; font-size: 30px; margin-bottom: -5px;">
+                <i id="score_down" class="fa fa-angle-right rotate color-rest" style="width: 14px; padding-right: 10px;" href="#"></i>
+                Highscore du 1er<br>
+            </p>
+            <p id="clicker_score" class="large-text-right small-text-left text-condensed-b color-rest" style="font-size: 20px; font-size: 40px;">Offline</p> <!-- HIGHSCORE DU CLICKERMAN-->
+            <div id="score_container" style="margin-bottom: 50px; display: none; margin-top: 20px;"> <!-- TOP 10 HIGHSCORE-->
+                <p class="large-text-right small-text-left text-condensed show-score">1. Offline</p>
+                <p class="large-text-right small-text-left text-condensed show-score">2. Offline</p>
+                <p class="large-text-right small-text-left text-condensed show-score">3. Offline</p>
+                <p class="large-text-right small-text-left text-condensed show-score">4. Offline</p>
+                <p class="large-text-right small-text-left text-condensed show-score">6. Offline</p>
+                <p class="large-text-right small-text-left text-condensed show-score">7. Offline</p>
+                <p class="large-text-right small-text-left text-condensed show-score">8. Offline</p>
+                <p class="large-text-right small-text-left text-condensed show-score">9. Offline</p>
+                <p class="large-text-right small-text-left text-condensed show-score">10. Offline</p>   
+                <a href="#score">
+                    <p class="text-center btn-normal show-score text-condensed color-rest background-medium" style="font-size: 25px;">
+                        <i class="fa fa-ellipsis-h" style="padding-right: 10px;"></i>
+                        Plus de résultats   
+                    </p>
+                </a>
+            </div>
+            <div id="stats">
+                <p class="large-text-right small-text-left text-condensed-l color-rest" style="line-height: 0px; font-size: 25px;">Classement</p>
+                <p class="large-text-right small-text-left text-condensed-b color-rest" style="font-size: 0px; font-size: 30px;">114</p><!-- CLASSEMENT-->
+                <p class="large-text-right small-text-left text-condensed-l color-rest" style="line-height: 0px; font-size: 25px; ">Nombre de Clics</p>
+                <p class="large-text-right small-text-left text-condensed-b color-rest" style="font-size: 0px; font-size: 30px">670</p><!-- NOMBRE DE CLIQUES-->
+            </div>
+        </div>
+    </div>
+    <!-- BOTTOM RIGHT BUTTONS START -->
+    <div class="hide-for-large remodal-bg">
+        <a class="btn text-center twitter color-rest" href="#">
+            <i class="fa fa-twitter fa-2x btn-share show-icon background-medium" style="right: 93px;"></i>
+        </a>
+        <a class="btn text-center pinterest color-rest" href="#">
+            <i class="fa fa-pinterest fa-2x btn-share show-icon background-medium" style="right: 163px;"></i>
+        </a>
+        <a class="btn text-center facebook color-rest" href="#">
+            <i class="fa fa-facebook fa-2x btn-share show-icon background-medium" style="right: 233px;"></i>
+        </a>
+        <a id="share" class="btn text-center color-rest">
+            <i class="fa fa-share-alt fa-2x share background-medium"></i>
+        </a>
+    </div>
+    <div class="show-for-large remodal-bg">
+        <a class="btn text-center twitter color-rest background-medium" href="#">
+            <i class="fa fa-twitter fa-2x btn-share background-medium" style="right: 20px; opacity: 1"></i>
+        </a>
+        <a class="btn text-center pinterest color-rest background-medium" href="#">
+            <i class="fa fa-pinterest fa-2x btn-share background-medium" style="right: 93px; opacity: 1"></i>
+        </a>
+        <a class="btn text-center facebook color-rest " href="#">
+            <i class="fa fa-facebook fa-2x btn-share background-medium" style="right: 163px; opacity: 1"></i>
+        </a>
+    </div>
+    <!-- BOTTOM RIGHT BUTTONS END -->
+    <!-- REMODAL ITEMS START-->
+    <div data-remodal-id="product" class="remodal" >
+        <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+        <div data-remodal-action="close" class="row">
+            <img id="f_image_remodal" src="img/product.jpg">
+        </div>
+    </div>
+    <div id="score_modal" data-remodal-id="score" class="remodal">
+        <button id="remodal-close-score" data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+        <div style="margin-bottom: 30px;" class="profile_div color-light">
+            <div class="row">
+                <div class="small-2 medium-2 columns" style="vertical-align: middle; height: 70px;" data-equalizer-watch>
+                    <p class="text-condensed text-center round color-rest" style="vertical-align: middle; font-size: 90%;">1234</p>
+                </div>
+                <div class="small-3 medium-2 columns" >
+                    <img src="img/profile-icon.png" style="max-height: 70px;" >
+                </div>
+                <div class="small-7 medium-8 columns end" style="display: inline; height: 70px;">
+                    <div class="row">
+                        <div class="small-12 medium-6 columns">
+                            <p class="text-condensed text-left" style="line-height: 28px;">Yan<br><span class="text-condensed-l">level : </span><span class="text-condensed-b">2</span></p>
                         </div>
-                        <div class="flex flex-center hover-info" style="display: none">
-                            <div class="flex-child">
-                                <p class="product-text-hover-name">Cliqueurs</p>
-                                <p class="product-text-hover-value">1202 / ∞</p>
-                                <p class="product-text-hover-name">Highscore</p>
-                                <p class="product-text-hover-value">4,500,203</p>
-                            </div>
-                        </div>
-                    </div></a>
-                    <div class="flex product-info">
-                        <div class="flex-child text-left" style="flex-grow: 99;">
-                            <a href="{{ bundle.url }}"><p class="product-text-name">{{ bundle.name }}</p></a>
-                            <a href="{{ bundle.enterprise.url }}" class="product-text-enterprise">{{ bundle.enterprise.name }}</a>
-                        </div>
-                        <div class="flex-child" style="margin-left: auto">
-                            <a href="{{ bundle.enterprise.url }}"><div class="enterprise-img" style="background-image: url('https://lh5.ggpht.com/acFxO77QPh7_zJm47pqbAqZ8OB99l_yDdxjahZOaPXpet7P3aly8dGukSlbDgRJUXw=w300');"></div></a>
+                        <div class="show-for-medium medium-6 columns end">
+                            <p class="text-condensed-b text-center" style="line-height: 65px; font-size:40px; border-left: 2px solid var(--c-light)">500,000</p>
                         </div>
                     </div>
                 </div>
             </div>
-            {% endfor %}
+            <div class="row show-for-small-only" style="margin-bottom: 30px;">
+                <div class=" small-offset-5 small-7 medium-offset-3 medium-9 columns end">
+                    <p class="text-condensed-b text-left" style="line-height: 28px; font-size:40px;">500,000</p>
+                </div>
+            </div>
+        </div>
+        <svg id="load" x="0px" y="0px" viewBox="0 0 150 150" style="margin: 10px; margin-bottom: 20px; display: none">
+            <circle id="loading-inner" cx="75" cy="75" r="60"/>
+        </svg>
+        <div class="row">
+            <p id="load_users" class="small-offset-2 small-8 medium-offset-4 medium-4 btn btn-normal text-center text-condensed-l unselectable color-rest background-medium" style="line-height: 30px; font-size: 24px; margin-bottom: -5px;">
+                <i class="fa fa-angle-down rotate" style="width: 14px; padding-right: 25px;" href="#"></i>
+                Load more<br>
+            </p>
         </div>
     </div>
-    {% endblock content %}
+    <!-- REMODAL ITEMS END-->
+</div>
+{% endblock content %}
 
-    {% block javascript %}
-    <script type="text/javascript" src="{% static "web/js/circle_generator.js" %}"></script>
-    {% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="{% static "web/js/circle_generator.js" %}"></script>
+<script type="text/javascript" src="{% static "web/js/bundle.js" %}"></script>
+<script type="text/javascript" src="{% static "web/js/plugin/remodal.min.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,403 @@
+/* ---
+COLORS
+----*/
+
+:root{
+	--c-light : #02a1ff;
+	--c-medium : #0198f1;
+	--c-rest : white;
+}
+
+.color-rest { color: var(--c-rest) !important; }
+
+.background-rest { background: var(--c-rest) !important; }
+
+.border-rest { border-color: var(--c-rest) !important; }
+
+.color-light { color : var(--c-light) !important; }
+
+.background-light { background: var(--c-light) !important; }
+
+.border-light { border-color: var(--c-light) !important; }
+
+.color-medium { color: var(--c-medium) !important; }
+
+.background-medium { background: var(--c-medium) !important; }
+
+.border-medium { border-color: var(--c-medium) !important; }
+
+/* -
+TEXT
+--*/
+.text-condensed {
+	font-family: 'Roboto Condensed';
+	font-weight: 400;
+	font-size: 25px;
+}
+
+.text-condensed-l {
+	font-family: 'Roboto Condensed';
+	font-weight: 300;
+	font-size: 25px;
+}
+
+.text-condensed-b {
+	font-family: 'Roboto Condensed';
+	font-size: 25px;
+	font-weight: 700;
+}
+
+.text_dissapear
+{
+	position: absolute;
+	font-weight: bold;
+	padding: 5px;
+	border-radius: 50px/50px;
+	background: rgba(0, 0, 0, 0.05);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	font-size: 30px;
+	padding-left: 15px;
+	padding-right: 15px;
+	animation: dissapear 4s 1;
+	opacity: 0;
+}
+
+.text_edit_panel
+{
+
+}
+
+/* ----
+DISPLAY
+-----*/
+@media screen (max-width: 1280px) {
+	.panel_share_roll {
+		display: none;
+		border: 2px solid grey;
+	}
+}
+
+@media screen (min-width: 1281px) {
+	.panel_share_main {
+		display: none; 
+	}
+}
+
+#circle-border {
+	background-color: rgba(255, 255, 255, 0.3);
+	border: 20px solid rgba(255, 255, 255, 0);
+	border-radius: 100%;
+	animation: scaling 4s infinite;
+}
+
+#circle-btn {
+	display: inline-block;
+	border-radius: 100%;
+	border: 4px solid white;
+	transition: transform 80ms;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#circle-btn:hover {
+	transform: scale(1.03);	
+}
+
+#circle-btn:active {
+	transform: scale(0.9);	
+}
+
+#f_link_site {
+	transition: transform 100ms;
+	border-radius: 50px/50px;	
+}
+#f_link_site:hover {
+	transform: scale(1.05);
+}
+#f_link_site:active {
+	transform: scale(0.95);
+}
+
+.scale-on-hover{
+	transition: transform 300ms;
+}
+
+.scale-on-hover:hover{
+	transform: scale(1.05);
+}
+
+.scale-on-hover:active{
+	transform: scale(0.95);
+}
+
+.unselectable {
+	-webkit-user-select: none;        
+	-moz-user-select: none;
+	-ms-user-select: none; 
+	-o-user-select: none;
+	user-select: none;
+}
+
+.fullWidth {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: initial;
+}
+
+.btn-product {
+	padding: 10px;
+	padding-top: 20px;
+	padding-right: 15px;
+	padding-left: 15px;
+	border-radius: 50px/50px;
+}
+
+.btn-normal {
+	padding: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	transition: transform 100ms;
+	border-radius: 50px/50px;
+	cursor: pointer; 
+	cursor: hand;
+}
+
+.btn-normal:hover {
+	transform: scale(1.05);
+}
+
+.btn-normal:active {
+	transform: scale(0.95);
+}
+
+.btn-share {
+	position:fixed;
+	bottom:20px;
+	right:20px;
+	padding: 10px;
+	width: 53px;
+	border-radius: 50%;
+	opacity: 0;
+	outline: none;
+	transition: transform 100ms ease-out;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+.btn-share:hover {
+	transform: scale(1.25);
+}
+
+.btn-share:active {
+	transform: scale(0.75);
+}
+
+.btn-social {
+	padding: 10px;
+	width: 53px;
+	border-radius: 50%;
+	outline: none;
+	transform: scale(0.75);
+	transition: transform 200ms ease-out;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+.btn-social:hover {
+	transform: scale(1);
+}
+
+.btn-social:active {
+	transform: scale(0.5);
+}
+
+#share {
+	position:fixed;
+	bottom:20px;
+	right:20px;
+	padding: 10px;
+	width: 53px;
+	border-radius: 50%;
+	outline: none;
+	transform: scale(1.25);
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+.show-score {
+	line-height: 20px;
+	font-size: 20px;
+	transform-origin: top;
+}
+
+.remodal-close {
+	transition: color 80ms ease-out;
+}
+
+.remodal-close:hover {
+	color: var(--c-medium) !important;
+}
+
+.round {
+	border-radius: 50px/50px;
+}
+
+/* ------
+KEYFRAMES
+-------*/
+
+@keyframes fade-out {	
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0.3;
+	}
+}
+
+@keyframes fade-in {	
+	from {
+		opacity: 0.5;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slide-in {	
+	0% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	30% {
+		opacity: 1;
+		transform: scale(0.5);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes slide-out {	
+	0% {
+		transform: scale(1);
+	}
+	70% {
+		opacity: 1;
+		transform: scale(0.5);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(0);
+	}
+}
+
+@keyframes wiggle {
+	0% {
+		-webkit-transform:rotate(20deg);
+	}
+	1% {
+		-webkit-transform:rotate(-20deg);
+	}
+	2% {
+		-webkit-transform:rotate(20deg);
+	}
+	3% {
+		-webkit-transform:rotate(-20deg);
+	}
+	4% {
+		-webkit-transform:rotate(20deg);
+	}
+	5% {
+		-webkit-transform:rotate(0deg);
+	}
+}
+
+@keyframes scaling {	
+	50% {
+		transform: scale(0.9);
+	}
+	100% {
+		transform: scale(1);		
+	}
+}
+
+@keyframes dissapear {	
+	0%, 30% {
+		opacity: 1;
+	}
+	15% {
+		font-weight: normal;
+	}
+	50% {
+		opacity: 0;		
+	}
+	100% {
+		transform: translateY(-800px);
+	}
+}
+
+@keyframes button_appear {	
+	0% {
+		right: 20px;
+		transform: rotate(-180deg);
+		opacity: 0;
+	}
+	40%, 100% {
+		opacity: 1;
+	}
+}
+
+@keyframes button_dissappear {	
+	0% {
+		opacity: 1;
+	}
+	40%, 100% {
+		right: 20px;
+		transform: rotate(-180deg);
+		opacity: 0;
+	}
+}
+
+#load {
+	width: 50px;
+	animation: loading 3s linear infinite;
+}
+
+#load #loading-inner {
+	stroke-dashoffset: 0;
+	stroke-dasharray: 300;
+	stroke-width: 13;
+	stroke-miterlimit: 10;
+	animation: loading-circle 2s linear infinite;
+	stroke: var(--c-light);
+	fill: transparent;
+}
+
+@keyframes loading {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+@keyframes loading-circle {
+	0% {
+		stroke-dashoffset: 0;
+	}
+	100% {
+		stroke-dashoffset: -600;
+	}
+}
+
+

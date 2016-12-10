@@ -42,14 +42,15 @@ var 	timer;
 var 	cur_score = 0;
 
 animation_scale = document.getElementById("circle-border");
-document.getElementById("circle-border").addEventListener("mousedown", function(evt)
+$("#circle-border").on("mousedown", function(evt)
 {
 	var 	mouse;
 	var 	score;
 	var 	random_num;
 
-	mouse = get_mouse_positon();
+	mouse = get_mouse_positon(evt);
 	random_num = generate_num();
+	console.log(random_num);
 	score = format_number(random_num);
 	create_text(score, mouse.X, mouse.Y);
 	clearTimeout(timer);
@@ -65,7 +66,7 @@ document.getElementById("circle-border").addEventListener("mousedown", function(
 	}
 });
 
-function 	get_mouse_positon()
+function 	get_mouse_positon(evt)
 {
 	var 	mouse;
 
@@ -108,7 +109,8 @@ function 	generate_num()
 		random = Math.floor((Math.random() * 800000) + 0);
 	else if (a < 0.95)
 		random = Math.floor((Math.random() * 1000000) + 0);
-
+	else
+		random = Math.floor((Math.random() * 100000) + 0);
 	return 	(random);
 }
 
@@ -131,8 +133,8 @@ function create_text(text, mouseX, mouseY)
 
 	leftPos = mouseX + 'px';
 	topPos = mouseY - 40 + 'px';
-	$("<p class='text_dissapear' style='left:" + leftPos + "', top:" + topPos + "'>" + text + "</p>");
-	$(score).appendTo($("#text-container"));
+	console.log("<p class='text_dissapear' style='left:" + leftPos + ", top:" + topPos + "'>" + text + "</p>->" + text);
+	$("<p class='text_dissapear' style='left:" + leftPos + "; top:" + topPos + "'>" + text + "</p>").appendTo($("#text-container"));
 }
 
 function 	clear_queue()
@@ -150,8 +152,9 @@ function 	clear_queue()
 
 
 $(window).resize(function(){
+	console.log("helo");
 	square_aspect("#circle-btn");
-})
+});
 
 $(document).ready(function(){
 	square_aspect("#circle-btn");

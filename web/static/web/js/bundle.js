@@ -43,33 +43,15 @@ window.onload = function ()
 		var 	f_image_remodal;
 		var 	f_logo;
 
-		f_image = document.getElementById("f_image");
-		f_image.ondragstart = function() { return false; };
-		f_image_remodal = document.getElementById("f_image_remodal");
-		f_image_remodal.ondragstart = function() { return false; };
-		f_logo = document.getElementById("circle-btn");
-		f_logo.ondragstart = function() { return false; };
-		square_aspect("circle-btn");
+		$("#f_image").ondragstart = function() { return false; };
+		$("#f_image_remodal").ondragstart = function() { return false; };
+		$("#circle-btn").ondragstart = function() { return false; };
 		apply_aspect(11, 9, "f_image");
 	}
 
 	/*-------------
 	ASPECT FUNCTION
 	-------------*/
-
-	function 	square_aspect(img)
-	{
-		var 	width;
-		var 	padding;
-		var 	selector;
-
-		selector = document.getElementById(img);
-		width = selector.width;
-		padding = (((selector.width - selector.height) / selector.width) * 50) + "%";
-		console.log(padding);
-		$(selector).css({"padding-top" : padding, "padding-bottom" : padding});
-	}
-
 	function 	apply_aspect(x, y, img)
 	{
 		var 	selector;
@@ -114,29 +96,6 @@ window.onload = function ()
 		back = '<span style="font-weight:300">Valeur</span> ' + value.substring(0, count) + currency + '<span style="position: relative; bottom: 1ex; font-size: 70%;">' + value.substring(count + 1, value.length) + '</span>';
 		return (back);
 	}
-
-	function 	format_number(num)
-	{
-		var 	convert;
-		var 	count;
-		var 	check;
-
-		back = num.toString();
-		count = back.length;
-		check = 0;
-		while (count != 0)
-		{
-			if (check == 3)
-			{
-				back = back.substring(0, count) + ',' + back.substring(count, back.length);
-				check = 0;
-			}
-			check++;
-			count--;
-		}
-		return (back)
-	}
-
 	/*----
 	COLORS
 	----*/
@@ -174,6 +133,7 @@ window.onload = function ()
 		count = 0;
 		while (count < property.length)
 		{
+
 			set_color_loop(color[Math.floor(count / 3)], property_name[count % 3], property[count]);
 			count++;
 		}
