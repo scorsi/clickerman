@@ -42,40 +42,48 @@ var 	timer;
 var 	cur_score = 0;
 
 animation_scale = document.getElementById("circle-border");
-document.getElementById("circle-border").addEventListener("mousedown", function(evt)
+$("#circle-border").on("mousedown", function(evt)
 {
-	var 	mouseX;
-	var 	mouseY;
+	var 	mouse;
 	var 	score;
 	var 	random_num;
 
-	if (evt.pageX)
-	{
-		mouseX = evt.pageX;
-		mouseY = evt.pageY;
-	}
-	else if (evt.clientX)
-	{
-		MouseX = evt.clientX + ((document.documentElement.scrollLeft) ? document.documentElement.scrollLeft : document.body.scrollLeft);
-		MouseY = evt.clientY + ((document.documentElement.scrollTop) ? document.documentElement.scrollTop : document.body.scrollTop);
-	}
+	mouse = get_mouse_positon(evt);
 	random_num = generate_num();
+	console.log(random_num);
 	score = format_number(random_num);
-	create_text(score, mouseX, mouseY);
+	create_text(score, mouse.X, mouse.Y);
 	clearTimeout(timer);
 	$(animation_scale).css({"-webkit-animation-play-state" : "paused", "animation-play-state" : "paused"});
-	timer = setTimeout(function()
-	{
+	timer = setTimeout(function() {
 		$(animation_scale).css({"-webkit-animation-play-state" : "running", "animation-play-state" : "runnning"});
 	}, 250);
 	clear_queue();
-	if (random_num > cur_score)
-	{	
+	if (random_num > cur_score) {	
 		$('#player_score').html(score);
 		shine_text();
 		cur_score = random_num;
 	}
 });
+
+function 	get_mouse_positon(evt)
+{
+	var 	mouse;
+
+	if (evt.pageX) {
+		mouse = {
+			X: evt.pageX,
+			Y: evt.pageY
+		};
+	}
+	else if (evt.clientX) {
+		mouse = {
+			X: evt.clientX + ((document.documentElement.scrollLeft) ? document.documentElement.scrollLeft : document.body.scrollLeft),
+			Y: evt.clientY + ((document.documentElement.scrollTop) ? document.documentElement.scrollTop : document.body.scrollTop)
+		};
+	}
+	return 	(mouse);
+}
 
 function 	generate_num()
 {
@@ -97,14 +105,18 @@ function 	generate_num()
 		random = Math.floor((Math.random() * 600000) + 0);
 	else if (a < 0.7)
 		random = Math.floor((Math.random() * 700000) + 0);
-	else if (a < 0.8)
-		random = Math.floor((Math.random() * 800000) + 0);
 	else if (a < 0.9)
+		random = Math.floor((Math.random() * 800000) + 0);
+	else if (a < 0.95)
 		random = Math.floor((Math.random() * 1000000) + 0);
-
+	else
+		random = Math.floor((Math.random() * 100000) + 0);
 	return 	(random);
 }
 
+/* -----------------------------
+FUNCTIONS TO PRINT GENERATED NUMBER
+------------------------------*/
 function 	shine_text()
 {
 	var 	element = document.getElementById("player_score");
@@ -114,21 +126,15 @@ function 	shine_text()
 	$('#player_score').addClass("shine");
 }
 
-/* -----------------------------
-FUNCTIONS TO PRINT RANDOM NUMBER
-------------------------------*/
 function create_text(text, mouseX, mouseY)
 {
-	var 	score;
-	var 	node;
+	var 	leftPos;
+	var 	rightPos;
 
-	node = document.createTextNode(text);
-	score = document.createElement("p");
-	score.appendChild(node);
-	score.className += "text_dissapear";
-	score.style.left = mouseX + 'px';
-	score.style.top = mouseY - 40 + 'px';
-	$(score).appendTo($("#text-container"));
+	leftPos = mouseX + 'px';
+	topPos = mouseY - 40 + 'px';
+	console.log("<p class='text_dissapear' style='left:" + leftPos + ", top:" + topPos + "'>" + text + "</p>->" + text);
+	$("<p class='text_dissapear' style='left:" + leftPos + "; top:" + topPos + "'>" + text + "</p>").appendTo($("#text-container"));
 }
 
 function 	clear_queue()
@@ -146,8 +152,9 @@ function 	clear_queue()
 
 
 $(window).resize(function(){
+	console.log("helo");
 	square_aspect("#circle-btn");
-})
+});
 
 $(document).ready(function(){
 	square_aspect("#circle-btn");

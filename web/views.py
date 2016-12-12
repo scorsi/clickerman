@@ -29,7 +29,7 @@ def bundle(request, bundle_id):
         bundle_obj = Bundle.objects.filter(status='2').get(id=bundle_id)
     except ObjectDoesNotExist:
         return HttpResponse('404')
-    return HttpResponse(bundle_obj)
+    return TemplateResponse(request, 'bundle.html',{'bundle': bundle_obj})
 
 
 def construction(request):
