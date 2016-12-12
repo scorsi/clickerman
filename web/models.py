@@ -1,9 +1,13 @@
+# coding=utf-8
 from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
+import datetime
+import time
 
 
 class Address(models.Model):
@@ -109,12 +113,34 @@ class Bundle(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, blank=True)
     medias = models.ImageField(blank=True, null=True)
     categories = models.ManyToManyField(Category, blank=True)
+    total_clickers = models.IntegerField(default=-1, null=False, blank=False)
 
     def __str__(self):
         return self.name
 
     def url(self):
         return '/bundle/' + str(self.id)
+
+    def nb_clickers(self):
+        nb_clickers = Score.objects.filter(bundle_id=self.id).count()
+        if nb_clickers is not None:
+            return str(nb_clickers)
+        return '0'
+
+    def get_total_clickers(self):
+        if self.total_clickers is -1:
+            return '∞'
+        return self.total_clickers
+
+    def highscore(self):
+        highscore = Score.objects.filter(bundle_id=self.id).aggregate(models.Max('highscore'))['highscore__max']
+        if highscore is not None:
+            return str(highscore)
+        return '0'
+
+    def time_left(self):
+        timestamp = int(time.mktime(self.date_ended.timetuple())) - int(time.mktime(datetime.datetime.now().timetuple()))
+        return datetime.datetime.fromtimestamp(timestamp).strftime('%dj %H:%M:%S')
 
 
 class Prize(models.Model):
@@ -127,3 +153,15 @@ class Prize(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Score(models.Model):
+    bundle = models.ForeignKey(Bundle, null=False)
+    user = models.ForeignKey(User, null=False)
+    highscore = models.IntegerField(default=0)
+    clicks = models.BigIntegerField(default=0)
+    regeneration_date = models.DateTimeField(default=timezone.now)
+    last_clicks = models.IntegerField(default=100)
+
+    def __str__(self):
+        return str(self.bundle.name) + ' - ' + str(self.user.username) + ' : ' + str(self.highscore) + ', ' + str(self.clicks)
