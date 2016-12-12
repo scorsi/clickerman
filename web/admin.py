@@ -58,3 +58,8 @@ class BundleAdmin(admin.ModelAdmin):
 class EnterpriseAdmin(admin.ModelAdmin):
     list_display = ['name', 'siren', 'is_active']
     ordering = ['name']
+
+
+@admin.register(Score)
+class ScoreAdmin(admin.ModelAdmin):
+    list_display = ['bundle', 'user']
