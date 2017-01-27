@@ -99,7 +99,7 @@ function create_text(text, mouseX, mouseY)
 	var 	rightPos;
 
 	leftPos = mouseX + 'px';
-	topPos = mouseY - 120 + 'px';
+	topPos = mouseY - 40 + 'px';
 	$("<p class='text_dissapear' style='left:" + leftPos + "; top:" + topPos + "'>" + text + "</p>").appendTo($("#text-container"));
 }
 
