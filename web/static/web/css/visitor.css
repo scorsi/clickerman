@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-26 22:52:33
 * @Last Modified by:   yoppoy
-* @Last Modified time: 2017-01-27 02:45:33
+* @Last Modified time: 2017-01-27 03:19:49
 */
 
 h2 {
@@ -95,6 +95,7 @@ button {
 	border-radius: 50px/50px;
 	background-color: rgba(255, 255, 255, 0.8)!important;
 	color: #F57C00;
+	overflow-y : hidden !important;
 	font-weight: bold;
 	font-size: 35px;
 	padding: 5px;
