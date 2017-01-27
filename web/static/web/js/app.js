@@ -1,30 +1,3 @@
-function 	select_generator(id, start, end)
-{
-	var 	count;
-
-	count = start;
-	if (count <= end)
-	{
-		while (count <= end)
-		{
-			$(id).append("<option value=" + count +">" + count + "</option>");
-			count++;
-		}
-	}
-	else
-	{
-		while (count >= end)
-		{
-			$(id).append("<option value=" + count +">" + count + "</option>");
-			count--;
-		}
-	}
-}
-
-function 	select_update_color(object) {
-	$(object).css('color','#f60');
-};
-
 function 	scrollTo(id)
 {
 	if ($(id).length != 0)
@@ -34,18 +7,6 @@ function 	scrollTo(id)
 		}, 500, 'swing');
 		return false;
 	}
-}
-
-function getQStringsByName(name, url) {
-	if (!url) {
-		url = window.location.href;
-	}
-	name = name.replace(/[\[\]]/g, "\\$&");
-	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-	results = regex.exec(url);
-	if (!results) return null;
-	if (!results[2]) return '';
-	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 function 	fill_page() {
@@ -65,13 +26,36 @@ function 	fill_page() {
 	});
 }
 
+function 	vertical_center(item)
+ {
+ 	$(item).children().css({'padding-top':'0px'});
+ 	var y = $(item).height();
+ 	var x = $(item).children().first().css('height');
+ 	var padding = ((y - parseInt(x)) / 2);
+
+ 	$(item).children().css({"padding-top" : padding});
+ }
+
 $(window).resize(function() {
 	fill_page();
+	$(".center").each(function(){
+ 		vertical_center(this);
+ 	});
 });
+
+setTimeout(function(){
+	fill_page();
+	$(".center").each(function(){
+ 		vertical_center(this);
+ 	});
+}, 3000);
 
 $(document).ready(function()
 {
 	fill_page();
+	$(".center").each(function(){
+ 		vertical_center(this);
+ 	});
 	$('a').click(function(){
 		scrollTo($(this).attr('href'));
 	});

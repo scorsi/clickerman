@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Bienvenue sur Uclics
+{% endblock %}
+
+{% block css %}
+<link type="text/css" rel="stylesheet" href="{% static "web/css/circle_generator.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/visitor.css" %}"/>
+{% endblock %}
+
+{% block content %}
+<div id="main_container" class="fill_page">
+	<div id="intro" class="slide center">
+		<div>
+			<h2>Bienvenue sur <span class="normal">Uclics</span></h2>
+			<p class="normal-margin">Rejoignez l’univers des Clicker’s et  <span class="bold">remportez gratuitement de nombreux lots</span> à travers la France.</p>
+			<h4>Une chose à faire:</h4>
+			<div id="circle-border">
+				<div id="circle-btn">
+					<span class="light">CLIQUER</span>
+				</div>
+			</div>
+			<p>Générez les plus <span class="bold">hauts scores</span> et soyez <span class="bold">vainqueur</span>.</p>
+			<a href="{% url 'account:register' %}"><button>Votre premier clic pour <span class="bold">commencer l’aventure</span></button></a>
+			<div id="text-container"></div>
+		</div>
+	</div>
+	<div id="process" class="slide center">
+		<div>	
+			<h2>"No click, No gain"</h2>
+			<div id="steps" class="row">
+				<div class="small-12 medium-4 columns">
+					<h4>1.</h4>
+					<img src="https://d30y9cdsu7xlg0.cloudfront.net/png/55245-200.png">
+					<p><span class="bold">Cliquez</span> sur vos lots préférés afin de générer le score le plus haut possible sur chacun d’entre eux.</p>
+				</div>
+				<div class="small-12 medium-4 columns">
+					<h4>2.</h4>
+					<img src="https://d30y9cdsu7xlg0.cloudfront.net/png/55245-200.png">
+					<p>Si vous figurez parmi les vainqueurs, à la fin du temps de jeu imparti, <span class="bold">vous décrochez un lot</span>.</p>
+				</div>
+				<div class="small-12 medium-4 columns">
+					<h4>3.</h4>
+					<img src="https://d30y9cdsu7xlg0.cloudfront.net/png/55245-200.png">
+					<p><span class="bold">Recevez</span> votre lot ou <span class="bold">rendez-vous sur place</span> en fonction du mode de livraison établi.</p>
+				</div>
+			</div>
+			<h4>Un clic vous sépare de la victoire</h4>
+			<p>Chaque clic sur le rond central <span class="bold">génère</span> aléatoirement un score compris entre <span class="bold">0</span> et <span class="bold">1 000 000.</span></p>
+			<p>Plus ce score est <span class="bold">élevé</span>, plus il est <span class="bold">difficile</span> à générer!</p>
+			<p>Attention cependant, car <span class="bold">seul le meilleur score de vos 10 derniers clics compte !</span><br/><br/>
+			Chaque joueur a les mêmes chances de gains, seul les choix feront la différence.<br/><br/>
+			C’est à vous de décider… prendrez-vous les bons risques ?
+			</p>
+		</div>
+	</div>
+
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script type="text/javascript" src="{% static "web/js/local_gen.js" %}"></script>
+<script type="text/javascript" src="{% static "web/js/circle_generator.js" %}"></script>
+<script type="text/javascript" src="{% static "web/js/visitor.js" %}"></script>
+{% endblock %}
+

@@ -7,7 +7,6 @@ function 	square_aspect(img)
 	width = $(img).width();
 	height = $(img).height();
 	padding = (((width - height) / width) * 50) + "%";
-	console.log(padding);
 	$(img).css({"padding-top" : padding, "padding-bottom" : padding});
 }
 
@@ -33,7 +32,6 @@ function 	format_number(num)
 	return (back)
 }
 
-
 /* ----------------------------------------------------------
 FUNCTION TO MANAGE RANDOM PRINT AND SCALE ANIMATION OF CIRCLE
 -----------------------------------------------------------*/
@@ -50,7 +48,6 @@ $("#circle-border").on("mousedown", function(evt)
 
 	mouse = get_mouse_positon(evt);
 	random_num = generate_num();
-	console.log(random_num);
 	score = format_number(random_num);
 	create_text(score, mouse.X, mouse.Y);
 	clearTimeout(timer);
@@ -85,35 +82,6 @@ function 	get_mouse_positon(evt)
 	return 	(mouse);
 }
 
-function 	generate_num()
-{
-	var 	a;
-	var 	random;
-
-	a = Math.random();
-	if (a < 0.1)
-		random = Math.floor((Math.random() * 100000) + 0);
-	else if (a < 0.2)
-		random = Math.floor((Math.random() * 200000) + 0);
-	else if (a < 0.3)
-		random = Math.floor((Math.random() * 300000) + 0);
-	else if (a < 0.4)
-		random = Math.floor((Math.random() * 400000) + 0);
-	else if (a < 0.5)
-		random = Math.floor((Math.random() * 500000) + 0);
-	else if (a < 0.6)
-		random = Math.floor((Math.random() * 600000) + 0);
-	else if (a < 0.7)
-		random = Math.floor((Math.random() * 700000) + 0);
-	else if (a < 0.9)
-		random = Math.floor((Math.random() * 800000) + 0);
-	else if (a < 0.95)
-		random = Math.floor((Math.random() * 1000000) + 0);
-	else
-		random = Math.floor((Math.random() * 100000) + 0);
-	return 	(random);
-}
-
 /* -----------------------------
 FUNCTIONS TO PRINT GENERATED NUMBER
 ------------------------------*/
@@ -122,7 +90,6 @@ function 	shine_text()
 	var 	element = document.getElementById("player_score");
 
 	$('#player_score').removeClass("shine");
-	void element.offsetWidth;
 	$('#player_score').addClass("shine");
 }
 
@@ -132,8 +99,7 @@ function create_text(text, mouseX, mouseY)
 	var 	rightPos;
 
 	leftPos = mouseX + 'px';
-	topPos = mouseY - 40 + 'px';
-	console.log("<p class='text_dissapear' style='left:" + leftPos + ", top:" + topPos + "'>" + text + "</p>->" + text);
+	topPos = mouseY - 120 + 'px';
 	$("<p class='text_dissapear' style='left:" + leftPos + "; top:" + topPos + "'>" + text + "</p>").appendTo($("#text-container"));
 }
 
@@ -150,9 +116,11 @@ function 	clear_queue()
 	});
 }
 
+setTimeout(function(){
+	square_aspect("#circle-btn");
+}, 500);
 
 $(window).resize(function(){
-	console.log("helo");
 	square_aspect("#circle-btn");
 });
 

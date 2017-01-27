@@ -21,7 +21,7 @@ def home(request):
             return home_enterprise(request)
         else:
             return home_clicker(request)
-    return HttpResponse('home deco')
+    return TemplateResponse(request, 'home/visitor.html')
 
 
 def bundle(request, bundle_id):

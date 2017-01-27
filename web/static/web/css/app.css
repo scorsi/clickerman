@@ -74,6 +74,10 @@ p {
 	font-weight:200;
 }
 
+.normal-margin {
+	margin-bottom: 20px !important;
+}
+
 .underline {
 	text-decoration: underline;
 }
@@ -84,6 +88,11 @@ p {
 
 .invisible {
 	display: none
+}
+
+.fullWidth {
+	max-width: 100%;
+	width: 100%;
 }
 
 .main_container {
