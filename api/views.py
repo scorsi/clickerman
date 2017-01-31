@@ -7,6 +7,10 @@ import random
 import json
 
 
+def generator_number():
+    return int(abs(random.gauss(0, 0.1) * 1000000))
+
+
 def get_bundle_leaderboard(bundle):
     leaderboard = Score.objects.order_by("-highscore").filter(bundle=bundle)[:10]
     response_data = {}
@@ -56,7 +60,7 @@ def bundle_click(request, bundle_id):
                 "error": "no_last_clicks"
             }
             return HttpResponse(json.dumps(response_data))
-        value = random.randint(0, 1000000)
+        value = generator_number()
         if value > score.highscore:
             score.highscore = value
         score.clicks += 1
@@ -75,3 +79,12 @@ def bundle_click(request, bundle_id):
         return HttpResponse(json.dumps(response_data))
     else:
         return HttpResponse('{"error": "user_is_not_authenticated"}')
+
+
+def test_generator(request):
+    display = ""
+
+    for i in range(0, 100):
+        display += str(generator_number()) + '<br/>'
+
+    return HttpResponse(display)
