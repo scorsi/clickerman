@@ -42,8 +42,8 @@ def bundle_click(request, bundle_id):
             score = Score.objects.create(user=request.user, bundle=bundle)
         if score.regeneration_date + timedelta(hours=1) < timezone.now():
             score.regeneration_date = timezone.now()
-            score.last_clicks = 100
-        elif score.last_clicks <= 0:
+            score.remaining_clicks = 100
+        elif score.remaining_clicks <= 0:
             response_data = {
                 "leaderboard": get_bundle_leaderboard(bundle),
                 "personal": {
@@ -60,7 +60,7 @@ def bundle_click(request, bundle_id):
         if value > score.highscore:
             score.highscore = value
         score.clicks += 1
-        score.last_clicks -= 1
+        score.remaining_clicks -= 1
         score.save()
         response_data = {
             "leaderboard": get_bundle_leaderboard(bundle),
@@ -69,7 +69,7 @@ def bundle_click(request, bundle_id):
                 "highscore": score.highscore,
                 "position": get_bundle_position(bundle, score),
                 "nb_clicks": score.clicks,
-                "last_clicks": score.last_clicks
+                "last_clicks": score.remaining_clicks
             }
         }
         return HttpResponse(json.dumps(response_data))

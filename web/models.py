@@ -139,7 +139,8 @@ class Bundle(models.Model):
         return '0'
 
     def time_left(self):
-        timestamp = int(time.mktime(self.date_ended.timetuple())) - int(time.mktime(datetime.datetime.now().timetuple()))
+        timestamp = int(time.mktime(self.date_ended.timetuple())) - int(
+            time.mktime(datetime.datetime.now().timetuple()))
         return datetime.datetime.fromtimestamp(timestamp).strftime('%dj %H:%M:%S')
 
 
@@ -161,7 +162,8 @@ class Score(models.Model):
     highscore = models.IntegerField(default=0)
     clicks = models.BigIntegerField(default=0)
     regeneration_date = models.DateTimeField(default=timezone.now)
-    last_clicks = models.IntegerField(default=100)
+    remaining_clicks = models.IntegerField(default=100)
 
     def __str__(self):
-        return str(self.bundle.name) + ' - ' + str(self.user.username) + ' : ' + str(self.highscore) + ', ' + str(self.clicks)
+        return str(self.bundle.name) + ' - ' + str(self.user.username) + ' : ' + str(self.highscore) + ', ' + str(
+            self.clicks)
