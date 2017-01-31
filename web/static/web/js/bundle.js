@@ -46,40 +46,6 @@ window.onload = function ()
 		$("#f_image").ondragstart = function() { return false; };
 		$("#f_image_remodal").ondragstart = function() { return false; };
 		$("#circle-btn").ondragstart = function() { return false; };
-		apply_aspect(11, 9, "f_image");
-	}
-
-	/*-------------
-	ASPECT FUNCTION
-	-------------*/
-	function 	apply_aspect(x, y, img)
-	{
-		var 	selector;
-		var 	width;
-		var 	height;
-		var 	ratio;
-		var 	padding;
-		var 	width;
-		var 	height;
-
-		selector = document.getElementById(img);
-		width = Math.round(($(selector).width() / $(selector).parent().width()) * 100);	
-		height = Math.round(($(selector).height() / $(selector).parent().height()) * 100);
-		console.log(width +', ' + height)
-		if (x > y)
-		{
-			ratio = selector.height / y;
-			padding = ((ratio * x) - selector.width) / 2;
-			$(selector).css({"padding-right" : padding, "padding-left" : padding});
-		}
-		else
-		{
-			ratio = selector.width / x;
-			console.log(ratio);
-			padding = "35%";
-			console.log(selector.width);
-			$(selector).css({"padding-top" : padding, "padding-bottom" : padding});	
-		}
 	}
 
 	/*-------------
@@ -96,6 +62,7 @@ window.onload = function ()
 		back = '<span style="font-weight:300">Valeur</span> ' + value.substring(0, count) + currency + '<span style="position: relative; bottom: 1ex; font-size: 70%;">' + value.substring(count + 1, value.length) + '</span>';
 		return (back);
 	}
+
 	/*----
 	COLORS
 	----*/
@@ -138,7 +105,6 @@ window.onload = function ()
 			count++;
 		}
 	}
-
 
 	/*-------------------------------
 	FUNCTIONS TO DISPLAY RANKED USERS
@@ -336,3 +302,43 @@ window.onload = function ()
 		};
 	}
 }
+
+	/* ----------------------------
+	FUNCTION TO MANAGE SHARE BUTTON
+	-----------------------------*/
+	var 	show_share;
+
+	show_share = false;
+	document.getElementById("share").addEventListener("mousedown", function()
+	{
+		var		count;
+		var		icons;
+		var		info;
+
+		if (show_share == false)
+			show_share = true;
+		else
+			show_share = false;
+		count = 0;
+		info = document.getElementById("info-container");
+		icons = document.querySelectorAll("show-icon");	
+		while (count < icons.length)
+		{
+			if (show_share == true)
+			{
+				$(icons[count]).css({"opacity" : "1", "animation" : "button_appear 0.6s ease-out", "animation-direction": "normal"});
+				$(info).css({"margin-bottom" : "60px"});
+			}
+			else
+			{
+				$(icons[count]).css({"opacity" : "0", "animation" : "button_dissappear 0.7s ease-in"});
+				$(info).css({"margin-bottom" : "0px"});
+			}
+			count++;
+		}
+		var icon = document.getElementById("share");
+		if (show_share == true)
+			$(icon).css({"transform": "rotate(180deg) scale(1)", "-webkit-transition-duration" : "0.3s"});
+		else
+			$(icon).css({"transform": "rotate(0deg) scale(1.25)"});
+	});

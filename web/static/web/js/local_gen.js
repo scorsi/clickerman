@@ -1,8 +1,9 @@
 /*
 * @Author: yoppoy
 * @Date:   2017-01-26 22:28:52
-* @Last Modified 2017-01-26our Name>
-* @Last Modified time: 2017-01-26 22:29:09
+* @Last Modified 2017-01-31
+* @Last Modified time: 2017-01-31 17:56:09
+FILE FOR LOCAL GENERATION ON NUMBERS
 */
 
 function 	generate_num()

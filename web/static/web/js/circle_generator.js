@@ -16,6 +16,8 @@ function 	format_number(num)
 	var 	count;
 	var 	check;
 
+	if (isNaN(num))
+		return (num);
 	back = num.toString();
 	count = back.length;
 	check = 0;
@@ -48,6 +50,7 @@ $("#circle-border").on("mousedown", function(evt)
 
 	mouse = get_mouse_positon(evt);
 	random_num = generate_num();
+	alert(generate_num());
 	score = format_number(random_num);
 	create_text(score, mouse.X, mouse.Y);
 	clearTimeout(timer);

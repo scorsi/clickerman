@@ -9,67 +9,64 @@
 <link type="text/css" rel="stylesheet" href="{% static "web/css/plugin/remodal.css" %}"/>
 <link type="text/css" rel="stylesheet" href="{% static "web/css/plugin/remodal-default-theme.css" %}"/>
 <link type="text/css" rel="stylesheet" href="{% static "web/css/plugin/font-awesome/css/font-awesome.min.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/circle_generator.css" %}"/>
 <link type="text/css" rel="stylesheet" href="{% static "web/css/bundle.css" %}"/>
 {% endblock %}
 
-{% block content %}
-<div id="screen_bg" class="background-light" style="overflow-x: hidden; height: 100vh;">
-    <div class="text-center row fullWidth" style="max-width: 100%;">
-        <div class="columns background-medium color-rest" style="padding-top: 20px; padding-bottom: 20px;"></div>
-    </div>
-    <div class="row fullWidth" style="max-width: 100%;">
-        <div class="small-offset-12 medium-offset-0 medium-6 large-4 columns remodal-bg background-rest">
-            <div class="row text-center" style="padding-left: 20px; padding-right: 20px;">
-                <div class="small-12 columns" ">
+{% block content%}
+<div class="row fullWidth background-medium">
+    <div id="info-column" class="small-12 medium-5 large-4 columns remodal-bg background-rest">
+        <div class="row text-center">
+             <div class="small-12" id="info_container">
+                <div id="product_image_container">
                     <a href="#product">
-                        <img id="f_image" src="img/product.jpg" style="margin-top: 40px; margin-bottom: 5px; border-radius: 30px/30px;" class="scale-on-hover"><!-- IMAGE OF PRODUCT-->
+                        <img src="{% static "web/img/bundle/product.jpg" %}"><!-- IMAGE OF PRODUCT-->
                     </a>
-                    <div  style="margin-bottom: 20px; color: lightgrey">
-                        <button><i class="fa fa-2x fa-arrow-circle-left" aria-hidden="true"></i></button>
-                        <button><i class="fa fa-2x fa-arrow-circle-right" aria-hidden="true"></i></button>
-                    </div>
-
-
-                    <p id="f_name" class="text-left text-condensed-b color-medium" style="line-height: 27px;">Tente Arpenaz 4.2<!-- NAME OF PRODUCT NAME--></p>
-                    <p id="f_seller" class="text-left text-condensed-b color-medium" style="line-height: 27px;"><span style="font-weight:300">Vendeur</span> Décathlon<!-- NAME OF SELLER --></p>
-                    <div class="row" style="padding-bottom: 15px;">
-                        <i class="text-left fa fa-angle-right fa color-medium small-1 columns"></i>
-                        <a id="f_social_fb" class="btn text-center small-1 columns color-rest" href="#" target="_blank" ><!-- HREF OF FACEBOOK -->
-                            <i class="fa fa-facebook fa-2x btn-social background-medium"></i>
-                        </a>
-                        <a id="f_social_insta" class="btn text-center small-offset-1 small-1 columns color-rest" href="#" target="_blank"><!-- HREF OF INSTAGRAM-->
-                            <i class="fa fa-instagram fa-2x btn-social background-medium"></i>
-                        </a>
-                        <a id="f_social_twitter" class="btn text-center small-offset-1 small-1 columns color-rest" href="#" target="_blank"><!-- HREF OF TWITTER-->
-                            <i class="fa fa-twitter fa-2x btn-social background-medium"></i>
-                        </a>
-                        <a id="f_social_youtube" class="btn text-center small-offset-1 small-1 columns end color-rest" href="#" target="_blank"><!-- HREF OF YOUTUBE -->
-                            <i class="fa fa-youtube fa-2x btn-social background-medium"></i>
-                        </a>
-                    </div>
-                    <p id="f_value" class="text-left text-condensed-b color-medium" style="line-height: 27px;">129.99€</p><!-- VALEUR -->
-                    <p id="f_description" class="text-left text-condensed color-medium" style="font-size: 16px; line-height: 20px;">4 places dans 2 chambres. Séjour haut avec tapis de sol cuvette. Toit du séjour doublé pour limiter la condensation.</p><!-- DESCRIPTION OF FACEBOOK -->
-                    <a id="f_link" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Decathlon_Logo.png/640px-Decathlon_Logo.png" target="_blank"><!-- LINK TO PRODUCT -->
-                        <p id="f_link_site" class="text-center text-condensed-l color-rest background-medium" style="font-size: 25px;">Plus d'information</p>
+                    <button id="product_Sleft" class="color-medium"><i class="fa fa-3x fa-arrow-circle-left" aria-hidden="true"></i></button>
+                    <button id="product_Sright" class="color-medium"><i class="fa fa-3x fa-arrow-circle-right" aria-hidden="true"></i></button>
+                </div>
+                <h1 class="text-left color-medium">Tente Arpenaz 4.2<!-- NAME OF PRODUCT NAME--></h1>
+                <h3 class="text-left color-medium"><span style="font-weight:300">Vendeur</span> Décathlon<!-- NAME OF SELLER --></h3>
+                <div id="social_media" class="text-left">
+                    <a class="text-center color-rest" href="#" target="_blank" ><!-- HREF OF FACEBOOK -->
+                        <i class="fa fa-facebook fa-2x btn-social scale-on-hover background-medium"></i>
                     </a>
+                    <a class="text-center color-rest" href="#" target="_blank"><!-- HREF OF INSTAGRAM-->
+                        <i class="fa fa-instagram fa-2x btn-social scale-on-hover background-medium"></i>
+                    </a>
+                    <a class="text-center color-rest" href="#" target="_blank"><!-- HREF OF TWITTER-->
+                        <i class="fa fa-twitter fa-2x btn-social scale-on-hover background-medium"></i>
+                    </a>
+                    <a class="text-center color-rest" href="#" target="_blank"><!-- HREF OF YOUTUBE -->
+                        <i class="fa fa-youtube fa-2x btn-social scale-on-hover background-medium"></i>
+                    </a>
+                </div>
+                <h3 class="text-left text-condensed-b color-medium">129.99€</h3><!-- VALEUR -->
+                <h4 class="text-left text-condensed color-medium">4 places dans 2 chambres. Séjour haut avec tapis de sol cuvette. Toit du séjour doublé pour limiter la condensation.</h4><!-- DESCRIPTION OF FACEBOOK -->
+                <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Decathlon_Logo.png/640px-Decathlon_Logo.png" target="_blank"><!-- LINK TO PRODUCT -->
+                    <button id="info_button" class="text-center text-condensed-l color-rest background-medium">Plus d'information</button>
+                </a>
                 </div>
             </div>
         </div>
-        <div class="small-offset-1 small-10 medium-offset-0 medium-6 large-offset-1 large-4 columns end remodal-bg color-rest" style="vertical-align: center; margin-top: 50px;">
-            <p class="text-condensed-l text-center" style="font-size: 30px; line-height: 0px;">Temps restant</p>
-            <p id="count_down" class="text-condensed-b text-center" style="font-size: 40px;"></p>
-            <div class="row">
-                <div class="small-offset-1 small-10 text-center large-offset-0 large-12 columns">
-                    <div id="circle-border" style="margin-bottom: 25px;">
-                        <img id="circle-btn" src="img/Decathlon_Logo.png" class="background-medium" style="width: 100%;"> <!-- SRC OF SELLER LOGO -->
+        <div id="game_column" class="small-offset-1 small-10 medium-offset-0 medium-7 large-5 columns end remodal-bg color-rest">
+            <div id="time_container">
+                <p class="text-condensed-l text-center">Temps restant</p>
+                <p id="count_down" class="text-condensed-b text-center">Chargement...</p>
+            </div>
+            <div style="width: 100%; text-align: center">
+                <div class="small-centered text-center large-centered columns" style="text-align: center">
+                    <div id="circle-border" style="display: inlin">
+                        <button id="circle-btn" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Decathlon_Logo.png/640px-Decathlon_Logo.png);"></button>
                     </div>
                 </div>
             </div>
-            <p class="text-center text-condensed-l color-rest" style="line-height: 0px; font-size: 30px;">Votre Highscore</p>
-            <p class="text-center right small-text-left text-condensed-b color-rest" id="player_score" style="font-size: 40px;">0</p> <!-- HIGHSCORE -->
+            <div id="score_container">
+                <p class="text-center text-condensed-l color-rest">Votre Highscore</p>
+                <p class="text-center right small-text-left text-condensed-b color-rest" id="player_score">0</p> <!-- HIGHSCORE -->
+            </div>
             <div id="text-container"></div>
         </div>
-        <div class="small-1 medium-0 large-0 columns remodal-bg"></div>
         <div id="info-container" class="small-offset-1 small-10 medium-offset-3 medium-6 large-offset-0 large-3 columns end remodal-bg color-rest" style="vertical-align: center; margin-top: 50px;">
             <p id="show-others" class="btn btn-normal text-center text-condensed-l color-rest unselectable background-medium" style="line-height: 30px; font-size: 30px; margin-bottom: -5px;">
                 <i id="score_down" class="fa fa-angle-right rotate color-rest" style="width: 14px; padding-right: 10px;" href="#"></i>
@@ -132,7 +129,7 @@
     <div data-remodal-id="product" class="remodal" >
         <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
         <div data-remodal-action="close" class="row">
-            <img id="f_image_remodal" src="img/product.jpg">
+            <img id="f_image_remodal" src="{% static "web/img/bundle/product.jpg" %}"><!-- IMAGE OF PRODUCT-->
         </div>
     </div>
     <div id="score_modal" data-remodal-id="score" class="remodal">
@@ -174,10 +171,13 @@
     </div>
     <!-- REMODAL ITEMS END-->
 </div>
+        </div>
+      </div>
 {% endblock content %}
 
 {% block javascript %}
 <script type="text/javascript" src="{% static "web/js/circle_generator.js" %}"></script>
+<script type="text/javascript" src="{% static "web/js/server_gen.js" %}"></script>
 <script type="text/javascript" src="{% static "web/js/bundle.js" %}"></script>
 <script type="text/javascript" src="{% static "web/js/plugin/remodal.min.js" %}"></script>
 {% endblock %}
