@@ -1,12 +1,12 @@
 /*
 * @Author: yoppoy
 * @Date:   2017-01-26 22:28:52
-* @Last Modified 2017-01-31
-* @Last Modified time: 2017-01-31 17:56:09
+* @Last Modified 2017-02-01
+* @Last Modified time: 2017-02-01 09:24:13
 FILE FOR LOCAL GENERATION ON NUMBERS
 */
 
-function 	generate_num()
+function 	generate_num(callback, event)
 {
 	var 	a;
 	var 	random;
@@ -32,5 +32,5 @@ function 	generate_num()
 		random = Math.floor((Math.random() * 1000000) + 0);
 	else
 		random = Math.floor((Math.random() * 100000) + 0);
-	return 	(random);
+	callback(random, event);
 }
