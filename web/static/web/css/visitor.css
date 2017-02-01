@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-26 22:52:33
 * @Last Modified by:   yoppoy
-* @Last Modified time: 2017-01-27 03:19:49
+* @Last Modified time: 2017-02-01 10:11:59
 */
 
 h2 {
@@ -20,7 +20,7 @@ h4 {
 	font-family: 'Roboto';
 }
 
-p {
+p, h3 {
 	color: #F57C00;
 	font-size: 20px;
 	font-family: 'Roboto';
