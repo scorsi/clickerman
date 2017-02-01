@@ -34,6 +34,25 @@ def get_bundle_position(bundle, scoreObj):
     return str(i)
 
 
+def bundle_leaderboard(request, bundle_id):
+    if request.user.is_authenticated():
+        try:
+            bundle = Bundle.objects.get(id=bundle_id)
+        except ObjectDoesNotExist:
+            return HttpResponse('{"error": "bundle_not_found"}')
+        leaderboard = Score.objects.order_by("-highscore").filter(bundle=bundle)[:10]
+        response_data = {}
+        i = 0
+        for highscore in leaderboard:
+            response_data[i] = {
+                "name": highscore.user.username,
+                "score": highscore.highscore
+            }
+            i += 1
+        return HttpResponse(json.dumps(response_data))
+    return HttpResponse('{"error": "user_is_not_authenticated"}')
+
+
 def bundle_click(request, bundle_id):
     if request.user.is_authenticated():
         try:
@@ -49,14 +68,11 @@ def bundle_click(request, bundle_id):
             score.remaining_clicks = 100
         elif score.remaining_clicks <= 0:
             response_data = {
-                "leaderboard": get_bundle_leaderboard(bundle),
-                "personal": {
-                    "score": "none",
-                    "highscore": score.highscore,
-                    "position": get_bundle_position(bundle, score),
-                    "nb_clicks": score.clicks,
-                    "last_clicks": 0
-                },
+                "score": "none",
+                "highscore": score.highscore,
+                "position": get_bundle_position(bundle, score),
+                "nb_clicks": score.clicks,
+                "last_clicks": 0,
                 "error": "no_last_clicks"
             }
             return HttpResponse(json.dumps(response_data))
@@ -67,14 +83,11 @@ def bundle_click(request, bundle_id):
         score.remaining_clicks -= 1
         score.save()
         response_data = {
-            "leaderboard": get_bundle_leaderboard(bundle),
-            "personal": {
-                "score": value,
-                "highscore": score.highscore,
-                "position": get_bundle_position(bundle, score),
-                "nb_clicks": score.clicks,
-                "last_clicks": score.remaining_clicks
-            }
+            "score": value,
+            "highscore": score.highscore,
+            "position": get_bundle_position(bundle, score),
+            "nb_clicks": score.clicks,
+            "last_clicks": score.remaining_clicks
         }
         return HttpResponse(json.dumps(response_data))
     else:
@@ -82,9 +95,4 @@ def bundle_click(request, bundle_id):
 
 
 def test_generator(request):
-    display = ""
-
-    for i in range(0, 100):
-        display += str(generator_number()) + '<br/>'
-
-    return HttpResponse(display)
+    return HttpResponse(str(generator_number()))
