@@ -41,16 +41,22 @@ var 	animation_scale;
 var 	timer;
 var 	cur_score = 0;
 
-animation_scale = document.getElementById("circle-border");
-$("#circle-border").on("mousedown", function(evt)
-{
-	var 	mouse;
-	var 	score;
-	var 	random_num;
 
-	mouse = get_mouse_positon(evt);
-	random_num = generate_num();
-	alert(generate_num());
+function 	update_score(random_num, score)
+{
+	if (isNaN(random_num) == false && random_num > cur_score) {	
+		$('#player_score').html(score);
+		shine_text();
+		cur_score = random_num;
+	}
+}
+
+function 	display_num(random_num, event)
+{
+	var 	score;
+	var 	mouse;
+
+	mouse = get_mouse_positon(event);
 	score = format_number(random_num);
 	create_text(score, mouse.X, mouse.Y);
 	clearTimeout(timer);
@@ -59,11 +65,13 @@ $("#circle-border").on("mousedown", function(evt)
 		$(animation_scale).css({"-webkit-animation-play-state" : "running", "animation-play-state" : "runnning"});
 	}, 250);
 	clear_queue();
-	if (random_num > cur_score) {	
-		$('#player_score').html(score);
-		shine_text();
-		cur_score = random_num;
-	}
+	update_score();
+}
+
+animation_scale = document.getElementById("circle-border");
+$("#circle-border").on("mousedown", function(event)
+{
+	generate_num(display_num, event);
 });
 
 function 	get_mouse_positon(evt)
