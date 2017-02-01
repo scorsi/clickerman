@@ -25,8 +25,8 @@
                     <button id="product_Sleft" class="color-medium"><i class="fa fa-3x fa-arrow-circle-left" aria-hidden="true"></i></button>
                     <button id="product_Sright" class="color-medium"><i class="fa fa-3x fa-arrow-circle-right" aria-hidden="true"></i></button>
                 </div>
-                <h1 class="text-left color-medium">Tente Arpenaz 4.2<!-- NAME OF PRODUCT NAME--></h1>
-                <h3 class="text-left color-medium"><span style="font-weight:300">Vendeur</span> Décathlon<!-- NAME OF SELLER --></h3>
+                <h1 class="text-left color-medium"> {{ bundle.name }} </h1>
+                <h3 class="text-left color-medium"><span style="font-weight:300">Vendeur</span> {{ bundle.enterprise }} </h3>
                 <div id="social_media" class="text-left">
                     <a class="text-center color-rest" href="#" target="_blank" ><!-- HREF OF FACEBOOK -->
                         <i class="fa fa-facebook fa-2x btn-social scale-on-hover background-medium"></i>
@@ -41,9 +41,9 @@
                         <i class="fa fa-youtube fa-2x btn-social scale-on-hover background-medium"></i>
                     </a>
                 </div>
-                <h3 class="text-left text-condensed-b color-medium">129.99€</h3><!-- VALEUR -->
-                <h4 class="text-left text-condensed color-medium">4 places dans 2 chambres. Séjour haut avec tapis de sol cuvette. Toit du séjour doublé pour limiter la condensation.</h4><!-- DESCRIPTION OF FACEBOOK -->
-                <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Decathlon_Logo.png/640px-Decathlon_Logo.png" target="_blank"><!-- LINK TO PRODUCT -->
+                <h3 class="text-left text-condensed-b color-medium">{{ bundle.total_value }}€</h3>
+                <h4 class="text-left text-condensed color-medium">{{ bundle.description }}</h4>
+                <a href="#" target="_blank"><!-- LINK TO PRODUCT -->
                     <button id="info_button" class="text-center text-condensed-l color-rest background-medium">Plus d'information</button>
                 </a>
                 </div>
@@ -52,11 +52,11 @@
         <div id="game_column" class="small-offset-1 small-10 medium-offset-0 medium-7 large-5 columns end remodal-bg color-rest">
             <div id="time_container">
                 <p class="text-condensed-l text-center">Temps restant</p>
-                <p id="count_down" class="text-condensed-b text-center">Chargement...</p>
+                <p id="count_down" class="text-condensed-b text-center">{{ bundle.time_left }}</p>
             </div>
             <div style="width: 100%; text-align: center">
                 <div class="small-centered text-center large-centered columns" style="text-align: center">
-                    <div id="circle-border" style="display: inlin">
+                    <div id="circle-border">
                         <button id="circle-btn" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Decathlon_Logo.png/640px-Decathlon_Logo.png);"></button>
                     </div>
                 </div>
