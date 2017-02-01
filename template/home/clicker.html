@@ -6,7 +6,7 @@ Bienvenue sur Uclics
 {% endblock %}
 
 {% block css %}
-<link type="text/css" rel="stylesheet" href="{% static "web/css/font-awesome/css/font-awesome.min.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/plugin/font-awesome/css/font-awesome.min.css" %}"/>
 <link type="text/css" rel="stylesheet" href="{% static "web/css/accueil_user.css" %}"/>
 {% endblock %}
 
@@ -20,7 +20,7 @@ Bienvenue sur Uclics
                     <div class="product-img" style="background: url('/img/bike_test.JPG');">
                         <div class="initial-info">
                             <div>
-                                <h4 class="product-text-enterprise"><i class="fa fa-clock-o" aria-hidden="true"></i>5j : 12 : 46</h4>
+                                <h4 class="product-text-enterprise"><i class="fa fa-clock-o" aria-hidden="true"></i>{{ bundle.time_left }}</h4>
                             </div>
                             <div>
                                 <h4 class="product-text-name">{{ bundle.total_value }} €</h4>
@@ -29,9 +29,9 @@ Bienvenue sur Uclics
                         <div class="flex flex-center hover-info" style="display: none">
                             <div class="flex-child">
                                 <p class="product-text-hover-name">Cliqueurs</p>
-                                <p class="product-text-hover-value">1202 / ∞</p>
+                                <p class="product-text-hover-value">{{ bundle.nb_clickers }} / {{ bundle.total_clickers }}</p>
                                 <p class="product-text-hover-name">Highscore</p>
-                                <p class="product-text-hover-value">4,500,203</p>
+                                <p class="product-text-hover-value">{{ bundle.highscore }}</p>
                             </div>
                         </div>
                     </div></a>
