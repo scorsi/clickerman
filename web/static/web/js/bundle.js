@@ -185,10 +185,8 @@ window.onload = function ()
 	document.getElementById("show-others").addEventListener("mousedown", function()
 	{
 		var 	icon;
-		var		stats;
-
+	
 		icon = document.getElementById("score_down");
-		stats = document.getElementById("stats");
 		if (show_score == true)
 		{
 			$(icon).css({"transform": "rotate(0deg)", "-webkit-transition-duration" : "0.3s"});
@@ -205,7 +203,6 @@ window.onload = function ()
 	$('#show-others').click(function() {
 		$( "#score_container" ).stop().slideToggle();
 		$( "#clicker_score" ).stop().slideToggle();
-		$( "#stats" ).stop().fadeToggle();
 	});
 
 	/* ----------------------------

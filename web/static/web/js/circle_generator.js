@@ -38,6 +38,7 @@ function 	format_number(num)
 FUNCTION TO MANAGE RANDOM PRINT AND SCALE ANIMATION OF CIRCLE
 -----------------------------------------------------------*/
 var 	animation_scale;
+var 	generate_status
 var 	timer;
 var 	cur_score = 0;
 
@@ -69,9 +70,11 @@ function 	display_num(random_num, event)
 }
 
 animation_scale = document.getElementById("circle-border");
+generate_status = true;
 $("#circle-border").on("mousedown", function(event)
 {
-	generate_num(display_num, event);
+	if (generate_status == true)
+		generate_num(display_num, event);
 });
 
 function 	get_mouse_positon(evt)

@@ -20,7 +20,7 @@
              <div class="small-12" id="info_container">
                 <div id="product_image_container">
                     <a href="#product">
-                        <img src="{% static "web/img/bundle/product.jpg" %}"><!-- IMAGE OF PRODUCT-->
+                        <img src="{{ bundle.medias }}"><!-- IMAGE OF PRODUCT-->
                     </a>
                     <button id="product_Sleft" class="color-medium"><i class="fa fa-3x fa-arrow-circle-left" aria-hidden="true"></i></button>
                     <button id="product_Sright" class="color-medium"><i class="fa fa-3x fa-arrow-circle-right" aria-hidden="true"></i></button>
@@ -49,52 +49,56 @@
                 </div>
             </div>
         </div>
-        <div id="game_column" class="small-offset-1 small-10 medium-offset-0 medium-7 large-5 columns end remodal-bg color-rest">
+        <div id="game_column" class="small-12 medium-offset-0 medium-7 large-5 columns end remodal-bg color-rest">
             <div id="time_container">
                 <p class="text-condensed-l text-center">Temps restant</p>
                 <p id="count_down" class="text-condensed-b text-center">{{ bundle.time_left }}</p>
             </div>
-            <div style="width: 100%; text-align: center">
-                <div class="small-centered text-center large-centered columns" style="text-align: center">
-                    <div id="circle-border">
-                        <button id="circle-btn" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Decathlon_Logo.png/640px-Decathlon_Logo.png);"></button>
+            <div id="circle_container">
+                <div>
+                    <div class="small-centered text-center large-centered columns">
+                        <div id="circle-border">
+                            <button id="circle-btn" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Decathlon_Logo.png/640px-Decathlon_Logo.png);"></button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="score_container">
+            <div id="highscore_container">
                 <p class="text-center text-condensed-l color-rest">Votre Highscore</p>
-                <p class="text-center right small-text-left text-condensed-b color-rest" id="player_score">0</p> <!-- HIGHSCORE -->
+                <p class="text-center right small-text-left text-condensed-b color-rest" id="player_score">{{ bundle.highscore }}</p> <!-- HIGHSCORE -->
             </div>
             <div id="text-container"></div>
         </div>
         <div id="info-container" class="small-offset-1 small-10 medium-offset-3 medium-6 large-offset-0 large-3 columns end remodal-bg color-rest" style="vertical-align: center; margin-top: 50px;">
+            <div id="stat_container">
+                <p class="text-condensed-l color-rest">Classement</p>
+                <p id="player_rank" class="text-condensed-b color-rest">MISSING</p>
+                <p class="text-condensed-l color-rest">Nombre de Clics total</p>
+                <p id="player_clicks" class="text-condensed-b color-rest">{{ score.clicks }}</p>
+                <p class="text-condensed-l color-rest">Nombre de Clics restant</p>
+                <p id="player_remaining_clicks" class="text-condensed-b color-rest">{{ score.remaining_clicks }}</p>
+            </div>
             <p id="show-others" class="btn btn-normal text-center text-condensed-l color-rest unselectable background-medium" style="line-height: 30px; font-size: 30px; margin-bottom: -5px;">
                 <i id="score_down" class="fa fa-angle-right rotate color-rest" style="width: 14px; padding-right: 10px;" href="#"></i>
-                Highscore du 1er<br>
+                Meilleur score du jeu
             </p>
-            <p id="clicker_score" class="large-text-right small-text-left text-condensed-b color-rest" style="font-size: 20px; font-size: 40px;">Offline</p> <!-- HIGHSCORE DU CLICKERMAN-->
-            <div id="score_container" style="margin-bottom: 50px; display: none; margin-top: 20px;"> <!-- TOP 10 HIGHSCORE-->
-                <p class="large-text-right small-text-left text-condensed show-score">1. Offline</p>
-                <p class="large-text-right small-text-left text-condensed show-score">2. Offline</p>
-                <p class="large-text-right small-text-left text-condensed show-score">3. Offline</p>
-                <p class="large-text-right small-text-left text-condensed show-score">4. Offline</p>
-                <p class="large-text-right small-text-left text-condensed show-score">6. Offline</p>
-                <p class="large-text-right small-text-left text-condensed show-score">7. Offline</p>
-                <p class="large-text-right small-text-left text-condensed show-score">8. Offline</p>
-                <p class="large-text-right small-text-left text-condensed show-score">9. Offline</p>
-                <p class="large-text-right small-text-left text-condensed show-score">10. Offline</p>   
+            <p id="clicker_score" class="large-text-right small-text-left text-condensed-b color-rest">10000</p> 
+            <div id="score_container" style="margin-bottom: 50px; margin-top: 20px; display: none"> <!-- TOP 10 HIGHSCORE-->
+                <p class="large-text-right small-text-left text-condensed show-score">1. </p>
+                <p class="large-text-right small-text-left text-condensed show-score">2. </p>
+                <p class="large-text-right small-text-left text-condensed show-score">3. </p>
+                <p class="large-text-right small-text-left text-condensed show-score">4. </p>
+                <p class="large-text-right small-text-left text-condensed show-score">6. </p>
+                <p class="large-text-right small-text-left text-condensed show-score">7. </p>
+                <p class="large-text-right small-text-left text-condensed show-score">8. </p>
+                <p class="large-text-right small-text-left text-condensed show-score">9. </p>
+                <p class="large-text-right small-text-left text-condensed show-score">10. </p>   
                 <a href="#score">
                     <p class="text-center btn-normal show-score text-condensed color-rest background-medium" style="font-size: 25px;">
                         <i class="fa fa-ellipsis-h" style="padding-right: 10px;"></i>
                         Plus de résultats   
                     </p>
                 </a>
-            </div>
-            <div id="stats">
-                <p class="large-text-right small-text-left text-condensed-l color-rest" style="line-height: 0px; font-size: 25px;">Classement</p>
-                <p class="large-text-right small-text-left text-condensed-b color-rest" style="font-size: 0px; font-size: 30px;">114</p><!-- CLASSEMENT-->
-                <p class="large-text-right small-text-left text-condensed-l color-rest" style="line-height: 0px; font-size: 25px; ">Nombre de Clics</p>
-                <p class="large-text-right small-text-left text-condensed-b color-rest" style="font-size: 0px; font-size: 30px">670</p><!-- NOMBRE DE CLIQUES-->
             </div>
         </div>
     </div>

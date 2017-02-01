@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.template.response import TemplateResponse
 from account.forms import AddressForm
 from web.models import Bundle
+from web.models import Score
 
 
 def home_enterprise(request):
@@ -24,12 +25,14 @@ def home(request):
     return TemplateResponse(request, 'home/visitor.html')
 
 
+@login_required(login_url='/account/login/')
 def bundle(request, bundle_id):
     try:
         bundle_obj = Bundle.objects.filter(status='2').get(id=bundle_id)
+        score_obj = Score.objects.filter(bundle=bundle_obj).get(user=request.user)
     except ObjectDoesNotExist:
         return HttpResponse('404')
-    return TemplateResponse(request, 'bundle.html',{'bundle': bundle_obj})
+    return TemplateResponse(request, 'bundle.html',{'bundle': bundle_obj, 'score': score_obj})
 
 
 def construction(request):

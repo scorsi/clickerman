@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-31 16:01:55
 * @Last Modified 2017-02-01
-* @Last Modified time: 2017-02-01 09:41:27
+* @Last Modified time: 2017-02-01 20:35:30
 FILE FOR SERVER BASED GENERATION ON NUMBERS
 */
 
@@ -25,7 +25,43 @@ var getJSON = function(url) {
 
 function  update_info(data)
 {
-  //UPDATE ALL OF CURRENT INFO
+  if (data != 'undefined')
+  {
+    $("#player_rank").html(data.position);
+    $("#player_remaining_clicks").html(data.last_clicks);
+    $("#player_clicks").html(data.clicks);
+ }
+}
+
+function  show_no_clicks()
+{
+
+}
+
+function  update_leaderboard(data)
+{
+  var     data = '{leaderboard:["10000", "78987", "678", "56", "78", "7"]}';
+  var     a;
+
+  a = 0;
+  while (a < 10)
+  {
+      $($("#score_container").children() + ":eq(" + a + ")").html("h");
+    a++;
+  }
+}
+
+function  call_leaderboard()
+{
+  getJSON(window.location.origin + '/api' + window.location.pathname + '/leaderboard').then(function(data) {
+        JData = JSON.parse(JSON.stringify(data));
+        if (!JData.hasOwnProperty('error'))
+          update_leaderboard(JData);
+        else
+          alert("Erreur : " + JData.error);
+  }, function(status) { //error detection....
+        alert('Un problème est survenu');
+  });
 }
 
 function 	generate_num(callback, event)
@@ -33,11 +69,21 @@ function 	generate_num(callback, event)
 	var 	random;
 	var 	JData;
 
+  generate_status = false;
   getJSON(window.location.origin + '/api' + window.location.pathname + '/click').then(function(data) {
-   			JData = JSON.parse(JSON.stringify(data));
-        callback(JData.personal.score, event);
-        update_info(JData);
+        JData = JSON.parse(JSON.stringify(data));
+        if (!JData.hasOwnProperty('error'))
+        {
+          callback(JData.score, event);
+          update_info(JData);
+          generate_status = true;
+        }
+        else if (data.error == "no_last_clicks")
+          show_no_clicks();
+        else
+          alert("Erreur : " + JData.error);
   }, function(status) { //error detection....
   			alert('Un problème est survenu');
   });
 }
+  

@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-11 23:45:58
 * @Last Modified by:   yoppoy
-* @Last Modified time: 2017-01-31 15:45:09
+* @Last Modified time: 2017-02-01 18:17:41
 */
 
 /*------------------
@@ -118,20 +118,32 @@
 	margin-top: 30px;
 }
 
+#circle_container {
+	margin: auto;
+	max-width: 650px;
+	text-align: center;
+}
+
+#circle_container > div{
+	max-width: 90%;
+	margin: auto;
+	text-align: center;
+}
+
 #time_container > p:nth-child(1),
-#score_container > p:nth-child(1){
+#highscore_container > p:nth-child(1){
 	font-size: 35px;
 	line-height: 20px;
 }
 
-#score_container {
+#highscore_container {
 	margin-top: 30px;
 }
 
 #time_container > p:nth-child(2){
 	font-size: 40px;
 }
-#score_container > p:nth-child(2){
+#highscore_container > p:nth-child(2){
 	font-size: 60px;
 }
 
