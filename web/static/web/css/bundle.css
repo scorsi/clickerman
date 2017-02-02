@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-11 23:45:58
 * @Last Modified by:   yoppoy
-* @Last Modified time: 2017-02-01 18:17:41
+* @Last Modified time: 2017-02-02 11:18:57
 */
 
 /*------------------
@@ -27,27 +27,7 @@
 
 .border-medium { border-color: #0198f1 !important; }
 
-/*------------------
---------FONT--------
-------------------*/
 
-.text-condensed {
-	font-family: 'Roboto Condensed';
-	font-weight: 400;
-	font-size: 25px;
-}
-
-.text-condensed-l {
-	font-family: 'Roboto Condensed';
-	font-weight: 300;
-	font-size: 25px;
-}
-
-.text-condensed-b {
-	font-family: 'Roboto Condensed';
-	font-size: 25px;
-	font-weight: 700;
-}
 
 /*------------------
 ---INFO-CONTAINTER--
@@ -171,4 +151,41 @@
 
 .scale-on-hover:active{
 	transform: scale(0.99);
+}
+
+/*------------------
+----OUT OF CLICKS---
+------------------*/
+#out_of_clicks > p:nth-child(2) {
+	color: #F44336;
+}
+
+#out_of_clicks > p:nth-child(3) {
+	font-size: 20px;
+	color: #E57373
+}
+
+#out_of_clicks > .fa {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	font-size: 5em;
+	color: #FF5252;
+}
+
+#out_of_clicks > .row {
+	max-width: 480px;
+}
+
+#out_of_clicks > .row > div > a > button {
+	color: white;
+	font-size: 20px;
+}
+
+#out_of_clicks > .row > div:first-child > a > button {
+	background: #0091EA;
+	margin-bottom: 15px;
+}
+
+#out_of_clicks > .row > div:nth-child(2) > a > button {
+	background: #00C853;
 }

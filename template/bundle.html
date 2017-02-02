@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content%}
-<div class="row fullWidth background-medium">
+<div class="row fullWidth background-medium" style="position: relative;">
     <div id="info-column" class="small-12 medium-5 large-4 columns remodal-bg background-rest">
         <div class="row text-center">
              <div class="small-12" id="info_container">
@@ -26,7 +26,7 @@
                     <button id="product_Sright" class="color-medium"><i class="fa fa-3x fa-arrow-circle-right" aria-hidden="true"></i></button>
                 </div>
                 <h1 class="text-left color-medium"> {{ bundle.name }} </h1>
-                <h3 class="text-left color-medium"><span style="font-weight:300">Vendeur</span> {{ bundle.enterprise }} </h3>
+                <h3 class="text-left color-medium"><span style="font-weight:300">De</span> {{ bundle.enterprise }} </h3>
                 <div id="social_media" class="text-left">
                     <a class="text-center color-rest" href="#" target="_blank" ><!-- HREF OF FACEBOOK -->
                         <i class="fa fa-facebook fa-2x btn-social scale-on-hover background-medium"></i>
@@ -164,7 +164,7 @@
             </div>
         </div>
         <svg id="load" x="0px" y="0px" viewBox="0 0 150 150" style="margin: 10px; margin-bottom: 20px; display: none">
-            <circle id="loading-inner" cx="75" cy="75" r="60"/>
+            <circle id="loading-inner" cx="75" cy="75" r="60"></circle>
         </svg>
         <div class="row">
             <p id="load_users" class="small-offset-2 small-8 medium-offset-4 medium-4 btn btn-normal text-center text-condensed-l unselectable color-rest background-medium" style="line-height: 30px; font-size: 24px; margin-bottom: -5px;">
@@ -173,10 +173,21 @@
             </p>
         </div>
     </div>
-    <!-- REMODAL ITEMS END-->
-</div>
+    <div id="out_of_clicks" data-remodal-id="out_of_clicks" class="remodal">
+        <button id="remodal-close-score" data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+        <p class="text-l">Vous avez épuisé vos 100 clics !</p>
+        <p class="text-condensed">Revenez dans <span class="bold">1 heure</span> pour battre le highscore !</p>
+        <i class="fa fa-flag-o" aria-hidden="true"></i>
+        <div class="row">
+            <div class="small-offset-1 small-10 medium-offset-0 medium-6">
+                <a href="{% url 'web:home' %}"><button class="btn-round text-condensed"><i class="fa fa-home" aria-hidden="true"></i> Revenir à l'accueil</button></a>
+            </div>
+            <div class="small-offset-1 small-10 medium-offset-0 medium-6">
+                <a href="#"><button class="btn-round text-condensed"><i class="fa fa-random" aria-hidden="true"></i> Découvrir</button></a>
+            </div>
         </div>
-      </div>
+    </div>
+</div>
 {% endblock content %}
 
 {% block javascript %}

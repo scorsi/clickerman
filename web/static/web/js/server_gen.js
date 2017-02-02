@@ -1,8 +1,8 @@
 /*
 * @Author: yoppoy
 * @Date:   2017-01-31 16:01:55
-* @Last Modified 2017-02-01
-* @Last Modified time: 2017-02-01 20:35:30
+* @Last Modified 2017-02-02
+* @Last Modified time: 2017-02-02 11:36:57
 FILE FOR SERVER BASED GENERATION ON NUMBERS
 */
 
@@ -35,7 +35,8 @@ function  update_info(data)
 
 function  show_no_clicks()
 {
-
+  generate_status = true;
+  window.location.replace(window.location.origin + window.location.pathname + "#out_of_clicks");
 }
 
 function  update_leaderboard(data)
@@ -86,4 +87,13 @@ function 	generate_num(callback, event)
   			alert('Un problème est survenu');
   });
 }
-  
+
+//HERE TO MANAGE THE APPEARANCE OF THE OUT OF CLICKS MODAL ON THE LOADING OF THE PAGE
+check_modal_condition();
+function  check_modal_condition()
+{
+  if (window.location.href.endsWith("#out_of_clicks") && !($("#player_remaining_clicks").html() == "0"))
+    window.location.replace(window.location.origin + window.location.pathname);
+   if (window.location.href.endsWith("#out_of_clicks") == false && $("#player_remaining_clicks").html() == "0")
+    window.location.replace(window.location.origin + window.location.pathname + "#out_of_clicks");
+}
