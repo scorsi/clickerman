@@ -66,7 +66,7 @@ function 	display_num(random_num, event)
 		$(animation_scale).css({"-webkit-animation-play-state" : "running", "animation-play-state" : "runnning"});
 	}, 250);
 	clear_queue();
-	update_score(random_num, event);
+	update_score(random_num, score);
 }
 
 animation_scale = document.getElementById("circle-border");
@@ -104,6 +104,7 @@ function 	shine_text()
 	var 	element = document.getElementById("player_score");
 
 	$('#player_score').removeClass("shine");
+	void element.offsetWidth;
 	$('#player_score').addClass("shine");
 }
 
