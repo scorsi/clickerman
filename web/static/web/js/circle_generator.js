@@ -66,7 +66,7 @@ function 	display_num(random_num, event)
 		$(animation_scale).css({"-webkit-animation-play-state" : "running", "animation-play-state" : "runnning"});
 	}, 250);
 	clear_queue();
-	update_score();
+	update_score(random_num, event);
 }
 
 animation_scale = document.getElementById("circle-border");
