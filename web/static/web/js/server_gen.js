@@ -2,9 +2,11 @@
 * @Author: yoppoy
 * @Date:   2017-01-31 16:01:55
 * @Last Modified 2017-02-02
-* @Last Modified time: 2017-02-02 11:36:57
+* @Last Modified time: 2017-02-02 14:00:06
 FILE FOR SERVER BASED GENERATION ON NUMBERS
 */
+
+cur_score = $("#player_score").html();
 
 var getJSON = function(url) {
   return new Promise(function(resolve, reject) {
