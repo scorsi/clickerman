@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-26 22:52:33
 * @Last Modified by:   yoppoy
-* @Last Modified time: 2017-02-06 23:26:52
+* @Last Modified time: 2017-02-06 23:44:56
 */
 
 h2 {
@@ -42,7 +42,19 @@ button {
 	font-size: 20px;
 	padding: 20px;
 	border-radius: 50px/50px;
+	border: 3px solid #FF8F00;
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
 	font-family: 'Roboto' !important;
+}
+
+button:hover {
+	border-color: #FF8F00;
+	color: #FF8F00;
+	background: white;
 }
 
 #main_container {
