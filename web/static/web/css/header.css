@@ -129,15 +129,6 @@
     text-align: right;
 }
 
-@media only screen and (min-width:640px) {
-  .nav-button {
-    background: #EF6C00;
-    color: white;
-    padding: 0px;
-    border-radius: 50px/50px;
-  }
-}
-
 @media only screen and (max-width:640px) {
   .nav-container {
      margin-bottom: 50px;
@@ -298,6 +289,20 @@
   }
   .nav-hide {
     display: none !important;
+  }
+}
+
+@media only screen and (min-width:640px) {
+  .nav-button {
+    background: #EF6C00;
+    color: white;
+    padding: 5px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    border-radius: 50px/50px;
+  }
+  .nav-container {
+    padding-right: 10px;
   }
 }
 
