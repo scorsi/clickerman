@@ -1,8 +1,8 @@
 /*
 * @Author: yoppoy
 * @Date:   2017-01-31 16:01:55
-* @Last Modified 2017-02-02
-* @Last Modified time: 2017-02-02 19:19:35
+* @Last Modified 2017-02-06
+* @Last Modified time: 2017-02-06 15:53:43
 FILE FOR SERVER BASED GENERATION ON NUMBERS
 */
 
@@ -94,7 +94,7 @@ function 	generate_num(callback, event)
 check_modal_condition();
 function  check_modal_condition()
 {
-  if (window.location.href.endsWith("#out_of_clicks") && !($("#player_remaining_clicks").html() == "0"))
+  if (window.location.href.endsWith("#out_of_clicks") && $("#player_remaining_clicks").html() != "0")
     window.location.replace(window.location.origin + window.location.pathname);
    if (window.location.href.endsWith("#out_of_clicks") == false && $("#player_remaining_clicks").html() == "0")
     window.location.replace(window.location.origin + window.location.pathname + "#out_of_clicks");

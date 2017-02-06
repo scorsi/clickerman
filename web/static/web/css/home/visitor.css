@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-26 22:52:33
 * @Last Modified by:   yoppoy
-* @Last Modified time: 2017-02-06 00:58:33
+* @Last Modified time: 2017-02-06 23:26:52
 */
 
 h2 {
@@ -14,13 +14,22 @@ h2 {
 	color: #F57C00;
 }
 
+h3 {
+	font-size: 40px;
+	margin-top: 0px;
+	font-weight: 200;
+	margin-bottom: 20px;
+	line-height: 0.95;
+	color: #F57C00;
+}
+
 h4 {
 	color: #F57C00;
 	font-size: 30px;
 	font-family: 'Roboto';
 }
 
-p, h3 {
+p {
 	color: #F57C00;
 	font-size: 20px;
 	font-family: 'Roboto';
@@ -66,13 +75,9 @@ button {
 	background-position: top center;
 }
 
-#steps {
-	margin-bottom: 20px;
-}
-
 #steps > .columns {
 	padding: 8px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 	margin-right : auto;
 	margin-left : auto;
 	max-width: 350px;
@@ -82,11 +87,15 @@ button {
 	color: #fff;
 }
 
+#steps img{
+	max-width: 200px;
+}
 #process {
 	background: #FF8F00;
 }
 
 #process > div > *{
+	margin-top: 0px;
 	color: #fff !important;
 }
 .text_dissapear

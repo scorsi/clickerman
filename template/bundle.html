@@ -52,18 +52,20 @@
             <div id="highscore_container">
                 <p class="text-center text-condensed-l color-rest">Votre Highscore</p>
                 <p id="player_score" class="text-center right small-text-left text-condensed-b color-rest" id="player_score">{{ score.highscore }}</p>
-                <p class="text-center text-condensed-l color-rest">Vos 10 derniers clics</p>
-                <div class="small-12 text-condensed-b color-rest" style="text-align: center; font-size: 20px;">
-                    <p style="display: inline-block">103,000</p>
-                    <p style="display: inline-block">89,000</p>
-                    <p style="display: inline-block">53,000</p>
-                    <p style="display: inline-block">10,000</p>
-                    <p style="display: inline-block">100,030</p>
-                    <p style="display: inline-block">20,030</p>
-                    <p style="display: inline-block">210,010</p>
-                    <p style="display: inline-block">120,060</p>
-                    <p style="display: inline-block">110,056</p>
-                    <p style="display: inline-block">30,021</p>
+                <p class="text-center text-condensed-l color-rest">Vos 10 derniers clics sauvés</p>
+                <div class="small-12 text-condensed-b color-rest" style="text-align: center; font-size: 20px;display: none">
+                    <div style="display: inline-block; max-width: 420px;">
+                        <p style="display: inline-block">103,000 -</p>
+                        <p style="display: inline-block"> 109,000 -</p>
+                        <p style="display: inline-block"> 103,000 -</p>
+                        <p style="display: inline-block"> 110,000 -</p>
+                        <p style="display: inline-block"> 100,030 -</p>
+                        <p style="display: inline-block"> 120,030 -</p>
+                        <p style="display: inline-block"> 210,010 -</p>
+                        <p style="display: inline-block"> 120,060 -</p>
+                        <p style="display: inline-block"> 110,056 -</p>
+                        <p style="display: inline-block; color: red"> 130,021</p>
+                    </div>
                 </div>
             </div>
             <div id="circle_container">
@@ -86,17 +88,17 @@
             <div id="stat_container">
                 <p class="text-condensed-l color-rest">Classement</p>
                 <p id="player_rank" class="text-condensed-b color-rest">MISSING</p>
-                <p class="text-condensed-l color-rest">Nombre de Clics total</p>
+                <p class="text-condensed-l color-rest">Clics totaux</p>
                 <p id="player_clicks" class="text-condensed-b color-rest">{{ score.clicks }}</p>
-                <p class="text-condensed-l color-rest">Nombre de Clics restant</p>
+                <p class="text-condensed-l color-rest">Clics restants</p>
                 <p id="player_remaining_clicks" class="text-condensed-b color-rest">{{ score.remaining_clicks }}</p>
             </div>
-            <p id="show-others" class="btn btn-normal text-center text-condensed-l color-rest unselectable background-medium" style="line-height: 30px; font-size: 30px; margin-bottom: -5px;">
-                <i id="score_down" class="fa fa-angle-right rotate color-rest" style="width: 14px; padding-right: 10px;" href="#"></i>
-                Meilleurs Scores
-            </p>
-            <p id="clicker_score" class="large-text-right small-text-left text-condensed-b color-rest">10000</p> 
-            <div id="score_container" style="margin-bottom: 50px; margin-top: 20px; display: none"> <!-- TOP 10 HIGHSCORE-->
+            <button id="show-others" class="text-center text-condensed-l color-rest unselectable background-medium">
+                <i id="score_down" class="fa fa-angle-right rotate color-rest" href="#"></i>
+                Meilleurs Joueurs
+            </button>
+            <p id="clicker_score" class="large-text-right small-text-left text-condensed-b color-rest" style="line-height: 1">1. TheLoneRider<br><span class="text-condensed">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;389,909</span></p> 
+            <div id="score_container" style="margin-bottom: 50px; margin-top: 20px;"> <!-- TOP 10 HIGHSCORE-->
                 <p class="large-text-right small-text-left text-condensed show-score">1. </p>
                 <p class="large-text-right small-text-left text-condensed show-score">2. </p>
                 <p class="large-text-right small-text-left text-condensed show-score">3. </p>
