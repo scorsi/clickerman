@@ -29,7 +29,7 @@ footer {
 	font-size:18px;
 	font-weight: bold;
 	color:  #ffffff;
-	margin: 0 0 10px;
+	margin: 0 0 0px;
 	padding: 0;
 }
 
@@ -57,6 +57,7 @@ footer {
 	line-height: 35px;
 	margin-left: 5px;
 	padding-top: 5px;
+	margin-bottom: 10px;
 }
 
 .footer .footer-right a:first-child:hover {

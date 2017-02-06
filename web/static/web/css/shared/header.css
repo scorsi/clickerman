@@ -154,7 +154,7 @@
     height: 100%;
   }
   .title-mobile {
-    position: fixed;
+    position: absolute;
     display: block;
     top: 10px;
     font-size: 20px;

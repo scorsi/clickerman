@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-11 23:45:58
 * @Last Modified by:   yoppoy
-* @Last Modified time: 2017-02-02 11:18:57
+* @Last Modified time: 2017-02-06 14:01:24
 */
 
 /*------------------
@@ -35,7 +35,13 @@
 #info_container {
 	padding: 30px;
 	padding-top: 28px;
-	min-height: 100vh;
+	
+}
+
+@media only screen and (min-width:640px) {
+	#info_container {
+		min-height: 100vh;
+	}
 }
 
 #info_container > *{
@@ -112,7 +118,7 @@
 
 #time_container > p:nth-child(1),
 #highscore_container > p:nth-child(1){
-	font-size: 35px;
+	font-size: 30px;
 	line-height: 20px;
 }
 
@@ -124,7 +130,7 @@
 	font-size: 40px;
 }
 #highscore_container > p:nth-child(2){
-	font-size: 60px;
+	font-size: 50px;
 }
 
 #circle-btn {
@@ -132,6 +138,10 @@
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	background-color: #0198f1;
+}
+
+#circle-border {
+	margin-top: 10px;
 }
 
 .text-dissapear {
