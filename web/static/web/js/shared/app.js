@@ -44,7 +44,6 @@ $(window).resize(function() {
 });
 
 setTimeout(function(){
-	fill_page();
 	$(".center").each(function(){
  		vertical_center(this);
  	});
