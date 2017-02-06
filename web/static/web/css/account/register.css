@@ -60,9 +60,11 @@
 #enterprise_account
 {
 	position: absolute;
-	width: 100%;
+	width: 100vw;
+	max-width: 100%;
 	text-align: center;
 	bottom: 0;
+	left: 0;
 	padding-bottom: 25px;
 	padding-left: 10px;
 	padding-right: 10px;

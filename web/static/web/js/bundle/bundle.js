@@ -10,7 +10,8 @@ window.onload = function ()
 
 	clock = document.getElementById('count_down');
 	timeinterval = setInterval(updateClock,1000);
-	clock_deadline = "December 7 2016 23:59:59 GMT+0200";
+	clock_deadline = "December 7 2017 23:59:59 GMT+0200";
+	//clock_deadline = $("end_date").html();
 	init_color();
 	init_clock(clock_deadline);
 	updateClock();
@@ -248,6 +249,16 @@ window.onload = function ()
 	/* --------------------
 	FUNCTIONS FOR COUNTDOWN
 	---------------------*/
+	console.log("convert->" + convert_date("10 décembre 2016 00:00"));
+	function 	convert_date(date)
+	{
+		var 	temp;
+
+		//"December 7 2017 23:59:59 GMT+0200"
+		temp = date.split(" ");
+		return (temp[1] + " " + temp[0] + " " + temp[2] + " " + temp[3] + ":00 GMT+0200");
+	}
+
 	function 	init_clock(endtime){
 		var 	timeinterval;
 

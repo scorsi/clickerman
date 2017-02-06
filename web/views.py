@@ -6,7 +6,6 @@ from account.forms import AddressForm
 from web.models import Bundle
 from web.models import Score
 
-
 def home_enterprise(request):
     return HttpResponse('home_enterprise')
 

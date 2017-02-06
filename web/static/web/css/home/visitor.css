@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-26 22:52:33
 * @Last Modified by:   yoppoy
-* @Last Modified time: 2017-02-01 10:11:59
+* @Last Modified time: 2017-02-06 00:58:33
 */
 
 h2 {
@@ -79,7 +79,7 @@ button {
 }
 
 #steps > .columns > *{
-	color: #E65100;
+	color: #fff;
 }
 
 #process {
@@ -87,7 +87,7 @@ button {
 }
 
 #process > div > *{
-	color: #E65100!important;
+	color: #fff !important;
 }
 .text_dissapear
 {

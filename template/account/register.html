@@ -6,7 +6,7 @@ Créer un compte
 {% endblock %}
 
 {% block css %}
-<link type="text/css" rel="stylesheet" href="{% static "web/css/register.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/account/register.css" %}"/>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +24,12 @@ Créer un compte
 			<div class="row">
 				<div class="columns">
 					<input type="hidden" name="action" value="register" />
-					<input type="submit" value="register" class="button success columns"/>
+					<input type="submit" value="Créer mon compte" class="button success columns"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="columns">
+		        	<a href="/account/login"><button type="button" class="button" class="login_button">Se connecter</button></a>
 				</div>
 			</div>
 		</form>

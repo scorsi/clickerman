@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block title %}
-{{ bundle.titre }}
+{{ bundle.name }}
 {% endblock %}
 
 {% block css %}
 <link type="text/css" rel="stylesheet" href="{% static "web/css/plugin/remodal.css" %}"/>
 <link type="text/css" rel="stylesheet" href="{% static "web/css/plugin/remodal-default-theme.css" %}"/>
 <link type="text/css" rel="stylesheet" href="{% static "web/css/plugin/font-awesome/css/font-awesome.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "web/css/circle_generator.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "web/css/bundle.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/bundle/circle_generator.css" %}"/>
+<link type="text/css" rel="stylesheet" href="{% static "web/css/bundle/bundle.css" %}"/>
 {% endblock %}
 
 {% block content%}
@@ -53,6 +53,7 @@
             <div id="time_container">
                 <p class="text-condensed-l text-center">Temps restant</p>
                 <p id="count_down" class="text-condensed-b text-center">{{ bundle.time_left }}</p>
+                <p id="end_date" class="invisible">{{ bundle.date_ended }}</p>
             </div>
             <div id="circle_container">
                 <div>
@@ -191,8 +192,8 @@
 {% endblock content %}
 
 {% block javascript %}
-<script type="text/javascript" src="{% static "web/js/circle_generator.js" %}"></script>
-<script type="text/javascript" src="{% static "web/js/server_gen.js" %}"></script>
-<script type="text/javascript" src="{% static "web/js/bundle.js" %}"></script>
+<script type="text/javascript" src="{% static "web/js/bundle/circle_generator.js" %}"></script>
+<script type="text/javascript" src="{% static "web/js/bundle/server_gen.js" %}"></script>
+<script type="text/javascript" src="{% static "web/js/bundle/bundle.js" %}"></script>
 <script type="text/javascript" src="{% static "web/js/plugin/remodal.min.js" %}"></script>
 {% endblock %}
