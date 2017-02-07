@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.postgres import fields as postgresModels
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
@@ -166,8 +167,8 @@ class Score(models.Model):
     clicks = models.BigIntegerField(default=0)
     regeneration_date = models.DateTimeField(default=timezone.now)
     remaining_clicks = models.IntegerField(default=100)
-
-    # last_clicks = models.TextField(default="[]")
+    last_clicks = postgresModels.ArrayField(models.IntegerField(default=0), size=10, default=None,
+                                            blank=True, null=True)
 
     def __str__(self):
         return str(self.bundle.name) + ' - ' + str(self.user.username) + ' : ' + str(self.highscore) + ', ' + \
@@ -179,10 +180,16 @@ class Score(models.Model):
             self.remaining_clicks = 100
 
     def position(self):
-        scores = Score.objects.order_by("-highscore").filter(bundle=self.bundle)
+        scores = Score.objects.order_by("-highscore").filter(bundle_id=self.bundle_id)
         i = 0
         for score in scores:
             if score == self:
                 return str(i)
             i += 1
         return str(i)
+
+    def add_click(self, num):
+        last_clicks = self.last_clicks
+        for i in range(1, 10):
+            last_clicks[i] = last_clicks[i - 1]
+        last_clicks[0] = num
