@@ -56,7 +56,7 @@ class Enterprise(models.Model):
     date_joined = models.DateField(auto_now_add=True)
     date_deleted = models.DateField(null=True, blank=True)
     addresses = models.ManyToManyField(Address, blank=True)
-    medias = models.ImageField(blank=True, null=True)
+    media = models.ImageField(blank=True, null=True)
     social_networks = models.ManyToManyField(SocialNetworkLink, blank=True)
 
     def __str__(self):
@@ -73,7 +73,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
     date_birthday = models.DateField(null=True, blank=True)
     addresses = models.ManyToManyField(Address, blank=True)
-    medias = models.ImageField(blank=True, null=True)
+    media = models.ImageField(blank=True, null=True)
     social_networks = models.ManyToManyField(SocialNetworkLink, blank=True)
     enterprise = models.ForeignKey(Enterprise, blank=True, null=True, default=None)
 
@@ -92,7 +92,7 @@ def save_user_profile(sender, instance, **kwargs):
 class Category(models.Model):
     name = models.CharField(max_length=50)
     parent_category = models.ForeignKey('Category', blank=True, null=True)
-    medias = models.ImageField(blank=True, null=True)
+    media = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -111,7 +111,7 @@ class Bundle(models.Model):
         ('2', 'Validated'),
     )
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, blank=True)
-    medias = models.ImageField(blank=True, null=True)
+    media = models.ImageField(blank=True, null=True)
     categories = models.ManyToManyField(Category, blank=True)
     total_clickers = models.IntegerField(default=-1, null=False, blank=False)
 
@@ -148,7 +148,7 @@ class Prize(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField()
     bundle = models.ForeignKey(Bundle, on_delete=models.CASCADE, null=False)
-    medias = models.ImageField(blank=True, null=True)
+    media = models.ImageField(blank=True, null=True)
     quantity = models.IntegerField(default=1)
     value = models.IntegerField(default=0)
 
@@ -163,7 +163,13 @@ class Score(models.Model):
     clicks = models.BigIntegerField(default=0)
     regeneration_date = models.DateTimeField(default=timezone.now)
     remaining_clicks = models.IntegerField(default=100)
+    #last_clicks = models.TextField(default="[]")
 
     def __str__(self):
-        return str(self.bundle.name) + ' - ' + str(self.user.username) + ' : ' + str(self.highscore) + ', ' + str(
-            self.clicks)
+        return str(self.bundle.name) + ' - ' + str(self.user.username) + ' : ' + str(self.highscore) + ', ' + \
+               str(self.clicks)
+
+    def check_remaining_clicks(self):
+        if self.regeneration_date + datetime.timedelta(hours=1) < timezone.now():
+            self.regeneration_date = timezone.now()
+            self.remaining_clicks = 100
