@@ -51,22 +51,21 @@ def bundle_click(request, bundle_id):
                 "highscore": score.highscore,
                 "position": score.position(),
                 "nb_clicks": score.clicks,
-                "last_clicks": 0,
+                "remaining_clicks": 0,
+                "last_clicks": json.dumps(score.last_clicks),
                 "error": "no_last_clicks"
             }
             return HttpResponse(json.dumps(response_data))
         value = generator_number()
-        if value > score.highscore:
-            score.highscore = value
-        score.clicks += 1
-        score.remaining_clicks -= 1
+        score.add_click(value)
         score.save()
         response_data = {
             "score": value,
             "highscore": score.highscore,
             "position": score.position(),
             "nb_clicks": score.clicks,
-            "last_clicks": score.remaining_clicks
+            "remaining_clicks": score.remaining_clicks,
+            "last_clicks": json.dumps(score.last_clicks)
         }
         return HttpResponse(json.dumps(response_data))
     else:
