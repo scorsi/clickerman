@@ -189,7 +189,23 @@ class Score(models.Model):
         return str(i)
 
     def add_click(self, num):
-        last_clicks = self.last_clicks
-        for i in range(1, 10):
-            last_clicks[i] = last_clicks[i - 1]
-        last_clicks[0] = num
+        if self.last_clicks is None:
+            self.last_clicks = []
+            for i in range(0, 10):
+                self.last_clicks.append(0)
+        else:
+            for i in range(9, 0, -1):
+                self.last_clicks[i] = self.last_clicks[i - 1]
+        self.last_clicks[0] = num
+        self.clicks += 1
+        self.remaining_clicks -= 1
+        self.highscore = self.get_highscore()
+
+    def get_highscore(self):
+        highscore = 0
+        for i in range(0, 10):
+            if self.last_clicks[i] > highscore:
+                highscore = self.last_clicks[i]
+        return highscore
+
+
