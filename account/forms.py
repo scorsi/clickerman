@@ -64,7 +64,7 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('gender', 'medias', 'social_networks', 'bio', 'date_birthday')
+        fields = ('gender', 'media', 'social_networks', 'bio', 'date_birthday')
         widgets = {
             'gender': forms.Select(attrs={'class': 'form_field'})
         }
