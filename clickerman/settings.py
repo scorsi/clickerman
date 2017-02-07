@@ -24,7 +24,10 @@ SECRET_KEY = '$ii7@%-=kapwkzk=&o^*nhdz*0%y_g3)-yap*29^xd#@e6yofx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.uclics.fr',
+    '.uclics.com'
+]
 
 # Application definition
 
@@ -122,8 +125,8 @@ STATIC_ROOT = 'static/'
 
 # Media
 
+MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
-MEDIA_URL = 'media/'
 
 
 LOGIN_REDIRECT_URL = '/'
