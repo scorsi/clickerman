@@ -122,8 +122,13 @@ STATIC_ROOT = 'static/'
 
 # Media
 
-MEDIA_ROOT = '/medias/'
-MEDIA_URL = 'medias/'
+MEDIA_ROOT = 'media/'
+MEDIA_URL = 'media/'
 
 
 LOGIN_REDIRECT_URL = '/'
+
+SERVER_EMAIL = 'no-reply@uclics.com'
+ADMINS = (
+    ('Sylvain CORSINI', 'sylvain.corsini@gmail.com'),
+)
