@@ -138,6 +138,9 @@ class Bundle(models.Model):
             return str(highscore)
         return '0'
 
+    def leaderboard(self, num=10):
+        return Score.objects.order_by("-highscore").filter(bundle=self)[:num]
+
     def time_left(self):
         timestamp = int(time.mktime(self.date_ended.timetuple())) - int(
             time.mktime(datetime.datetime.now().timetuple()))
@@ -163,7 +166,8 @@ class Score(models.Model):
     clicks = models.BigIntegerField(default=0)
     regeneration_date = models.DateTimeField(default=timezone.now)
     remaining_clicks = models.IntegerField(default=100)
-    #last_clicks = models.TextField(default="[]")
+
+    # last_clicks = models.TextField(default="[]")
 
     def __str__(self):
         return str(self.bundle.name) + ' - ' + str(self.user.username) + ' : ' + str(self.highscore) + ', ' + \
@@ -173,3 +177,12 @@ class Score(models.Model):
         if self.regeneration_date + datetime.timedelta(hours=1) < timezone.now():
             self.regeneration_date = timezone.now()
             self.remaining_clicks = 100
+
+    def position(self):
+        scores = Score.objects.order_by("-highscore").filter(bundle=self.bundle)
+        i = 0
+        for score in scores:
+            if score == self:
+                return str(i)
+            i += 1
+        return str(i)
