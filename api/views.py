@@ -12,7 +12,7 @@ def generator_number():
 
 
 def get_bundle_leaderboard(bundle):
-    leaderboard = Score.objects.order_by("-highscore").filter(bundle=bundle)[:10]
+    leaderboard = bundle.leaderboard()
     response_data = {}
     i = 0
     for highscore in leaderboard:
@@ -24,32 +24,13 @@ def get_bundle_leaderboard(bundle):
     return response_data
 
 
-def get_bundle_position(bundle, scoreObj):
-    scores = Score.objects.order_by("-highscore").filter(bundle=bundle)
-    i = 0
-    for score in scores:
-        if score == scoreObj:
-            return str(i)
-        i += 1
-    return str(i)
-
-
 def bundle_leaderboard(request, bundle_id):
     if request.user.is_authenticated():
         try:
             bundle = Bundle.objects.get(id=bundle_id)
         except ObjectDoesNotExist:
             return HttpResponse('{"error": "bundle_not_found"}')
-        leaderboard = Score.objects.order_by("-highscore").filter(bundle=bundle)[:10]
-        response_data = {}
-        i = 0
-        for highscore in leaderboard:
-            response_data[i] = {
-                "name": highscore.user.username,
-                "score": highscore.highscore
-            }
-            i += 1
-        return HttpResponse(json.dumps(response_data))
+        return HttpResponse(json.dumps(get_bundle_leaderboard(bundle)))
     return HttpResponse('{"error": "user_is_not_authenticated"}')
 
 
@@ -63,14 +44,12 @@ def bundle_click(request, bundle_id):
             score = Score.objects.get(user=request.user.id, bundle=bundle_id)
         except ObjectDoesNotExist:
             score = Score.objects.create(user=request.user, bundle=bundle)
-        if score.regeneration_date + timedelta(hours=1) < timezone.now():
-            score.regeneration_date = timezone.now()
-            score.remaining_clicks = 100
-        elif score.remaining_clicks <= 0:
+        score.check_remaining_clicks()
+        if score.remaining_clicks <= 0:
             response_data = {
                 "score": "none",
                 "highscore": score.highscore,
-                "position": get_bundle_position(bundle, score),
+                "position": score.position(),
                 "nb_clicks": score.clicks,
                 "last_clicks": 0,
                 "error": "no_last_clicks"
@@ -85,7 +64,7 @@ def bundle_click(request, bundle_id):
         response_data = {
             "score": value,
             "highscore": score.highscore,
-            "position": get_bundle_position(bundle, score),
+            "position": score.position(),
             "nb_clicks": score.clicks,
             "last_clicks": score.remaining_clicks
         }
