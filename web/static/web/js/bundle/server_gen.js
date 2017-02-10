@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-31 16:01:55
 * @Last Modified 2017-02-10
-* @Last Modified time: 2017-02-10 22:54:29
+* @Last Modified time: 2017-02-10 23:11:24
 FILE FOR SERVER BASED GENERATION ON NUMBERS
 */
 
@@ -107,7 +107,7 @@ function  update_info(data)
   {
     $("#player_rank").html(data.position);
     $("#player_remaining_clicks").html(data.remaining_clicks);
-    $("#player_clicks").html(data.clicks);
+    $("#player_clicks").html(data.nb_clicks);
     update_remaining_clicks(data);
  }
 }

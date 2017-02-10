@@ -29,10 +29,13 @@ def bundle(request, bundle_id):
         return HttpResponse('404')
     try:
         bundle_obj = Bundle.objects.filter(status='2').get(id=bundle_id)
+    except ObjectDoesNotExist:
+        return HttpResponse('404')
+    try:
         score_obj = Score.objects.filter(bundle=bundle_obj).get(user=request.user)
         score_obj.check_remaining_clicks()
     except ObjectDoesNotExist:
-        return HttpResponse('404')
+        score_obj = Score.objects.create(bundle=bundle_obj, user=request.user)
     return TemplateResponse(request, 'bundle.html',{'bundle': bundle_obj, 'score': score_obj})
 
 
