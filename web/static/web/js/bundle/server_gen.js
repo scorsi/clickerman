@@ -1,8 +1,8 @@
 /*
 * @Author: yoppoy
 * @Date:   2017-01-31 16:01:55
-* @Last Modified 2017-02-10
-* @Last Modified time: 2017-02-10 23:11:24
+* @Last Modified 2017-02-11
+* @Last Modified time: 2017-02-11 00:17:58
 FILE FOR SERVER BASED GENERATION ON NUMBERS
 */
 
@@ -45,7 +45,6 @@ function  call_leaderboard()
 
   getJSON(window.location.origin + '/api' + window.location.pathname + '/leaderboard').then(function(data) {
         JData = JSON.parse(JSON.stringify(data));
-        console.log(data);
         if (!JData.hasOwnProperty('error'))
           update_leaderboard(data);
         else
@@ -60,7 +59,6 @@ function  update_score(new_highscore)
   var     old_highscore;
 
   old_highscore = parseInt($('#player_score').html());
-  console.log("hello");
   if (old_highscore != new_highscore) { 
     $('#player_score').html(new_highscore);
     if (old_highscore > new_highscore)  

@@ -304,7 +304,7 @@ window.onload = function ()
 	/* ----------------------------
 	FUNCTION TO MANAGE SHARE BUTTON
 	-----------------------------*/
-	var 	show_share;
+	/*var 	show_share;
 
 	show_share = false;
 	document.getElementById("share").addEventListener("mousedown", function()
@@ -339,4 +339,4 @@ window.onload = function ()
 			$(icon).css({"transform": "rotate(180deg) scale(1)", "-webkit-transition-duration" : "0.3s"});
 		else
 			$(icon).css({"transform": "rotate(0deg) scale(1.25)"});
-	});
+	});*/
