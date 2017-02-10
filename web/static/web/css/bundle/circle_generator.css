@@ -118,16 +118,35 @@
 	}
 }
 
-.shine
+.increase
 {
-	animation: shine 2s;
+	animation: increase 2s;
 }
 
-@keyframes shine {
+@keyframes increase {
 	100%{
 		text-shadow: none;
 	}
 	5%, 20% {
 		text-shadow: 0 0 10px rgba(255,255,255,0.2) , 0 0 20px rgba(255,255,255,0.2) , 0 0 10px rgba(255,255,255,0.2) , 0 0 40px #ffffff , 0 0 70px #ffffff , 0 0 80px #ffffff , 0 0 100px #ffffff ;
+	}
+	0% {
+		color: white;
+	}
+}
+
+.decrease
+{
+	animation: decrease 2s;
+}
+
+@keyframes decrease {
+	100%{
+		text-shadow: none;
+		color: white;
+	}
+	5%, 20% {
+		color: #B71C1C;
+		text-shadow: 0 0 10px rgba(255,255,255,0.2) , 0 0 20px rgba(255,255,255,0.2) , 0 0 10px rgba(255,255,255,0.2) , 0 0 40px #B71C1C, 0 0 70px #B71C1C, 0 0 80px #B71C1C, 0 0 100px #B71C1C ;
 	}
 }

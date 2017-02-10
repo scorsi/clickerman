@@ -47,7 +47,7 @@ function 	update_score(random_num, score)
 {
 	if (isNaN(random_num) == false && random_num > cur_score) {	
 		$('#player_score').html(score);
-		shine_text();
+		shine_text("increase");
 		cur_score = random_num;
 	}
 }
@@ -99,13 +99,15 @@ function 	get_mouse_positon(evt)
 /* -----------------------------
 FUNCTIONS TO PRINT GENERATED NUMBER
 ------------------------------*/
-function 	shine_text()
+function 	shine_text(name)
 {
 	var 	element = document.getElementById("player_score");
 
-	$('#player_score').removeClass("shine");
+	console.log(name);
+	$('#player_score').removeClass("increase");
+	$('#player_score').removeClass("decrease");
 	void element.offsetWidth;
-	$('#player_score').addClass("shine");
+	$('#player_score').addClass(name);
 }
 
 function create_text(text, mouseX, mouseY)

@@ -52,21 +52,6 @@
             <div id="highscore_container">
                 <p class="text-center text-condensed-l color-rest">Votre Highscore</p>
                 <p id="player_score" class="text-center right small-text-left text-condensed-b color-rest" id="player_score">{{ score.highscore }}</p>
-                <p class="text-center text-condensed-l color-rest">Vos 10 derniers clics sauvés</p>
-                <div class="small-12 text-condensed-b color-rest" style="text-align: center; font-size: 20px;display: none">
-                    <div style="display: inline-block; max-width: 420px;">
-                        <p style="display: inline-block">103,000 -</p>
-                        <p style="display: inline-block"> 109,000 -</p>
-                        <p style="display: inline-block"> 103,000 -</p>
-                        <p style="display: inline-block"> 110,000 -</p>
-                        <p style="display: inline-block"> 100,030 -</p>
-                        <p style="display: inline-block"> 120,030 -</p>
-                        <p style="display: inline-block"> 210,010 -</p>
-                        <p style="display: inline-block"> 120,060 -</p>
-                        <p style="display: inline-block"> 110,056 -</p>
-                        <p style="display: inline-block; color: red"> 130,021</p>
-                    </div>
-                </div>
             </div>
             <div id="circle_container">
                 <div>
@@ -93,27 +78,34 @@
                 <p class="text-condensed-l color-rest">Clics restants</p>
                 <p id="player_remaining_clicks" class="text-condensed-b color-rest">{{ score.remaining_clicks }}</p>
             </div>
-            <button id="show-others" class="text-center text-condensed-l color-rest unselectable background-medium">
-                <i id="score_down" class="fa fa-angle-right rotate color-rest" href="#"></i>
-                Meilleurs Joueurs
-            </button>
-            <p id="clicker_score" class="large-text-right small-text-left text-condensed-b color-rest" style="line-height: 1">1. TheLoneRider<br><span class="text-condensed">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;389,909</span></p> 
-            <div id="score_container" style="margin-bottom: 50px; margin-top: 20px;"> <!-- TOP 10 HIGHSCORE-->
-                <p class="large-text-right small-text-left text-condensed show-score">1. </p>
-                <p class="large-text-right small-text-left text-condensed show-score">2. </p>
-                <p class="large-text-right small-text-left text-condensed show-score">3. </p>
-                <p class="large-text-right small-text-left text-condensed show-score">4. </p>
-                <p class="large-text-right small-text-left text-condensed show-score">6. </p>
-                <p class="large-text-right small-text-left text-condensed show-score">7. </p>
-                <p class="large-text-right small-text-left text-condensed show-score">8. </p>
-                <p class="large-text-right small-text-left text-condensed show-score">9. </p>
-                <p class="large-text-right small-text-left text-condensed show-score">10. </p>   
-                <a href="#score">
-                    <p class="text-center btn-normal show-score text-condensed color-rest background-medium" style="font-size: 25px;">
-                        <i class="fa fa-ellipsis-h" style="padding-right: 10px;"></i>
-                        Plus de résultats   
-                    </p>
-                </a>
+            <div id="dropdown_clicks" class="dropdown">
+                <button class="dropdown_title text-center text-condensed-l color-rest unselectable">
+                    <i class="fa fa-angle-right rotate color-rest" href="#"></i>
+                    Mes 10 clicks
+                </button>
+                <div class="dropdown_container">
+                    {% for x in score.last_clicks %}
+                        <p class="large-text-right small-text-left text-condensed show-score">{{ x }}</span></p>
+                    {% endfor %}
+                    <p class="warning_message">ATTENTION ! Seulement vos <span class="bold">10 derniers clicks</span> comptent!</p>
+                </div>
+            </div>
+            <div id="dropdown_leaderboard" class="dropdown">
+                <button class="dropdown_title text-center text-condensed-l color-rest unselectable">
+                    <i class="fa fa-angle-right rotate color-rest" href="#"></i>
+                    Meilleurs Joueurs
+                </button>
+                <div class="dropdown_container">
+                    {% for Score in bundle.leaderboard %}
+                        <p class="large-text-right small-text-left text-condensed show-score">{{ forloop.counter }}. {{ Score.highscore }} - <span class="bold">{{ Score.user.username }}</span></p>
+                    {% endfor %}  
+                    <a href="#score">
+                        <p class="text-center btn-normal show-score text-condensed color-rest background-medium" style="font-size: 25px;">
+                            <i class="fa fa-ellipsis-h"></i>
+                            Plus de résultats   
+                        </p>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

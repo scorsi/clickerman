@@ -1,12 +1,10 @@
 /*
 * @Author: yoppoy
 * @Date:   2017-01-31 16:01:55
-* @Last Modified 2017-02-06
-* @Last Modified time: 2017-02-06 15:53:43
+* @Last Modified 2017-02-10
+* @Last Modified time: 2017-02-10 03:17:43
 FILE FOR SERVER BASED GENERATION ON NUMBERS
 */
-
-cur_score = $("#player_score").html();
 
 var getJSON = function(url) {
   return new Promise(function(resolve, reject) {
@@ -25,14 +23,36 @@ var getJSON = function(url) {
   });
 };
 
-function  update_info(data)
+function  update_score(new_highscore)
 {
-  if (data != 'undefined')
-  {
-    $("#player_rank").html(data.position);
-    $("#player_remaining_clicks").html(data.last_clicks);
-    $("#player_clicks").html(data.clicks);
- }
+  var     old_highscore;
+
+  old_highscore = parseInt($('#player_score').html());
+  console.log("hello");
+  if (old_highscore != new_highscore) { 
+    $('#player_score').html(new_highscore);
+    if (old_highscore > new_highscore)  
+      shine_text("decrease");
+    else
+      shine_text("increase");
+  }
+}
+
+function  display_num(random_num, new_highscore, event)
+{
+  var   score;
+  var   mouse;
+
+  mouse = get_mouse_positon(event);
+  score = format_number(random_num);
+  create_text(score, mouse.X, mouse.Y);
+  clearTimeout(timer);
+  $(animation_scale).css({"-webkit-animation-play-state" : "paused", "animation-play-state" : "paused"});
+  timer = setTimeout(function() {
+    $(animation_scale).css({"-webkit-animation-play-state" : "running", "animation-play-state" : "runnning"});
+  }, 250);
+  clear_queue();
+  update_score(new_highscore);
 }
 
 function  show_no_clicks()
@@ -52,6 +72,31 @@ function  update_leaderboard(data)
       $($("#score_container").children() + ":eq(" + a + ")").html("h");
     a++;
   }
+}
+
+function  update_remaining_clicks(data)
+{
+  var     count;
+  var     last_clicks;
+
+  count = 1;
+  last_clicks = JSON.parse(data.last_clicks);
+  while (count <= 10)
+  {
+    $("#dropdown_clicks > .dropdown_container > p:nth-child(" + count + ")").html(last_clicks[count - 1]);
+    count++;
+  }
+}
+
+function  update_info(data)
+{
+  if (data != 'undefined')
+  {
+    $("#player_rank").html(data.position);
+    $("#player_remaining_clicks").html(data.remaining_clicks);
+    $("#player_clicks").html(data.clicks);
+    update_remaining_clicks(data);
+ }
 }
 
 function  call_leaderboard()
@@ -77,7 +122,7 @@ function 	generate_num(callback, event)
         JData = JSON.parse(JSON.stringify(data));
         if (!JData.hasOwnProperty('error'))
         {
-          callback(JData.score, event);
+          callback(JData.score, JData.highscore, event);
           update_info(JData);
           generate_status = true;
         }

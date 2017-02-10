@@ -179,31 +179,21 @@ window.onload = function ()
 	/* -----------------------------
 	FUNCTION TO MANAGE SCORE DISPLAY
 	------------------------------*/
-	var 	show_score;
-
-	show_score = false;
-
-	document.getElementById("show-others").addEventListener("mousedown", function()
-	{
-		var 	icon;
-	
-		icon = document.getElementById("score_down");
-		if (show_score == true)
+	$('.dropdown > .dropdown_title').data("turn", 0);
+	$('#dropdown_clicks > .dropdown_title').data("turn", 1);
+	$('.dropdown > .dropdown_title').click(function() {
+		$(this).siblings().stop().slideToggle();
+		if ($(this).data("turn") == 1)
 		{
-			$(icon).css({"transform": "rotate(0deg)", "-webkit-transition-duration" : "0.3s"});
+			$(this).find(".fa").stop().css({"transform": "rotate(0deg)", "-webkit-transition-duration" : "0.3s"});
 			show_score = false;
+			$(this).data("turn", 0);
 		}
 		else
 		{
-			$(icon).css({"transform": "rotate(90deg)"});
-			show_score = true;
+			$(this).find(".fa").stop().css({"transform": "rotate(90deg)"});
+			$(this).data("turn", 1);
 		}
-		
-	});
-
-	$('#show-others').click(function() {
-		$( "#score_container" ).stop().slideToggle();
-		$( "#clicker_score" ).stop().slideToggle();
 	});
 
 	/* ----------------------------
