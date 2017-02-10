@@ -1,7 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from django.utils import timezone
-from datetime import timedelta
 from web.models import Bundle, Score
 import random
 import json
@@ -47,11 +45,10 @@ def bundle_click(request, bundle_id):
         score.check_remaining_clicks()
         if score.remaining_clicks <= 0:
             response_data = {
-                "score": "none",
+                "regeneration_date": score.regeneration_date,
                 "highscore": score.highscore,
                 "position": score.position(),
                 "nb_clicks": score.clicks,
-                "remaining_clicks": 0,
                 "last_clicks": json.dumps(score.last_clicks),
                 "error": "no_last_clicks"
             }

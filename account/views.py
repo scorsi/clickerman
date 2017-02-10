@@ -33,6 +33,7 @@ def register(request):
         form = RegisterForm()
     return TemplateResponse(request, 'account/register.html', {'form': form})
 
+
 def validated(request):
     return TemplateResponse(request, 'account/validated.html')
 

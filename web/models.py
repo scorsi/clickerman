@@ -207,5 +207,3 @@ class Score(models.Model):
             if self.last_clicks[i] > highscore:
                 highscore = self.last_clicks[i]
         return highscore
-
-
