@@ -67,7 +67,3 @@ def bundle_click(request, bundle_id):
         return HttpResponse(json.dumps(response_data))
     else:
         return HttpResponse('{"error": "user_is_not_authenticated"}')
-
-
-def test_generator(request):
-    return HttpResponse(str(generator_number()))
