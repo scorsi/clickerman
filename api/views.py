@@ -6,7 +6,7 @@ import json
 
 
 def generator_number():
-    return int(abs(random.gauss(0, 0.1) * 1000000))
+    return int(abs(random.gauss(0, 0.15) * 1000000))
 
 
 def get_bundle_leaderboard(bundle):
@@ -45,7 +45,7 @@ def bundle_click(request, bundle_id):
         score.check_remaining_clicks()
         if score.remaining_clicks <= 0:
             response_data = {
-                "regeneration_date": score.regeneration_date,
+                "regeneration_date": str(score.get_regeneration_date()),
                 "highscore": score.highscore,
                 "position": score.position(),
                 "nb_clicks": score.clicks,

@@ -207,3 +207,8 @@ class Score(models.Model):
             if self.last_clicks[i] > highscore:
                 highscore = self.last_clicks[i]
         return highscore
+
+    def get_regeneration_date(self):
+        timestamp = int(time.mktime(self.regeneration_date.timetuple())) - \
+                    int(time.mktime(datetime.datetime.now().timetuple()))
+        return datetime.datetime.fromtimestamp(timestamp).strftime('%M')
