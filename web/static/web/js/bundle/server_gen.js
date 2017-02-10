@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-31 16:01:55
 * @Last Modified 2017-02-10
-* @Last Modified time: 2017-02-10 03:41:06
+* @Last Modified time: 2017-02-10 22:54:29
 FILE FOR SERVER BASED GENERATION ON NUMBERS
 */
 
@@ -23,19 +23,20 @@ var getJSON = function(url) {
   });
 };
 
+window.setInterval(function(){
+  call_leaderboard();
+}, 500);
 
 function  update_leaderboard(data)
 {
-  var     count;
-  var     leaderboard;
-
-  count = 1;
-  console.log(leaderboard);
-  while (count <= 10)
-  {
-    $("#dropdown_leaderboard > .dropdown_container > p:nth-child(" + count + ")").html("h");
-    count++;
+  var     a;
+  
+  $("#dropdown_leaderboard > .dropdown_container > p").remove();
+  for(var k in data) {
+    a = parseInt(k) + 1;
+    $("#dropdown_leaderboard > .dropdown_container").append('<p class="large-text-right small-text-left text-condensed show-score">' + a + '. ' + data[k].score + '- <span class="bold">' + data[k].name + '</span></p>');
   }
+  $("#dropdown_leaderboard > .dropdown_container > a").first().appendTo($("#dropdown_leaderboard > .dropdown_container"));
 }
 
 function  call_leaderboard()
@@ -44,9 +45,9 @@ function  call_leaderboard()
 
   getJSON(window.location.origin + '/api' + window.location.pathname + '/leaderboard').then(function(data) {
         JData = JSON.parse(JSON.stringify(data));
-        console.log(JData + "-" + data);
+        console.log(data);
         if (!JData.hasOwnProperty('error'))
-          update_leaderboard(JData);
+          update_leaderboard(data);
         else
           alert("Erreur : " + JData.error);
   }, function(status) { //error detection....
@@ -123,7 +124,6 @@ function  generate_num(callback, event)
         {
           callback(JData.score, JData.highscore, event);
           update_info(JData);
-          call_leaderboard();
           generate_status = true;
         }
         else if (data.error == "no_last_clicks")

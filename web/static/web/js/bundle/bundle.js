@@ -199,7 +199,7 @@ window.onload = function ()
 	/* ----------------------------
 	FUNCTION TO MANAGE SHARE BUTTON
 	-----------------------------*/
-	var 	show_share;
+	/*var 	show_share;
 
 	show_share = false;
 	document.getElementById("share").addEventListener("mousedown", function()
@@ -235,7 +235,7 @@ window.onload = function ()
 		else
 			$(icon).css({"transform": "rotate(0deg) scale(1.25)"});
 	});
-
+	*/
 	/* --------------------
 	FUNCTIONS FOR COUNTDOWN
 	---------------------*/

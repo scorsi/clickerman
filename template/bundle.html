@@ -17,34 +17,37 @@
     <div id="info-column" class="small-12 medium-5 large-4 columns remodal-bg background-rest">
         <div class="row text-center">
              <div class="small-12" id="info_container">
-                <div id="product_image_container">
-                    <a href="#product">
-                        <img src="{{ bundle.medias }}"><!-- IMAGE OF PRODUCT-->
-                    </a>
-                    <button id="product_Sleft" class="color-medium"><i class="fa fa-3x fa-arrow-circle-left" aria-hidden="true"></i></button>
-                    <button id="product_Sright" class="color-medium"><i class="fa fa-3x fa-arrow-circle-right" aria-hidden="true"></i></button>
-                </div>
-                <h1 class="text-left color-medium"> {{ bundle.name }} </h1>
-                <h3 class="text-left color-medium"><span class="light">De</span> {{ bundle.enterprise }} </h3>
-                <div id="social_media" class="text-left">
-                    <a class="text-center color-rest" href="#" target="_blank" ><!-- HREF OF FACEBOOK -->
-                        <i class="fa fa-facebook fa-2x btn-social scale-on-hover background-medium"></i>
-                    </a>
-                    <a class="text-center color-rest" href="#" target="_blank"><!-- HREF OF INSTAGRAM-->
-                        <i class="fa fa-instagram fa-2x btn-social scale-on-hover background-medium"></i>
-                    </a>
-                    <a class="text-center color-rest" href="#" target="_blank"><!-- HREF OF TWITTER-->
-                        <i class="fa fa-twitter fa-2x btn-social scale-on-hover background-medium"></i>
-                    </a>
-                    <a class="text-center color-rest" href="#" target="_blank"><!-- HREF OF YOUTUBE -->
-                        <i class="fa fa-youtube fa-2x btn-social scale-on-hover background-medium"></i>
+                <div id="image_container">
+                    <div id="product_image_container" style="width: 100%; height: 400px; max-height: 40vh; min-height: 200px; background-image: url('https://uclics.com/{{ bundle.media.url }}')">
+                            <a href="#product"><div style="height: 100%; width: 100%"></div></a>
+                            <button id="product_Sleft" class="color-medium"><i class="fa fa-3x fa-arrow-circle-left" aria-hidden="true"></i></button>
+                            <button id="product_Sright" class="color-medium"><i class="fa fa-3x fa-arrow-circle-right" aria-hidden="true"></i></button>
+                    </div>
                     </a>
                 </div>
-                <h3 class="text-left text-condensed-b color-medium">{{ bundle.total_value }}€</h3>
-                <h4 class="text-left text-condensed color-medium">{{ bundle.description }}</h4>
-                <a href="#" target="_blank"><!-- LINK TO PRODUCT -->
-                    <button id="info_button" class="text-center text-condensed-l color-rest background-medium">Plus d'information</button>
-                </a>
+                <div>
+                    <h1 class="text-left color-medium"> {{ bundle.name }} </h1>
+                    <h3 class="text-left color-medium"><span class="light">De</span> {{ bundle.enterprise }} </h3>
+                    <div id="social_media" class="text-left">
+                        <a class="text-center color-rest" href="#" target="_blank" ><!-- HREF OF FACEBOOK -->
+                            <i class="fa fa-facebook fa-2x btn-social scale-on-hover background-medium"></i>
+                        </a>
+                        <a class="text-center color-rest" href="#" target="_blank"><!-- HREF OF INSTAGRAM-->
+                            <i class="fa fa-instagram fa-2x btn-social scale-on-hover background-medium"></i>
+                        </a>
+                        <a class="text-center color-rest" href="#" target="_blank"><!-- HREF OF TWITTER-->
+                            <i class="fa fa-twitter fa-2x btn-social scale-on-hover background-medium"></i>
+                        </a>
+                        <a class="text-center color-rest" href="#" target="_blank"><!-- HREF OF YOUTUBE -->
+                            <i class="fa fa-youtube fa-2x btn-social scale-on-hover background-medium"></i>
+                        </a>
+                    </div>
+                    <h3 class="text-left text-condensed-b color-medium">{{ bundle.total_value }}€</h3>
+                    <h4 class="text-left text-condensed color-medium">{{ bundle.description }}</h4>
+                    <a href="#" target="_blank"><!-- LINK TO PRODUCT -->
+                        <button id="info_button" class="text-center text-condensed-l color-rest background-medium">Plus d'information</button>
+                    </a>
+                </div>
                 </div>
             </div>
         </div>
@@ -78,18 +81,6 @@
                 <p class="text-condensed-l color-rest">Clics restants</p>
                 <p id="player_remaining_clicks" class="text-condensed-b color-rest">{{ score.remaining_clicks }}</p>
             </div>
-            <div id="dropdown_clicks" class="dropdown">
-                <button class="dropdown_title text-center text-condensed-l color-rest unselectable">
-                    <i class="fa fa-angle-right rotate color-rest" href="#"></i>
-                    Mes 10 clicks
-                </button>
-                <div class="dropdown_container">
-                    {% for x in score.last_clicks %}
-                        <p class="large-text-right small-text-left text-condensed show-score">{{ x }}</span></p>
-                    {% endfor %}
-                    <p class="warning_message">ATTENTION ! Seulement vos <span class="bold">10 derniers clicks</span> comptent!</p>
-                </div>
-            </div>
             <div id="dropdown_leaderboard" class="dropdown">
                 <button class="dropdown_title text-center text-condensed-l color-rest unselectable">
                     <i class="fa fa-angle-right rotate color-rest" href="#"></i>
@@ -107,10 +98,22 @@
                     </a>
                 </div>
             </div>
+             <div id="dropdown_clicks" class="dropdown">
+                <button class="dropdown_title text-center text-condensed-l color-rest unselectable">
+                    <i class="fa fa-angle-right rotate color-rest" href="#"></i>
+                    Mes 10 clics
+                </button>
+                <div class="dropdown_container">
+                    {% for x in score.last_clicks %}
+                        <p class="large-text-right small-text-left text-condensed show-score">{{ x }}</span></p>
+                    {% endfor %}
+                    <p class="warning_message">ATTENTION ! Seulement vos <span class="bold">10 derniers clicks</span> comptent!</p>
+                </div>
+            </div>
         </div>
     </div>
     <!-- BOTTOM RIGHT BUTTONS START -->
-    <div class="hide-for-large remodal-bg">
+    <!--<div class="hide-for-large remodal-bg">
         <a class="btn text-center twitter color-rest" href="#">
             <i class="fa fa-twitter fa-2x btn-share show-icon background-medium" style="right: 93px;"></i>
         </a>
@@ -134,13 +137,14 @@
         <a class="btn text-center facebook color-rest " href="#">
             <i class="fa fa-facebook fa-2x btn-share background-medium" style="right: 163px; opacity: 1"></i>
         </a>
-    </div>
+    </div>-->
     <!-- BOTTOM RIGHT BUTTONS END -->
     <!-- REMODAL ITEMS START-->
     <div data-remodal-id="product" class="remodal" >
         <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
         <div data-remodal-action="close" class="row">
-            <img id="f_image_remodal" src="{% static "web/img/bundle/product.jpg" %}"><!-- IMAGE OF PRODUCT-->
+            <img src="https://uclics.com/{{ bundle.media.url }}">
+            <p>kfekjfer</p>
         </div>
     </div>
     <div id="score_modal" data-remodal-id="score" class="remodal">
