@@ -25,7 +25,7 @@ def home(request):
 
 @login_required(login_url='/account/login/')
 def bundle(request, bundle_id):
-    if request.user.profile.enterprise is None:
+    if request.user.profile.enterprise is not None:
         return HttpResponse('404')
     try:
         bundle_obj = Bundle.objects.filter(status='2').get(id=bundle_id)
