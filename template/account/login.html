@@ -15,7 +15,7 @@ Se connecter
   <div id="center_container" class="flex-child">
     <h1>Connexion</h1>
     <form method="post" action="{% url 'account:login' %}" class="form">
-      {% if form.errors %}
+      {% if form.non_field_errors %}
         <ul class="error_container">
             {% for error in form.non_field_errors %}
               <li class="error_message">{{ error }}</li>
@@ -25,18 +25,21 @@ Se connecter
       {% csrf_token %}
       <div class="row">
         <div class="columns">
-          {{ form.username }}
-          <div class="error_text">
-            {{ form.username.errors }}
+         <div>
+            {% if form.username.errors %}
+            <ul class="error_container">
+                {% for error in form.username.errors %}
+                  <li class="error_message">{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
           </div>
+          {{ form.username }}
         </div>
       </div>
       <div class="row">
         <div class="columns">
           {{ form.password }}
-          <div class="error_text">
-            {{ form.password.errors }}
-          </div>
         </div>
       </div>
       <div class="row">
