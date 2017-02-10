@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.postgres import fields as postgresModels
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
@@ -146,6 +147,18 @@ class Bundle(models.Model):
         timestamp = int(time.mktime(self.date_ended.timetuple())) - int(
             time.mktime(datetime.datetime.now().timetuple()))
         return datetime.datetime.fromtimestamp(timestamp).strftime('%dj %H:%M:%S')
+
+    def get_score_of_user(self, user):
+        try:
+            score = Score.objects.filter(bundle=self).get(user=user)
+        except ObjectDoesNotExist:
+            score = Score.objects.create(bundle=self, user=user)
+        score.check_remaining_clicks()
+        return score
+
+    def get_highscore_of_user(self, user):
+        score = self.get_score_of_user(user)
+        return score.highscore
 
 
 class Prize(models.Model):

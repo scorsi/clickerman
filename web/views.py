@@ -11,6 +11,10 @@ def home_enterprise(request):
 
 def home_clicker(request):
     bundles = Bundle.objects.filter(status='2')
+    for bundle in bundles:
+        score = bundle.get_score_of_user(request.user)
+        bundle.highscore_user = str(score.highscore)
+        bundle.position_user = str(score.position())
     return TemplateResponse(request, 'home/clicker.html', {'bundles': bundles})
 
 
@@ -36,7 +40,7 @@ def bundle(request, bundle_id):
         score_obj.check_remaining_clicks()
     except ObjectDoesNotExist:
         score_obj = Score.objects.create(bundle=bundle_obj, user=request.user)
-    return TemplateResponse(request, 'bundle.html',{'bundle': bundle_obj, 'score': score_obj})
+    return TemplateResponse(request, 'bundle.html', {'bundle': bundle_obj, 'score': score_obj})
 
 
 def construction(request):
