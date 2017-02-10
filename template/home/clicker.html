@@ -17,10 +17,13 @@ Bienvenue sur Uclics
         <div class="product-container">
             <div class="product">
                 <a href="{{ bundle.url }}">
-                    <div class="product-img" style="background: url('/img/bike_test.JPG');">
+                    <div class="product-img" style="background: url('https://uclics.com/{{ bundle.media.url }}');">
                         <div class="initial-info">
                             <div>
                                 <h4 class="product-text-enterprise"><i class="fa fa-clock-o" aria-hidden="true"></i>{{ bundle.time_left }}</h4>
+                            </div>
+                            <div>
+                                <h4 class="product-text-name"><i class="fa fa-trophy" aria-hidden="true"></i> {{ bundle.highscore }}</h4>
                             </div>
                             <div>
                                 <h4 class="product-text-name">{{ bundle.total_value }} €</h4>
