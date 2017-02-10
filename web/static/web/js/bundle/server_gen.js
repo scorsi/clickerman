@@ -2,7 +2,7 @@
 * @Author: yoppoy
 * @Date:   2017-01-31 16:01:55
 * @Last Modified 2017-02-10
-* @Last Modified time: 2017-02-10 03:17:43
+* @Last Modified time: 2017-02-10 03:41:06
 FILE FOR SERVER BASED GENERATION ON NUMBERS
 */
 
@@ -22,6 +22,37 @@ var getJSON = function(url) {
     xhr.send();
   });
 };
+
+
+function  update_leaderboard(data)
+{
+  var     count;
+  var     leaderboard;
+
+  count = 1;
+  console.log(leaderboard);
+  while (count <= 10)
+  {
+    $("#dropdown_leaderboard > .dropdown_container > p:nth-child(" + count + ")").html("h");
+    count++;
+  }
+}
+
+function  call_leaderboard()
+{
+  var     JData;
+
+  getJSON(window.location.origin + '/api' + window.location.pathname + '/leaderboard').then(function(data) {
+        JData = JSON.parse(JSON.stringify(data));
+        console.log(JData + "-" + data);
+        if (!JData.hasOwnProperty('error'))
+          update_leaderboard(JData);
+        else
+          alert("Erreur : " + JData.error);
+  }, function(status) { //error detection....
+        alert('Un problème est survenu');
+  });
+}
 
 function  update_score(new_highscore)
 {
@@ -55,25 +86,6 @@ function  display_num(random_num, new_highscore, event)
   update_score(new_highscore);
 }
 
-function  show_no_clicks()
-{
-  generate_status = true;
-  window.location.replace(window.location.origin + window.location.pathname + "#out_of_clicks");
-}
-
-function  update_leaderboard(data)
-{
-  var     data = '{leaderboard:["10000", "78987", "678", "56", "78", "7"]}';
-  var     a;
-
-  a = 0;
-  while (a < 10)
-  {
-      $($("#score_container").children() + ":eq(" + a + ")").html("h");
-    a++;
-  }
-}
-
 function  update_remaining_clicks(data)
 {
   var     count;
@@ -99,23 +111,10 @@ function  update_info(data)
  }
 }
 
-function  call_leaderboard()
+function  generate_num(callback, event)
 {
-  getJSON(window.location.origin + '/api' + window.location.pathname + '/leaderboard').then(function(data) {
-        JData = JSON.parse(JSON.stringify(data));
-        if (!JData.hasOwnProperty('error'))
-          update_leaderboard(JData);
-        else
-          alert("Erreur : " + JData.error);
-  }, function(status) { //error detection....
-        alert('Un problème est survenu');
-  });
-}
-
-function 	generate_num(callback, event)
-{
-	var 	random;
-	var 	JData;
+  var   random;
+  var   JData;
 
   generate_status = false;
   getJSON(window.location.origin + '/api' + window.location.pathname + '/click').then(function(data) {
@@ -124,6 +123,7 @@ function 	generate_num(callback, event)
         {
           callback(JData.score, JData.highscore, event);
           update_info(JData);
+          call_leaderboard();
           generate_status = true;
         }
         else if (data.error == "no_last_clicks")
@@ -131,11 +131,17 @@ function 	generate_num(callback, event)
         else
           alert("Erreur : " + JData.error);
   }, function(status) { //error detection....
-  			alert('Un problème est survenu');
+        alert('Un problème est survenu');
   });
 }
 
 //HERE TO MANAGE THE APPEARANCE OF THE OUT OF CLICKS MODAL ON THE LOADING OF THE PAGE
+function  show_no_clicks()
+{
+  generate_status = true;
+  window.location.replace(window.location.origin + window.location.pathname + "#out_of_clicks");
+}
+
 check_modal_condition();
 function  check_modal_condition()
 {

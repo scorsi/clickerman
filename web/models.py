@@ -184,9 +184,9 @@ class Score(models.Model):
         i = 0
         for score in scores:
             if score == self:
-                return str(i)
+                return str(i + 1)
             i += 1
-        return str(i)
+        return str(i + 1)
 
     def add_click(self, num):
         if self.last_clicks is None:
