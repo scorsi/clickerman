@@ -7,7 +7,7 @@ function 	show_submitbar()
 
 $(document).ready(function()
 {
-	$(".form_field, .form_title_field").bind("change", function() {
+	$(".form_field, .form_title_field").click(function() {
 		show_submitbar();
 	});
 
