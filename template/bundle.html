@@ -143,7 +143,7 @@
     <div data-remodal-id="product" class="remodal" >
         <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
         <div data-remodal-action="close" class="row">
-            <img src="https://uclics.com/{{ bundle.media.url }}">
+            {% if bundle.media %}<img src="https://uclics.com/{{ bundle.media.url }}">{% endif %}
             <p>kfekjfer</p>
         </div>
     </div>
