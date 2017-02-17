@@ -4,7 +4,6 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from web.models import *
 
-
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
         label="Username",

@@ -23,7 +23,7 @@ Se connecter
         </ul>
       {% endif %}
       {% csrf_token %}
-      <div class="row">
+      <div class="row input">
         <div class="columns">
          <div>
             {% if form.username.errors %}
@@ -37,12 +37,12 @@ Se connecter
           {{ form.username }}
         </div>
       </div>
-      <div class="row">
+      <div class="row input">
         <div class="columns">
           {{ form.password }}
         </div>
       </div>
-      <div class="row">
+      <div class="row input">
         <div class="columns">
           <a href="#" id="password_lost">Mot de passe oublié ?</a>
         </div>

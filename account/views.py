@@ -34,6 +34,20 @@ def register(request):
     return TemplateResponse(request, 'account/register.html', {'form': form})
 
 
+def register_enterprise_info(request):
+    if request.method == 'POST':
+        form = RegisterEnterpriseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            new_enterprise = authenticate(username=form.cleaned_data['username'],
+                                        password=form.cleaned_data['password1'])
+            auth_login(request, new_enterprise)
+            return HttpResponseRedirect('validated')
+    else:
+        form = RegisterForm()
+    return TemplateResponse(request, 'account/register_enterprise.html', {'form': form})
+
+
 def validated(request):
     return TemplateResponse(request, 'account/validated.html')
 

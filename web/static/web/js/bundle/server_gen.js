@@ -1,15 +1,15 @@
 /*
 * @Author: yoppoy
 * @Date:   2017-01-31 16:01:55
-* @Last Modified 2017-02-11
-* @Last Modified time: 2017-02-11 00:17:58
+* @Last Modified 2017-02-17
+* @Last Modified time: 2017-02-17 12:54:13
 FILE FOR SERVER BASED GENERATION ON NUMBERS
 */
 
 var getJSON = function(url) {
   return new Promise(function(resolve, reject) {
     var xhr = new XMLHttpRequest();
-    xhr.open('get', url, true);
+    xhr.open('post', url, true);
     xhr.responseType = 'json';
     xhr.onload = function() {
       var status = xhr.status;

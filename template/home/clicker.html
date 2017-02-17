@@ -13,6 +13,32 @@ Bienvenue sur Uclics
 {% block content %}
 <div id="main_container" class="fill_page">
     <div class="product-grid">
+        <!--<div class="full-container" id="info_panel">
+            <div>
+                <h1>Accueil</h1>   
+            </div>
+        </div>-->
+        <div class="full-container">
+            <form id="search-bar" method="post" action="{% url 'web:home' %}">
+                {% csrf_token %}
+                <div>
+                    <label>Trier par:</label><br>
+                    {{ form.sort }}
+                </div>
+                <div>
+                    <label>Catégories:</label><br>
+                    {{ form.category }}
+                </div>
+                <div>
+                    <label>Ordre:</label><br>
+                    {{ form.order }}
+                </div>
+                <div>
+                    <input type="submit" class="button success" value="Filtrer">
+                    <input type="hidden" name="next" value="{{ next }}">
+                </div>
+            </form>
+        </div>
         {% for bundle in bundles %}
         <div class="product-container">
             <div class="product">
@@ -39,16 +65,17 @@ Bienvenue sur Uclics
                                 <p class="product-text-hover-value">{{ bundle.position_user }}</p>
                             </div>
                         </div>
-                    </div></a>
-                    <div class="flex product-info">
-                        <div class="flex-child text-left" style="flex-grow: 99;">
-                            <a href="{{ bundle.url }}"><p class="product-text-name">{{ bundle.name }}</p></a>
-                            <a href="{{ bundle.enterprise.url }}" class="product-text-enterprise">{{ bundle.enterprise.name }}</a>
-                        </div>
-                        <div class="flex-child" style="margin-left: auto">
-                            <a href="{{ bundle.enterprise.url }}"><div class="enterprise-img" style="background-image: url('https://lh5.ggpht.com/acFxO77QPh7_zJm47pqbAqZ8OB99l_yDdxjahZOaPXpet7P3aly8dGukSlbDgRJUXw=w300');"></div></a>
-                        </div>
                     </div>
+                </a>
+                <div class="flex product-info">
+                    <div class="flex-child text-left" style="flex-grow: 99;">
+                        <a href="{{ bundle.url }}"><p class="product-text-name">{{ bundle.name }}</p></a>
+                        <a href="{{ bundle.enterprise.url }}" class="product-text-enterprise">{{ bundle.enterprise.name }}</a>
+                    </div>
+                    <div class="flex-child" style="margin-left: auto">
+                        <a href="{{ bundle.enterprise.url }}"><div class="enterprise-img" style="background-image: url('https://lh5.ggpht.com/acFxO77QPh7_zJm47pqbAqZ8OB99l_yDdxjahZOaPXpet7P3aly8dGukSlbDgRJUXw=w300');"></div></a>
+                    </div>
+                </div>
                 </div>
             </div>
             {% endfor %}

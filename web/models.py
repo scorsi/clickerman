@@ -111,6 +111,7 @@ class Bundle(models.Model):
         ('0', 'Draft'),
         ('1', 'Waiting'),
         ('2', 'Validated'),
+        ('3', 'Finished'),
     )
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, blank=True)
     media = models.ImageField(blank=True, null=True)

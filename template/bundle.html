@@ -18,12 +18,11 @@
         <div class="row text-center">
              <div class="small-12" id="info_container">
                 <div id="image_container">
-                    <div id="product_image_container" style="width: 100%; height: 400px; max-height: 40vh; min-height: 200px; {% if bundle.media %}background-image: url('https://uclics.com/{{ bundle.media.url }}'){% endif %}">
+                    <div id="product_image_container" style="width: 100%; height: 400px; max-height: 40vh; min-height: 200px; background-image: url('https://uclics.com/{{ bundle.media.url }}')">
                             <a href="#product"><div style="height: 100%; width: 100%"></div></a>
                             <button id="product_Sleft" class="color-medium"><i class="fa fa-3x fa-arrow-circle-left" aria-hidden="true"></i></button>
                             <button id="product_Sright" class="color-medium"><i class="fa fa-3x fa-arrow-circle-right" aria-hidden="true"></i></button>
                     </div>
-                    </a>
                 </div>
                 <div>
                     <h1 class="text-left color-medium"> {{ bundle.name }} </h1>
@@ -107,7 +106,7 @@
                     {% for x in score.last_clicks %}
                         <p class="large-text-right small-text-left text-condensed show-score">{{ x }}</span></p>
                     {% endfor %}
-                    <p class="warning_message">ATTENTION ! Seulement vos <span class="bold">10 derniers clicks</span> comptent!</p>
+                    <p class="warning_message">ATTENTION ! Seulement vos <span class="bold">10 derniers clics</span> comptent!</p>
                 </div>
             </div>
         </div>
@@ -143,7 +142,7 @@
     <div data-remodal-id="product" class="remodal" >
         <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
         <div data-remodal-action="close" class="row">
-            {% if bundle.media %}<img src="https://uclics.com/{{ bundle.media.url }}">{% endif %}
+            <img src="https://uclics.com/{{ bundle.media.url }}">
             <p>kfekjfer</p>
         </div>
     </div>
